@@ -1,4 +1,6 @@
-= Índex
+= Memòria Projecte EntreBicis
+
+== Índex
 
 . Contextualització de l'organització client
 . Breu resum del projecte
