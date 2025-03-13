@@ -1,0 +1,148 @@
+= Índex
+
+. Contextualització de l'organització client
+. Breu resum del projecte
+. Els requeriments funcionals i no funcionals
+.. Requisits no funcionals
+... Globals
+... Requisits del frontend Mobile
+... Requisits backend
+... Requisits frontend web
+... Seguretat
+... Desplegament (deploy)
+.. Requisits funcionals
+. Guions per rols
+. Diagrama d'arquitectura
+. Disseny del diagrama E-R
+. Disseny de la base de dades
+. Diagrama de casos d'ús
+. Disseny d'interfícies d'usuari (mockups) i navegació
+. Planificació de les tasques i gestió del projecte
+
+== Contextualització de l'organització client
+L'associació Aprop Garraf, de Vilanova i la Geltrú, ha creat el projecte EntreBicis per promoure l'ús de la bicicleta com a transport sostenible. Recull bicicletes donades, les repara i les entrega a persones que les necessiten, ajudant així a fomentar una mobilitat més ecològica.
+
+A més, Aprop Garraf organitza activitats per conscienciar la gent sobre la importància d'una mobilitat més respectuosa amb el medi ambient. Comparteixen informació sobre els seus projectes i col·laboracions a través de la seva web http://entrebicis.org/entrebicicletes[http://entrebicis.org/entrebicicletes] i el seu compte d'Instagram.
+
+Per fer créixer aquest projecte i animar més gent a utilitzar la bicicleta, necessiten una aplicació que permeti comptar els quilòmetres recorreguts pels usuaris i donar-los recompenses en comerços locals que participin en la iniciativa. Això no només ajuda a fomentar un estil de vida més saludable i sostenible, sinó que també dona suport al comerç local.
+
+== Breu resum del projecte
+L'aplicació és una plataforma per a ciclistes que permet enregistrar rutes amb GPS i obtenir punts en funció dels quilòmetres recorreguts. Aquests punts es poden bescanviar per recompenses en establiments locals adherits.
+
+Hi haurà els usuaris ciclistes, acumulant saldo en funció de les rutes validades, que han de ser afegits per l'administrador, que és l'únic usuari amb accés total a la gestió del sistema. L'administrador pot validar rutes, gestionar les recompenses i controlar els usuaris.
+
+Les rutes es guarden amb punts GPS i només generen saldo si compleixen determinats criteris com la velocitat màxima. Els punts obtinguts es poden gastar en recompenses, com descomptes o productes, que es recullen en punts de bescanvi determinats.
+
+L'objectiu del projecte és fomentar l'ús de la bicicleta, impulsar el comerç local i promoure una mobilitat més sostenible.
+
+== Els requeriments funcionals i no funcionals
+=== Requisits no funcionals
+==== Globals
+* *RN01*: L’aplicació ha de ser multilloc, amb un màxim de 50 usuaris de tipus ciclista.
+* *RN02*: L’aplicació ha de tenir l’arquitectura client-servidor  basada en una API REST desenvolupada amb Spring Boot al servidor. Tindrà dos clients: un front-end web per a l'administrador creat amb HTML+CSS+Thymeleaf i una app mòbil per a Android, desenvolupat en Kotlin i Jetpack Compose.
+* *RN03*: L’administrador i/o el personal de manteniment de l’aplicació han de tenir el suport d’un sistema de logs (registres en fitxers) on es vagin desant els errors, excepcions, avisos o situacions que requereixin atenció. 
+* *RN04*: El codi ha de ser optimitzat, eficient i sense redundàncies, seguint les bones pràctiques de desenvolupament per a cada tecnologia emprada.
+* *RN05*: S’han d’utilitzar les classes, interfícies i mètodes i packages de forma òptima i adient,  seguint els les bones pràctiques d’arquitectura de software.
+* *RN06*: Les capçaleres de mètodes i classes rellevants (sobretot mètodes de negoci) han d’estar degudament comentades en format JavaDoc per al backend i KDoc per al codi Kotlin de l'app mobile.
+* *RN07*:Qualsevol excepció que es produeix durant l’execució ha de ser degudament informada a l’usuari amb informació concreta i comprensible per l’usuari, en el llenguatge de l’aplicació.. 
+* *RN09*: S’ha d'utilitzar el git/gitlab per implementar el projecte de forma óptima i adient. S’han de fer servir les següents branques: main/master, developer i branques per features, encara que el projecte el faci un únic integrant.
+* *RN10*: Les branques fusionades s’eliminen després del merge.
+* *RN12*: La comunicació entre el frontend Mobile i el backend s’ha de portar a terme mitjançant els principis REST, assegurant una arquitectura desacoblada i escalable.
+* *RN14*: Tota la interfície d'usuari (UI) dels front-ends i tots els missatges d’avís, error i altres informacions mostrades a l’usuari han d’estar en català.
+
+== Requisits del frontend Mobile
+
+* *RN20*: L’app s’ha de desenvolupar utilitzant l’IDE Android Studio, implementant el llenguatge Kotlin per crear una aplicació nativa compatible amb dispositius Android.
+
+* *RN21*: L’app ha de seguir l’arquitectura Feature Layer juntament amb “Clean Architecture” (UI layer - Domain layer - Data layer).
+
+* *RN22*: En la capa IU ha de seguir la arquitectura moderna MVVM (Model-View-ViewModel). El ViewModel ha de gestionar l'estat de l'aplicació amb MutableStateFlow.
+
+* *RN23*: S’ha d’utilitzar Jetpack Compose per implementar la interfície gràfica de l’app.
+
+* *RN24*: La interfície d'usuari (UI) de l’app ha de complir amb les directrius de disseny Material Design. El disseny visual ha de ser atractiu, amb coherència en colors, tipografies, icones i una distribució eficient dels elements. Totes les pantalles han de seguir el mateix estil per garantir una experiència homogènia.
+
+* *RN25*: Reutilització i coherència de components: Els elements visuals de la interfície han d'estar definits de manera modular i reutilitzable en diversos composables. Això garanteix coherència en l'estil i facilita el manteniment i escalabilitat del disseny. Els components repetitius, com botons, targetes, formularis o missatges emergents, han de seguir un patró estandarditzat per oferir una experiència visual uniforme.
+
+* *RN26*: Usabilitat (UX) i accessibilitat: La interfície de l’app ha de ser intuïtiva, eficient i fàcil d’usar. No hi pot haver passos innecessaris per accedir a les funcionalitats i s'ha de deixar molt clar què es pot fer en cada moment. A més, el disseny ha de mantenir coherència entre les funcionalitats disponibles i les restringides.
+
+* *RN27*: Fluïdesa garantida: L’app ha de respondre a les entrades de l'usuari en tot moment, evitant bloquejos o congelacions durant operacions intensives. S’han d’utilitzar mecanismes com a operacions asíncrones quan sigui necessari.
+
+* *RN28*: S’ha d'utilitzar un component visual de Navegació per facilitar l’accés a les funcionalitats principals de l’aplicació.
+
+* *RN29*: L’app s’ha de poder executar en qualsevol emulador i dispositiu mòbil amb sistema operatiu Android.
+
+== Requisits backend
+
+* *RN41*: L’estructura del projecte ha de ser de tipus Maven.
+
+* *RN42*: Les capes de servei, lògica de negoci i de persistència han d’estar ubicades al backend.
+
+* *RN43*: El backend s’ha d’implementar mitjançant SpringBoot.
+
+* *RN44*: El backend ha de ser portable i totalment funcional entre sistemes Linux i Windows.
+
+== Requisits frontend web
+
+* *RN51*: L'usuari administrador ha de poder accedir a l’aplicació mitjançant Internet i un navegador web.
+
+* *RN52*: Coherència de colors, fonts, icones, distribució i agrupació de components.
+
+* *RN53*: Responsive: En cas de poder variar la grandària de la pantalla, s’ha d’adaptar el seu contingut de forma proporcionada.
+
+* *RN54*: Atenció a la diversitat (tenir en compte discapacitats visuals, motrius, dislèxia, etc.).
+
+* *RN55*: Fluïdesa: L’aplicació ha de respondre a les entrades de l'usuari en tot moment. Això vol dir que si ha de quedar “congelada” mentre realitza qualsevol operació, l’usuari ha d’estar degudament informat.
+
+* *RN56*: Amigable i intuïtiu: Coherència i comprensió ràpida de les funcionalitats disponibles i no disponibles en cada moment, evitant que l’usuari pugui realitzar incoherències funcionals.
+
+== Seguretat
+
+* *RN61*: L’accés als front-ends ha de disposar d’un sistema d’autenticació mitjançant usuari i contrasenya, assegurant intents d'accés no autoritzats.
+
+* *RN63*: L’emmagatzemament de la contrasenya d’usuari ha de ser un procés segur en tot moment utilitzant tècniques de hash robustes.
+
+* *RN64*: L’aplicació ha de protegir en tot moment les dades personals dels usuaris davant accessos no autoritzats tant de la part client com de la part d’API REST. Aquestes mai poden quedar exposades a altres usuaris de l’aplicació.
+
+== Desplegament (deploy)
+
+* *RN71*: El backend i el SGBD han d'estar allotjats al mateix servidor. Aquest ha de ser accessible des d'Internet i amb alta disponibilitat (24x7).
+
+* *RN72*: El desplegament de l’aplicació i del SGBD s’ha de poder realitzar mitjançant contenidors Docker.
+
+== Requisits funcionals
+
+* *RF01: Validar ruta (admin)*: El sistema ha de permetre canviar l’estat d’una ruta a “validada”. Una ruta validada significa que el saldo es va afegir al compte de l’usuari que la va generar. Per poder ser validada, una ruta ha de trobar-se prèviament en estat “no validada”.
+
+* *RF02: Invalidar ruta (admin)*: El sistema ha de permetre a l'administrador invalidar una ruta. Quan una ruta es valida, l'usuari que la va generar rep un saldo associat. Si la ruta és invalidada, aquest saldo serà retirat del compte de l'usuari. Una ruta només pot ser invalidada si es troba en estat “vàlida”. A més, no es permetrà invalidar una ruta que hagi estat parcialment o totalment utilitzada per l'usuari per acumular saldo.
+
+* *RF03: Iniciar ruta (ciclista)*: El sistema només ha de permetre començar a enregistrar els punts GPS d'una ruta si no hi ha cap altra ruta en curs. S’haurà de consultar el paràmetre de sistema “Temps màxim d'aturada”.
+
+* *RF04: Visualitzar detalls ampliats d’una ruta*: El sistema ha de permetre a l'usuari ciclista consultar la informació detallada de les rutes que ha realitzat. Aquesta informació ha de ser mostrada de manera clara i precisa, incloent:
+** *Distància recorreguda*: Mostrada amb precisió de metres, des del punt inicial fins al punt final de la ruta.
+** *Temps total de la ruta*: El temps complet des que la ruta va començar fins que es va finalitzar.
+** *Velocitat màxima*: La velocitat més alta registrada durant la ruta.
+** *Velocitat mitjana*: Calculada com la distància recorreguda dividida pel temps total.
+** *Mapa interactiu**: Visualització de tots els punts recorreguts sobre un mapa, connectats per línies. El mapa ha de permetre funcionalitats de zoom i desplaçament lateral per una millor visualització. En fer clic sobre qualsevol punt del recorregut, es mostrarà la seva informació de latitud i longitud.
+** Aquesta funcionalitat serà accessible només per a l'usuari ciclista per les seves pròpies rutes. L’administrador, en canvi, tindrà accés per visualitzar qualsevol ruta independentment de l'usuari que l'hagi realitzat.
+
+
+* *RF05: Finalitzar ruta (ciclista)*: l sistema ha de permetre que:
+** Només es podrà finalitzar la ruta que es trobi en estat "en curs".
+** Un cop finalitzada, ja no es podran afegir més punts a la ruta.
+** Un cop finalitzada, la ruta quedarà per defecte en estat "no validada" i haurà d’esperar l'aprovació de l'administrador per passar a "validada".
+** Un cop finalitzada, l'usuari visualitzarà els detalls de la ruta, seguint la funcionalitat descrita en RF Visualitzar detalls d’una ruta o Visualitzar detalls ampliats d’una ruta, depenent de si es tracta d'un equip d'un o dos integrants.
+
+* *RF06: Llistar rutes*: El sistema ha de permetre visualitzar una llista de rutes amb la següent informació per cada ruta:
+** *Distància recorreguda*: Indicat amb precisió de metres des del punt inicial fins al punt final de la ruta.
+** *Temps total de la ruta*: Temps complet consumit per realitzar la ruta.
+** *Velocitat mitjana*: Calculada com la distància recorreguda dividida pel temps total.
+** *Velocitat màxima*: La velocitat més alta registrada durant el recorregut.
+** *Saldo atorgat*: L'import de saldo que s'atorga a l'usuari per una ruta vàlida.
+** *Saldo disponible*: El saldo no utilitzat de la ruta que es pot fer servir en futures recompenses.
+** *Estat de la ruta*: Indicació de si la ruta està “no validada” o “validada”.
+** Els usuaris només podran veure les seves pròpies rutes, mentre que l'administrador tindrà accés complet per veure totes les rutes, independentment de qui les hagi generat.
+
+* *RF09: Crear recompensa (admin)*: 
+El sistema ha de permetre crear una nova recompensa i assignar-la a un punt de bescanvi.
+Només en el cas d’equips d’un únic integrant, el punt de bescanvi serà un string amb el nom del negoci i l’adreça.
