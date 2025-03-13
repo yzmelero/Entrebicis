@@ -50,7 +50,7 @@ L'objectiu del projecte és fomentar l'ús de la bicicleta, impulsar el comerç 
 * *RN12*: La comunicació entre el frontend Mobile i el backend s’ha de portar a terme mitjançant els principis REST, assegurant una arquitectura desacoblada i escalable.
 * *RN14*: Tota la interfície d'usuari (UI) dels front-ends i tots els missatges d’avís, error i altres informacions mostrades a l’usuari han d’estar en català.
 
-== Requisits del frontend Mobile
+==== Requisits del frontend Mobile
 
 * *RN20*: L’app s’ha de desenvolupar utilitzant l’IDE Android Studio, implementant el llenguatge Kotlin per crear una aplicació nativa compatible amb dispositius Android.
 
@@ -72,7 +72,7 @@ L'objectiu del projecte és fomentar l'ús de la bicicleta, impulsar el comerç 
 
 * *RN29*: L’app s’ha de poder executar en qualsevol emulador i dispositiu mòbil amb sistema operatiu Android.
 
-== Requisits backend
+==== Requisits backend
 
 * *RN41*: L’estructura del projecte ha de ser de tipus Maven.
 
@@ -82,7 +82,7 @@ L'objectiu del projecte és fomentar l'ús de la bicicleta, impulsar el comerç 
 
 * *RN44*: El backend ha de ser portable i totalment funcional entre sistemes Linux i Windows.
 
-== Requisits frontend web
+==== Requisits frontend web
 
 * *RN51*: L'usuari administrador ha de poder accedir a l’aplicació mitjançant Internet i un navegador web.
 
@@ -96,7 +96,7 @@ L'objectiu del projecte és fomentar l'ús de la bicicleta, impulsar el comerç 
 
 * *RN56*: Amigable i intuïtiu: Coherència i comprensió ràpida de les funcionalitats disponibles i no disponibles en cada moment, evitant que l’usuari pugui realitzar incoherències funcionals.
 
-== Seguretat
+==== Seguretat
 
 * *RN61*: L’accés als front-ends ha de disposar d’un sistema d’autenticació mitjançant usuari i contrasenya, assegurant intents d'accés no autoritzats.
 
@@ -104,13 +104,13 @@ L'objectiu del projecte és fomentar l'ús de la bicicleta, impulsar el comerç 
 
 * *RN64*: L’aplicació ha de protegir en tot moment les dades personals dels usuaris davant accessos no autoritzats tant de la part client com de la part d’API REST. Aquestes mai poden quedar exposades a altres usuaris de l’aplicació.
 
-== Desplegament (deploy)
+==== Desplegament (deploy)
 
 * *RN71*: El backend i el SGBD han d'estar allotjats al mateix servidor. Aquest ha de ser accessible des d'Internet i amb alta disponibilitat (24x7).
 
 * *RN72*: El desplegament de l’aplicació i del SGBD s’ha de poder realitzar mitjançant contenidors Docker.
 
-== Requisits funcionals
+=== Requisits funcionals
 
 * *RF01: Validar ruta (admin)*: El sistema ha de permetre canviar l’estat d’una ruta a “validada”. Una ruta validada significa que el saldo es va afegir al compte de l’usuari que la va generar. Per poder ser validada, una ruta ha de trobar-se prèviament en estat “no validada”.
 
