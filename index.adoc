@@ -144,13 +144,11 @@ El sistema ha de permetre que cada ciclista faci una única reserva de recompens
 
 * *RF14: Assignar recompensa (admin)*:
 El sistema ha de permetre:
-. Llistar les recompenses reservades pels ciclistes: L'administrador podrà consultar totes les recompenses que han estat reservades pels ciclistes.
 . Assignar una recompensa a l'usuari ciclista que l’ha demanat:
 ** Quan l'administrador assigna una recompensa al ciclista que l’ha demanat, el valor de la recompensa es descompta del saldo disponible de l’usuari, sempre i quan el valor del saldo sigui superior o igual al valor de punts de la recompensa.
 ** L'assignació es registra automàticament amb la data actual per defecte.
 . Condicions d’assignació:
 ** El sistema només permet assignar una recompensa per usuari en curs.
-** Si l’usuari no recull la recompensa dins del termini establert pel paràmetre del sistema (“Temps màxim per recollir la recompensa”), la recompensa es torna a posar disponible per altres usuaris, i el ciclista no recuperarà el seu saldo.
 
 * *RF16: Recollir recompensa (ciclista)*:
 El sistema ha de permetre que l'usuari ciclista:
@@ -227,12 +225,84 @@ El sistema ha de permetre modificar el valors dels paràmetres de sistema:
 ** Temps màxim per recollir la recompensa: període màxim per recollir una recompensa assignada al punt de bescanvi. Per defecte, 72 hores.
 
 === 1.4. Guions per rols
+==== 1.4.1. Guió per l'administrador
+[cols="1,1"]
+|===
+|*Actor* 
+|Administrador
 
+|*Descripció*
+|Usuari amb permisos complets que pot gestionar rutes, usuaris, recompenses i els paràmetres del sistema.
+
+|*Guió*
+a|
+* RF01: Validar Ruta
+* RF02: Invalidar Ruta
+* RF03: Iniciar ruta
+* RF04: Visualitzar detalls ruta
+* RF05: Finalitzar ruta
+* RF06: Llistar rutes
+* RF09: Crear recompensa
+* RF11: Eliminar recompensa disponible
+* RF12: Reservar recompensa
+* RF14: Assignar recompensa
+* RF16: Recollir recompensa
+* RF18: Llistar recompenses
+* RF21: Mostrar detall de la recompensa
+* RF22: Crear usuari
+* RF23: Modificar usuari (qualsevol)
+* RF25: Llistar usuaris
+* RF26: Visualitzar detalls de l’usuari
+* RF27: Recuperar password
+* RF29: Login / Logout
+* RF36: Modificar paràmetres del sistema
+|===
+
+==== 1.4.2. Guió pel ciclista
+[cols="1,1"]
+|===
+|*Actor* 
+|Ciclista
+
+|*Descripció*
+|Usuari que realitza rutes i pot reservar i recollir recompenses amb el saldo obtingut.
+
+|*Guió*
+a|
+* RF03: Iniciar ruta
+* RF04: Visualitzar detalls ruta (pròpia)
+* RF05: Finalitzar ruta
+* RF06: Llistar rutes
+* RF12: Reservar recompensa
+* RF16: Recollir recompensa
+* RF18: Llistar recompenses
+* RF21: Mostrar detall de la recompensa
+* RF23: Modificar usuari (pròpies dades)
+* RF26: Visualitzar detalls de l’usuari (pròpies)
+* RF27: Recuperar password
+* RF29: Login / Logout
+|===
+
+==== 1.4.3. Guió pel sistema
+[cols="1,1"]
+|===
+|*Actor* 
+|Sistema
+
+|*Descripció*
+|Component automàtic que gestiona internament el sistema sense intervenció directa de l'usuari.
+
+|*Guió*
+a|
+* RF05: Finalitzar ruta automàticament (si se supera el temps màxim d'aturada)
+|===
 === 1.5. Diagrama d’arquitectura
 
 === 1.6. Disseny del diagrama E-R
+image::Imatges/DiagmaraEntreBicisER.png[Diagrama Entitat-Relació]
 
 === 1.7. Disseny de la base de dades
+image::Imatges/diagramaBBDD.png[Diagrama de la base de dades]
 
 === 1.8. Diagrama de casos d’ús
 
