@@ -4,12 +4,14 @@
 
 = Memòria Projecte EntreBicis
 
+[.text-center]
+image::Imatges/LogoEntreBicis.png[Logo]
 == 1. Fase de disseny
 
 === 1.1. Contextualització de l'organització client
 L'associació Aprop Garraf, de Vilanova i la Geltrú, ha creat el projecte EntreBicis per promoure l'ús de la bicicleta com a transport sostenible. Recull bicicletes donades, les repara i les entrega a persones que les necessiten, ajudant així a fomentar una mobilitat més ecològica.
 
-A més, Aprop Garraf organitza activitats per conscienciar la gent sobre la importància d'una mobilitat més respectuosa amb el medi ambient. Comparteixen informació sobre els seus projectes i col·laboracions a través de la seva web http://entrebicis.org/entrebicicletes[http://entrebicis.org/entrebicicletes] i el seu compte d'Instagram.
+A més, Aprop Garraf organitza activitats per conscienciar la gent sobre la importància d'una mobilitat més respectuosa amb el medi ambient. Comparteixen informació sobre els seus projectes i col·laboracions a través de la seva web http://entrebicis.org[http://entrebicis.org] i el seu compte d'Instagram.
 
 Per fer créixer aquest projecte i animar més gent a utilitzar la bicicleta, necessiten una aplicació que permeti comptar els quilòmetres recorreguts pels usuaris i donar-los recompenses en comerços locals que participin en la iniciativa. Això no només ajuda a fomentar un estil de vida més saludable i sostenible, sinó que també dona suport al comerç local.
 
