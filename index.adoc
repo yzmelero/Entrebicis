@@ -305,7 +305,7 @@ image::Imatges/DiagmaraEntreBicisER.png[Diagrama Entitat-Relació]
 image::Imatges/diagramaBBDD.png[Diagrama de la base de dades]
 
 === 1.8. Diagrama de casos d’ús
-
+image::Imatges/Diagrama de casos d'us EntreBicis.png[Diagrama de casos d'ús]
 === 1.9. Disseny d’interfícies d’usuari (mockups) i navegació
 
 === 1.10. Planificació de les tasques i gestió del projecte
