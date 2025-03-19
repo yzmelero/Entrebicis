@@ -201,7 +201,6 @@ El sistema ha de permetre modificar les dades d'un usuari ciclista amb les segü
 El sistema ha de permetre visualitzar una llista d’usuaris amb la següent informació per cada usuari:
 . *Nom complet* de l'usuari.
 . *Correu electrònic* de l'usuari.
-. *Estat* de l'usuari (actiu o desactivat).
 . *Rol* de l’usuari (ciclista, admin)
 
 * *RF26: Visualitzar detalls de l’usuari*: 
@@ -209,7 +208,6 @@ El sistema ha de permetre a l'administrador visualitzar els detalls de l'usuari 
 . Foto de l’usuari (si en té)
 . Nom complet
 . correu electrònic
-. Estat actual (actiu o desactivat).
 . Rol (ciclista, admin)
 . Saldo disponible (validat)
 . Historial de rutes: Una llista amb totes les rutes que l'usuari ha realitzat, amb el seu estat actual (no validada, validada) i els punts de saldo associats.
@@ -309,6 +307,7 @@ a|
 * RF05: Finalitzar ruta automàticament (si se supera el temps màxim d'aturada)
 |===
 === 1.5. Diagrama d’arquitectura
+image::ArquitecturaYaiza.png[Diagrama d'arquitectura]
 
 === 1.6. Disseny del diagrama E-R
 image::DiagmaraEntreBicisER.png[Diagrama Entitat-Relació]
@@ -318,6 +317,31 @@ image::diagramaBBDD.png[Diagrama de la base de dades]
 
 === 1.8. Diagrama de casos d’ús
 image::Diagrama de casos d'us EntreBicis.png[Diagrama de casos d'ús]
+
 === 1.9. Disseny d’interfícies d’usuari (mockups) i navegació
 
+https://www.figma.com/design/PikxDFhaRpQVUxpRnSmGI3/EntreBicis?node-id=19-324&t=7t9MsequX6f8DLBe-0[Enllaç Figma]
+
+==== 1.9.1. Pantalles Android
+image::Pantalles1.png[Mockup Android 1]
+image::Pantalles2.png[Mockup Android 2]
+image::Pantalles3.png[Mockup Android 3]
+
+==== 1.9.2. Pantalles Web
+image::Pantalles4.png[Mockup Web 1]
+image::Pantalles5.png[Mockup Web 2]
+image::Pantalles6.png[Mockup Web 3]
+image::Pantalles7.png[Mockup Web 4]
+image::Pantalles8.png[Mockup Web 5]
+image::Pantalles9.png[Mockup Web 6]
+image::Pantalles10.png[Mockup Web 7]
+
+==== 1.9.3. Plantilla de disseny
+image::Pantalles11.png[Plantilla de disseny]
+
 === 1.10. Planificació de les tasques i gestió del projecte
+https://trello.com/b/0GED7RNR/entrebicis[Trello EntreBicis Yaiza]
+
+image::Trello.png[Trello EntreBicis Yaiza]
+image::Trello2.png[Trello EntreBicis Yaiza]
+image::Trello3.png[Trello EntreBicis Yaiza]
