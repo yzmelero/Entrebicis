@@ -1,11 +1,21 @@
 :toc-title: Index
 :toc: left
 :toclevels: 3
+:hardbreaks:
+:imagesdir: ./Imatges
 
 = Memòria Projecte EntreBicis
 
-[.text-center]
-image::Imatges/LogoEntreBicis.png[Logo]
+image::LogoEntreBicis.png[align="center"]
+
+[.text-right]
+****
+**Nom:** Yaiza Melero
+**Curs:** 2DAMM 24-25
+**Institut:** Nicolau Copèrnic
+**Equip docent:** Manel Orós, Esther Sánchez, Jordi Cárdenas
+**** 
+
 == 1. Fase de disseny
 
 === 1.1. Contextualització de l'organització client
@@ -301,13 +311,13 @@ a|
 === 1.5. Diagrama d’arquitectura
 
 === 1.6. Disseny del diagrama E-R
-image::Imatges/DiagmaraEntreBicisER.png[Diagrama Entitat-Relació]
+image::DiagmaraEntreBicisER.png[Diagrama Entitat-Relació]
 
 === 1.7. Disseny de la base de dades
-image::Imatges/diagramaBBDD.png[Diagrama de la base de dades]
+image::diagramaBBDD.png[Diagrama de la base de dades]
 
 === 1.8. Diagrama de casos d’ús
-image::Imatges/Diagrama de casos d'us EntreBicis.png[Diagrama de casos d'ús]
+image::Diagrama de casos d'us EntreBicis.png[Diagrama de casos d'ús]
 === 1.9. Disseny d’interfícies d’usuari (mockups) i navegació
 
 === 1.10. Planificació de les tasques i gestió del projecte
