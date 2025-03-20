@@ -1,15 +1,27 @@
 :toc-title: Index
 :toc: left
 :toclevels: 3
+:hardbreaks:
+:imagesdir: ./Imatges
 
 = Memòria Projecte EntreBicis
+
+image::LogoEntreBicis.png[align="center"]
+
+[.text-right]
+****
+**Nom:** Yaiza Melero
+**Curs:** 2DAMM 24-25
+**Institut:** Nicolau Copèrnic
+**Equip docent:** Manel Orós, Esther Sánchez, Jordi Cárdenas
+**** 
 
 == 1. Fase de disseny
 
 === 1.1. Contextualització de l'organització client
 L'associació Aprop Garraf, de Vilanova i la Geltrú, ha creat el projecte EntreBicis per promoure l'ús de la bicicleta com a transport sostenible. Recull bicicletes donades, les repara i les entrega a persones que les necessiten, ajudant així a fomentar una mobilitat més ecològica.
 
-A més, Aprop Garraf organitza activitats per conscienciar la gent sobre la importància d'una mobilitat més respectuosa amb el medi ambient. Comparteixen informació sobre els seus projectes i col·laboracions a través de la seva web http://entrebicis.org/entrebicicletes[http://entrebicis.org/entrebicicletes] i el seu compte d'Instagram.
+A més, Aprop Garraf organitza activitats per conscienciar la gent sobre la importància d'una mobilitat més respectuosa amb el medi ambient. Comparteixen informació sobre els seus projectes i col·laboracions a través de la seva web http://entrebicis.org[http://entrebicis.org] i el seu compte d'Instagram.
 
 Per fer créixer aquest projecte i animar més gent a utilitzar la bicicleta, necessiten una aplicació que permeti comptar els quilòmetres recorreguts pels usuaris i donar-los recompenses en comerços locals que participin en la iniciativa. Això no només ajuda a fomentar un estil de vida més saludable i sostenible, sinó que també dona suport al comerç local.
 
@@ -144,13 +156,11 @@ El sistema ha de permetre que cada ciclista faci una única reserva de recompens
 
 * *RF14: Assignar recompensa (admin)*:
 El sistema ha de permetre:
-. Llistar les recompenses reservades pels ciclistes: L'administrador podrà consultar totes les recompenses que han estat reservades pels ciclistes.
 . Assignar una recompensa a l'usuari ciclista que l’ha demanat:
 ** Quan l'administrador assigna una recompensa al ciclista que l’ha demanat, el valor de la recompensa es descompta del saldo disponible de l’usuari, sempre i quan el valor del saldo sigui superior o igual al valor de punts de la recompensa.
 ** L'assignació es registra automàticament amb la data actual per defecte.
 . Condicions d’assignació:
 ** El sistema només permet assignar una recompensa per usuari en curs.
-** Si l’usuari no recull la recompensa dins del termini establert pel paràmetre del sistema (“Temps màxim per recollir la recompensa”), la recompensa es torna a posar disponible per altres usuaris, i el ciclista no recuperarà el seu saldo.
 
 * *RF16: Recollir recompensa (ciclista)*:
 El sistema ha de permetre que l'usuari ciclista:
@@ -191,7 +201,6 @@ El sistema ha de permetre modificar les dades d'un usuari ciclista amb les segü
 El sistema ha de permetre visualitzar una llista d’usuaris amb la següent informació per cada usuari:
 . *Nom complet* de l'usuari.
 . *Correu electrònic* de l'usuari.
-. *Estat* de l'usuari (actiu o desactivat).
 . *Rol* de l’usuari (ciclista, admin)
 
 * *RF26: Visualitzar detalls de l’usuari*: 
@@ -199,7 +208,6 @@ El sistema ha de permetre a l'administrador visualitzar els detalls de l'usuari 
 . Foto de l’usuari (si en té)
 . Nom complet
 . correu electrònic
-. Estat actual (actiu o desactivat).
 . Rol (ciclista, admin)
 . Saldo disponible (validat)
 . Historial de rutes: Una llista amb totes les rutes que l'usuari ha realitzat, amb el seu estat actual (no validada, validada) i els punts de saldo associats.
@@ -227,15 +235,113 @@ El sistema ha de permetre modificar el valors dels paràmetres de sistema:
 ** Temps màxim per recollir la recompensa: període màxim per recollir una recompensa assignada al punt de bescanvi. Per defecte, 72 hores.
 
 === 1.4. Guions per rols
+==== 1.4.1. Guió per l'administrador
+[cols="1,1"]
+|===
+|*Actor* 
+|Administrador
 
+|*Descripció*
+|Usuari amb permisos complets que pot gestionar rutes, usuaris, recompenses i els paràmetres del sistema.
+
+|*Guió*
+a|
+* RF01: Validar Ruta
+* RF02: Invalidar Ruta
+* RF03: Iniciar ruta
+* RF04: Visualitzar detalls ruta
+* RF05: Finalitzar ruta
+* RF06: Llistar rutes
+* RF09: Crear recompensa
+* RF11: Eliminar recompensa disponible
+* RF12: Reservar recompensa
+* RF14: Assignar recompensa
+* RF16: Recollir recompensa
+* RF18: Llistar recompenses
+* RF21: Mostrar detall de la recompensa
+* RF22: Crear usuari
+* RF23: Modificar usuari (qualsevol)
+* RF25: Llistar usuaris
+* RF26: Visualitzar detalls de l’usuari
+* RF27: Recuperar password
+* RF29: Login / Logout
+* RF36: Modificar paràmetres del sistema
+|===
+
+==== 1.4.2. Guió pel ciclista
+[cols="1,1"]
+|===
+|*Actor* 
+|Ciclista
+
+|*Descripció*
+|Usuari que realitza rutes i pot reservar i recollir recompenses amb el saldo obtingut.
+
+|*Guió*
+a|
+* RF03: Iniciar ruta
+* RF04: Visualitzar detalls ruta (pròpia)
+* RF05: Finalitzar ruta
+* RF06: Llistar rutes
+* RF12: Reservar recompensa
+* RF16: Recollir recompensa
+* RF18: Llistar recompenses
+* RF21: Mostrar detall de la recompensa
+* RF23: Modificar usuari (pròpies dades)
+* RF26: Visualitzar detalls de l’usuari (pròpies)
+* RF27: Recuperar password
+* RF29: Login / Logout
+|===
+
+==== 1.4.3. Guió pel sistema
+[cols="1,1"]
+|===
+|*Actor* 
+|Sistema
+
+|*Descripció*
+|Component automàtic que gestiona internament el sistema sense intervenció directa de l'usuari.
+
+|*Guió*
+a|
+* RF05: Finalitzar ruta automàticament (si se supera el temps màxim d'aturada)
+|===
 === 1.5. Diagrama d’arquitectura
+image::ArquitecturaYaiza.png[Diagrama d'arquitectura]
 
 === 1.6. Disseny del diagrama E-R
+image::DiagmaraEntreBicisER.png[Diagrama Entitat-Relació]
 
 === 1.7. Disseny de la base de dades
+image::diagramaBBDD.png[Diagrama de la base de dades]
 
 === 1.8. Diagrama de casos d’ús
+image::Diagrama de casos d'us EntreBicis.png[Diagrama de casos d'ús]
 
 === 1.9. Disseny d’interfícies d’usuari (mockups) i navegació
 
+https://www.figma.com/design/PikxDFhaRpQVUxpRnSmGI3/EntreBicis?node-id=19-324&t=7t9MsequX6f8DLBe-0[Enllaç Figma]
+
+==== 1.9.1. Pantalles Android
+image::Pantalles1.png[Mockup Android 1]
+image::Pantalles2.png[Mockup Android 2]
+image::Pantalles3.png[Mockup Android 3]
+
+==== 1.9.2. Pantalles Web
+image::Pantalles4.png[Mockup Web 1]
+image::Pantalles5.png[Mockup Web 2]
+image::Pantalles6.png[Mockup Web 3]
+image::Pantalles7.png[Mockup Web 4]
+image::Pantalles8.png[Mockup Web 5]
+image::Pantalles9.png[Mockup Web 6]
+image::Pantalles10.png[Mockup Web 7]
+
+==== 1.9.3. Plantilla de disseny
+image::Pantalles11.png[Plantilla de disseny]
+
 === 1.10. Planificació de les tasques i gestió del projecte
+https://trello.com/b/0GED7RNR/entrebicis[Trello EntreBicis Yaiza]
+
+image::Trello.png[Trello EntreBicis Yaiza]
+image::Trello2.png[Trello EntreBicis Yaiza]
+image::Trello3.png[Trello EntreBicis Yaiza]
