@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>EntreBicis - Inici Sessió</title>
+    <style>
+        body {
+            background-color: #87CEEB;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .login-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+        }
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 5px 0;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .link {
+            font-size: 14px;
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>EntreBicis</h1>
+        <img th:src="@{/img/LogoEntreBicis.png}" alt="Logo EntreBicis" width="150">
+        <br>
+        <div class="login-box">
+            <h2>Inici Sessió</h2>
+            <form th:action="@{/login}" method="post">
+                <label>Email:</label>
+                <input type="email" name="email" required>
+                <label>Contrasenya:</label>
+                <input type="password" name="password" required>
+                <button type="submit">Confirmar</button>
+            </form>
+            <a class="link" href="#">Has oblidat la contrasenya?</a>
+            <button type="submit">Formulari Alta</button>
+        </div>
+    </div>
+</body>
+</html>
