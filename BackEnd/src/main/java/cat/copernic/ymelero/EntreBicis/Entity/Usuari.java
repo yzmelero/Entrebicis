@@ -38,6 +38,7 @@ public class Usuari {
     @Pattern(regexp = "^[0-9]{9}$")
     private String telefon;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Rol rol;
 
