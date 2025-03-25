@@ -17,4 +17,15 @@ public class UsuariLogica {
     public List<Usuari> getAllUsuaris() {
         return usuariRepository.findAll();
     }
+
+    public Usuari crearUsuari(Usuari usuari) {
+        if (usuariRepository.findByEmail(usuari.getEmail()).isPresent()) {
+            throw new RuntimeException("Ja existeix un usuari amb el correu: " + usuari.getEmail());
+        }
+        return usuariRepository.save(usuari);
+    }
+
+    public Usuari getUsuari(String email) {
+        return usuariRepository.findByEmail(email).orElse(null);
+    }
 }
