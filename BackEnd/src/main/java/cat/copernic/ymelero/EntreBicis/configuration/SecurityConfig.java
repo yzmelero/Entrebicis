@@ -13,51 +13,51 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/login").permitAll() // Permitir acceso a la página de login
-                .requestMatchers("/**").hasRole("ADMIN") // Solo el admin puede acceder al resto
-                .anyRequest().authenticated() // Todo lo demás requiere autenticación
-            )
-            .formLogin(login -> login
-                .loginPage("/login") // Página de login personalizada
-                .defaultSuccessUrl("/", true) // Redirigir a "/" tras login exitoso
-                .failureUrl("/login?error=true") // Redirigir a login con error
-                .usernameParameter("email") // Correo como usuario
-                .passwordParameter("password") // Nombre del campo de contraseña
-                .permitAll()
-            )
-            .logout(logout -> logout
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/login?logout=true") // Redirigir a login tras logout
-                .invalidateHttpSession(true) // Invalidar la sesión
-                .deleteCookies("JSESSIONID") // Eliminar cookies de sesión
-                .permitAll()
-            )
-            .exceptionHandling(handling -> handling
-                .accessDeniedPage("/errorPermisos") // Página de error si no tiene permisos
-            );
+        @Autowired
+        private ValidadorUsuari validadorUsuari;
 
-        return http.build();
-    }
+        @Bean
+        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+                http
+                                .authorizeHttpRequests(auth -> auth
+                                                .requestMatchers("/css/**", "/img/**").permitAll()
+                                                .requestMatchers("/login").permitAll()
+                                                .requestMatchers("/**").hasRole("ADMIN") // Solo el admin puede acceder
+                                                .anyRequest().authenticated() // Todo lo demás requiere autenticación
+                                )
+                                .formLogin(login -> login
+                                                .loginPage("/login") // Página de login personalizada
+                                                .defaultSuccessUrl("/usuaris", true) // Redirigir a llista d'usuaris
+                                                .failureUrl("/login?error=true") // Redirigir a login con error
+                                                .usernameParameter("email") // Correo como usuario
+                                                .passwordParameter("password") // Nombre del campo de contraseña
+                                                .permitAll())
+                                .logout(logout -> logout
+                                                .logoutUrl("/logout")
+                                                .logoutSuccessUrl("/login?logout=true") // Redirigir a login tras logout
+                                                .invalidateHttpSession(true) // Invalidar la sesión
+                                                .deleteCookies("JSESSIONID") // Eliminar cookies de sesión
+                                                .permitAll())
+                                .exceptionHandling(handling -> handling
+                                                .accessDeniedPage("/errorPermisos") // Página de error si no tiene
+                                                                                    // permisos
+                                );
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+                return http.build();
+        }
 
-    @Bean
-    public AuthenticationManager authManager(HttpSecurity http) throws Exception {
-        return http.getSharedObject(AuthenticationManagerBuilder.class)
-                .inMemoryAuthentication()
-                .withUser("admin@entrebicis.com")
-                .password(passwordEncoder().encode("admin123")) // Cambiar por el real en BD
-                .roles("ADMIN")
-                .and()
-                .passwordEncoder(passwordEncoder())
-                .and()
-                .build();
-    }
+        @Bean
+        public PasswordEncoder passwordEncoder() {
+                return new BCryptPasswordEncoder();
+        }
+
+        @SuppressWarnings("removal")
+        @Bean
+        public AuthenticationManager authManager(HttpSecurity http) throws Exception {
+                return http.getSharedObject(AuthenticationManagerBuilder.class)
+                                .userDetailsService(validadorUsuari)
+                                .passwordEncoder(passwordEncoder())
+                                .and()
+                                .build();
+        }
 }

@@ -1,9 +1,16 @@
 package cat.copernic.ymelero.entrebicis.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.persistence.*;
 
 @Entity
 @Table(name = "ruta")
@@ -11,7 +18,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Ruta {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,7 +34,7 @@ public class Ruta {
     private Double distancia;
 
     @Column(name = "temps_total", nullable = false)
-    pribate Double tempsTotal;
+    private Double tempsTotal;
 
     @Column(name = "velocitat_maxima", nullable = false)
     private Double velocitatMaxima;

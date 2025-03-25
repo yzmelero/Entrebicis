@@ -1,12 +1,18 @@
 package cat.copernic.ymelero.entrebicis.entity;
 
+import java.time.LocalDate;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.persistence.*;
-import java.time.LocalDate;
-import org.springframework.format.annotation.DateTimeFormat;
-import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "usuari")
@@ -35,7 +41,6 @@ public class Usuari {
     private String poblacio;
 
     @Column(unique = true)
-    @Pattern(regexp = "^[0-9]{9}$")
     private String telefon;
 
     @Enumerated(EnumType.STRING)
