@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,40 +25,34 @@ public class Usuari {
     @Id
     private String email;
 
-    @Column(nullable = false)
     private String nom;
 
-    @Column(nullable = false)
     private String cognoms;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "data_naixement", nullable = false)
+    @Column(name = "data_naixement")
     private LocalDate dataNaixement;
 
-    @Column(nullable = false)
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
     private byte[] foto;
 
-    @Column(nullable = false)
     private String poblacio;
 
     @Column(unique = true)
     private String telefon;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private Rol rol;
 
-    @Column(nullable = false)
     private Double saldo;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "data_alta", nullable = false)
+    @Column(name = "data_alta")
     private LocalDate dataAlta;
 
-    @Column(nullable = false)
     private String contrasenya;
 
-    @Column(nullable = false)
     private String observacions;
 
 }

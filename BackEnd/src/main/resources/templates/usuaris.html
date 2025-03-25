@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Llista Usuaris</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
+
 <body>
-    <div th:replace="fragments/navbar :: navbar"></div>  
+    <div th:replace="fragments/navbar :: navbar"></div>
     <h1 class="title">Llista Usuaris</h1>
+    <a href="/usuaris/crear" class="btn-create-user">+ Crear Usuari</a>
 
     <div class="users-container">
         <div class="user-card" th:each="usuari : ${usuaris}">
             <h2 th:text="${usuari.nom}">Nom Usuari</h2>
-            <img th:src="${usuari.foto}" alt="Imatge Usuari">
+            <img th:if="${imatgesBase64[usuari.email] != null}"
+                th:src="'data:image/jpeg;base64,' + ${imatgesBase64[usuari.email]}" alt="Imatge Usuari"
+                style="max-width: 150px; border-radius: 50%;">
             <p th:text="${usuari.email}">email@example.com</p>
             <p th:text="${usuari.rol}">Rol</p>
             <button>Veure Detalls</button>
         </div>
     </div>
 </body>
+
 </html>
