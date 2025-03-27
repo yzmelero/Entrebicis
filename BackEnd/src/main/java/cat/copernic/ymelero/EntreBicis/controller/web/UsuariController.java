@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -75,5 +76,24 @@ public class UsuariController {
             model.addAttribute("usuari", usuari);
             return "usuari-alta";
         }
+    }
+
+    @GetMapping("/consulta/{email}")
+    public String mostrarUsuari(@PathVariable String email, Model model) {
+
+        Usuari usuari = usuariLogica.getUsuari(email);
+        if (usuari == null) {
+            model.addAttribute("error", "No s'ha trobat usuari amb correu: " + email);
+            return "redirect:/usuaris";
+        }
+        if (usuari.getFoto() != null) {
+            String imatgeBase64 = Base64.getEncoder().encodeToString(usuari.getFoto());
+            model.addAttribute("imatgeBase64", imatgeBase64);
+        } else {
+            model.addAttribute("imatgeBase64", null);
+        }
+        model.addAttribute("usuari", usuari);
+
+        return "usuari-consultar";
     }
 }
