@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,9 @@ public class UsuariController {
 
     @Autowired
     private UsuariLogica usuariLogica;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping
     public String mostrarUsuaris(Model model) {
@@ -52,8 +56,11 @@ public class UsuariController {
 
     @PostMapping("/crear")
     public String guardarNouUsuari(@ModelAttribute Usuari usuari,
-            @RequestParam(value = "fotoFile", required = false) MultipartFile fotoFile, Model model) {
+            @RequestParam(value = "fotoFile", required = false) MultipartFile fotoFile,
+            Model model) {
         try {
+            usuari.setContrasenya(passwordEncoder.encode(usuari.getContrasenya()));
+
             if (fotoFile != null && !fotoFile.isEmpty()) {
                 usuari.setFoto(fotoFile.getBytes());
             } else {
