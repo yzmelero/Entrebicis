@@ -1,0 +1,201 @@
+body {
+    background-color: #bef9fd;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    padding-top: 90px;
+}
+h1 {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Login */
+.logo-inici {
+    width: 120px;
+    border-radius: 30%;
+    margin: 10px;
+}
+.container {
+    margin-top: 50px;
+}
+.login-box {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3); 
+    display: inline-block;
+    width: 320px;
+}
+input {
+    width: 90%;
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+button {
+    background-color: #7bd4f2;
+    color: black;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    padding: 10px 40px; 
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 139, 0.6); 
+}
+button:hover {
+    background-color: #47caf6;
+    box-shadow: 0px 5px 20px rgba(0, 0, 139, 0.9);
+}
+.link {
+    font-size: 14px;
+    display: block;
+    margin-top: 10px;
+}
+
+/* Barra de navegació */
+.navbar {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    background-color: #099a9a;
+    padding: 10px 30px;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0; 
+    z-index: 1000;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px; 
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    color: #c0f0f0;
+}
+
+.active {
+    border-bottom: 3px solid white;
+    padding-bottom: 2px;
+}
+
+/* Llistat Usuaris */
+.users-container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px; 
+    padding: 20px;
+}
+
+.user-card {
+    background-color: #9DFFE8;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    width: 250px; 
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.user-image img {
+    width: 120px;
+    height: 120px; 
+    object-fit: cover; 
+    border-radius: 50%;
+}
+
+.btn-create-user {
+    background-color: #47caf6;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    box-shadow: 0px 3px 10px rgba(0, 0, 139, 0.4);
+    transition: 0.3s;
+}
+
+.btn-create-user:hover {
+    background-color: #099a9a;
+}
+
+
+/* Usuari alta */
+.usuari-alta-container {
+    width: 80%;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.error-message {
+    background: #ffcccc;
+    color: red;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.user-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
