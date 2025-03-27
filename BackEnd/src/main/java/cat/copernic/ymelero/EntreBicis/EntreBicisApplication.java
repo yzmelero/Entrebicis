@@ -28,7 +28,7 @@ public class EntreBicisApplication {
 				admin.setNom("Admin");
 				admin.setCognoms("Administrador");
 				admin.setDataNaixement(LocalDate.of(2000, 1, 1));
-				admin.setFoto(new byte[0]);
+				admin.setFoto(null);
 				admin.setPoblacio("Ciutat");
 				admin.setTelefon("123456789");
 				admin.setRol(Rol.ADMIN);

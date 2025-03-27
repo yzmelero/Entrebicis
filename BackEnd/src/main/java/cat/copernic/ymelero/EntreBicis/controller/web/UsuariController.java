@@ -1,11 +1,13 @@
 package cat.copernic.ymelero.entrebicis.controller.web;
 
+import java.nio.file.Files;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,12 +52,14 @@ public class UsuariController {
 
     @PostMapping("/crear")
     public String guardarNouUsuari(@ModelAttribute Usuari usuari,
-            @RequestParam(value = "foto", required = false) MultipartFile fotoFile, Model model) {
+            @RequestParam(value = "fotoFile", required = false) MultipartFile fotoFile, Model model) {
         try {
             if (fotoFile != null && !fotoFile.isEmpty()) {
                 usuari.setFoto(fotoFile.getBytes());
             } else {
-                usuari.setFoto(null);
+                ClassPathResource iconUser = new ClassPathResource("static/img/iconUser.png");
+                byte[] defaultImage = Files.readAllBytes(iconUser.getFile().toPath());
+                usuari.setFoto(defaultImage);
             }
             usuariLogica.crearUsuari(usuari);
             return "redirect:/usuaris";
