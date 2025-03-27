@@ -3690,3 +3690,966 @@ java.lang.IllegalStateException: No primary or single unique constructor found f
         usuari u1_0 
     where
         u1_0.email=?
+2025-03-27T11:51:13.397+01:00  INFO 17404 --- [EntreBicis] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-27T11:51:13.398+01:00  INFO 17404 --- [EntreBicis] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-27T11:51:13.400+01:00  INFO 17404 --- [EntreBicis] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-03-27T11:51:13.416+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /login
+2025-03-27T11:51:13.434+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-2] o.s.security.web.csrf.CsrfFilter         : Invalid CSRF token found for http://localhost:8080/login
+2025-03-27T11:51:13.435+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-2] o.s.s.w.access.AccessDeniedHandlerImpl   : Forwarding to /errorPermisos with status code 403
+2025-03-27T11:51:13.441+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /errorPermisos
+2025-03-27T11:51:13.444+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-27T11:51:13.446+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-2] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/login
+2025-03-27T11:51:13.459+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /login
+2025-03-27T11:51:13.460+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /login
+2025-03-27T11:51:13.684+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-27T11:51:13.721+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T11:51:13.721+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T11:51:13.722+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T11:51:13.722+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T11:51:13.736+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-27T11:51:13.736+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-27T11:51:20.520+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /login
+2025-03-27T11:51:20.588+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0 
+    where
+        u1_0.email=?
+2025-03-27T11:51:20.654+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-5] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2025-03-27T11:51:20.656+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-5] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from 5F7F3E4688E3D5B42D907BA7F44673AC
+2025-03-27T11:51:20.657+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-5] o.s.s.w.csrf.CsrfAuthenticationStrategy  : Replaced CSRF Token
+2025-03-27T11:51:20.658+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=5F7F3E4688E3D5B42D907BA7F44673AC], Granted Authorities=[ROLE_ADMIN]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@36f57981]
+2025-03-27T11:51:20.658+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-5] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=5F7F3E4688E3D5B42D907BA7F44673AC], Granted Authorities=[ROLE_ADMIN]]
+2025-03-27T11:51:20.659+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-5] o.s.s.web.DefaultRedirectStrategy        : Redirecting to /usuaris
+2025-03-27T11:51:20.663+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /usuaris
+2025-03-27T11:51:20.664+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=5F7F3E4688E3D5B42D907BA7F44673AC], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T11:51:20.665+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /usuaris
+2025-03-27T11:51:20.681+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0
+2025-03-27T11:51:20.711+01:00  WARN 17404 --- [EntreBicis] [http-nio-8080-exec-8] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-8][usuaris] Deprecated unwrapped fragment expression "fragments/navbar :: navbar" found in template usuaris, line 12, col 10. Please use the complete syntax of fragment expressions instead ("~{fragments/navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-27T11:51:20.808+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T11:51:20.808+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /img/iconUser.png
+2025-03-27T11:51:20.808+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T11:51:20.809+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T11:51:20.809+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T11:51:20.809+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /img/iconUser.png
+2025-03-27T11:51:20.812+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=5F7F3E4688E3D5B42D907BA7F44673AC], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T11:51:20.812+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=5F7F3E4688E3D5B42D907BA7F44673AC], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T11:51:20.813+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-10] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=5F7F3E4688E3D5B42D907BA7F44673AC], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T11:51:21.699+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /logout
+2025-03-27T11:51:21.700+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=5F7F3E4688E3D5B42D907BA7F44673AC], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T11:51:21.700+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /logout
+2025-03-27T11:51:21.702+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-9] o.s.s.w.a.l.SecurityContextLogoutHandler : Invalidated session 423E610E83A149E992BA276CE5F16906
+2025-03-27T11:51:21.702+01:00  INFO 17404 --- [EntreBicis] [http-nio-8080-exec-9] c.c.y.e.controller.web.LogoutController  : Sessió finalitzada correctament per a l'usuari: admin@admin.com
+2025-03-27T11:51:21.709+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /login?logout=true
+2025-03-27T11:51:21.718+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /login?logout=true
+2025-03-27T11:51:21.721+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-27T11:51:21.766+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T11:51:21.767+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T11:51:21.770+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-27T11:51:21.817+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T11:51:21.819+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T11:51:21.823+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-27T11:51:26.486+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing POST /login
+2025-03-27T11:51:26.489+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0 
+    where
+        u1_0.email=?
+2025-03-27T11:51:26.551+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-4] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2025-03-27T11:51:26.552+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-4] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from 925723C13A8BDBE83D977DD20D46DC95
+2025-03-27T11:51:26.553+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-4] o.s.s.w.csrf.CsrfAuthenticationStrategy  : Replaced CSRF Token
+2025-03-27T11:51:26.553+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-4] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=925723C13A8BDBE83D977DD20D46DC95], Granted Authorities=[ROLE_ADMIN]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@229ee1f0]
+2025-03-27T11:51:26.554+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-4] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=925723C13A8BDBE83D977DD20D46DC95], Granted Authorities=[ROLE_ADMIN]]
+2025-03-27T11:51:26.554+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-4] o.s.s.web.DefaultRedirectStrategy        : Redirecting to /usuaris
+2025-03-27T11:51:26.557+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /usuaris
+2025-03-27T11:51:26.558+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=925723C13A8BDBE83D977DD20D46DC95], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T11:51:26.559+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /usuaris
+2025-03-27T11:51:26.561+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0
+2025-03-27T11:51:26.578+01:00  WARN 17404 --- [EntreBicis] [http-nio-8080-exec-5] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-5][usuaris] Deprecated unwrapped fragment expression "fragments/navbar :: navbar" found in template usuaris, line 12, col 10. Please use the complete syntax of fragment expressions instead ("~{fragments/navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-27T11:51:26.731+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T11:51:26.732+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T11:51:26.734+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=925723C13A8BDBE83D977DD20D46DC95], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T11:51:26.775+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /img/iconUser.png
+2025-03-27T11:51:26.775+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T11:51:26.776+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T11:51:26.776+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /img/iconUser.png
+2025-03-27T11:51:26.781+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=925723C13A8BDBE83D977DD20D46DC95], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T11:51:26.781+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=925723C13A8BDBE83D977DD20D46DC95], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T11:59:22.132+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /usuaris
+2025-03-27T11:59:22.133+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=925723C13A8BDBE83D977DD20D46DC95], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T11:59:22.133+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /usuaris
+2025-03-27T11:59:22.136+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0
+2025-03-27T11:59:22.153+01:00  WARN 17404 --- [EntreBicis] [http-nio-8080-exec-1] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][usuaris] Deprecated unwrapped fragment expression "fragments/navbar :: navbar" found in template usuaris, line 12, col 10. Please use the complete syntax of fragment expressions instead ("~{fragments/navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-27T11:59:22.174+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /img/iconUser.png
+2025-03-27T11:59:22.174+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T11:59:22.174+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T11:59:22.174+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /img/iconUser.png
+2025-03-27T11:59:22.174+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T11:59:22.175+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T11:59:22.179+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-4] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=925723C13A8BDBE83D977DD20D46DC95], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T11:59:22.179+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=925723C13A8BDBE83D977DD20D46DC95], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T11:59:22.191+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=925723C13A8BDBE83D977DD20D46DC95], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T11:59:38.500+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /usuaris
+2025-03-27T11:59:38.500+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=925723C13A8BDBE83D977DD20D46DC95], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T11:59:38.501+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /usuaris
+2025-03-27T11:59:38.503+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0
+2025-03-27T11:59:38.519+01:00  WARN 17404 --- [EntreBicis] [http-nio-8080-exec-8] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-8][usuaris] Deprecated unwrapped fragment expression "fragments/navbar :: navbar" found in template usuaris, line 12, col 10. Please use the complete syntax of fragment expressions instead ("~{fragments/navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-27T11:59:38.536+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /img/iconUser.png
+2025-03-27T11:59:38.536+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T11:59:38.536+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T11:59:38.537+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /img/iconUser.png
+2025-03-27T11:59:38.537+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T11:59:38.537+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T11:59:38.541+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=925723C13A8BDBE83D977DD20D46DC95], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T11:59:38.541+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=925723C13A8BDBE83D977DD20D46DC95], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T11:59:38.551+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=925723C13A8BDBE83D977DD20D46DC95], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T11:59:39.998+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /usuaris
+2025-03-27T11:59:39.999+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-2] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=925723C13A8BDBE83D977DD20D46DC95], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T11:59:40.000+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /usuaris
+2025-03-27T11:59:40.003+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0
+2025-03-27T11:59:40.020+01:00  WARN 17404 --- [EntreBicis] [http-nio-8080-exec-2] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-2][usuaris] Deprecated unwrapped fragment expression "fragments/navbar :: navbar" found in template usuaris, line 12, col 10. Please use the complete syntax of fragment expressions instead ("~{fragments/navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-27T11:59:40.038+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T11:59:40.038+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /img/iconUser.png
+2025-03-27T11:59:40.038+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T11:59:40.039+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T11:59:40.039+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /img/iconUser.png
+2025-03-27T11:59:40.039+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T11:59:40.042+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-10] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=925723C13A8BDBE83D977DD20D46DC95], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T11:59:40.042+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-4] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=925723C13A8BDBE83D977DD20D46DC95], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T11:59:40.042+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=925723C13A8BDBE83D977DD20D46DC95], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T11:59:52.872+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /usuaris
+2025-03-27T11:59:52.873+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=925723C13A8BDBE83D977DD20D46DC95], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T11:59:52.874+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /usuaris
+2025-03-27T11:59:52.877+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0
+2025-03-27T11:59:52.892+01:00  WARN 17404 --- [EntreBicis] [http-nio-8080-exec-5] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-5][usuaris] Deprecated unwrapped fragment expression "fragments/navbar :: navbar" found in template usuaris, line 12, col 10. Please use the complete syntax of fragment expressions instead ("~{fragments/navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-27T11:59:52.918+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /img/iconUser.png
+2025-03-27T11:59:52.918+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T11:59:52.918+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T11:59:52.919+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T11:59:52.919+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /img/iconUser.png
+2025-03-27T11:59:52.919+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T11:59:52.922+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=925723C13A8BDBE83D977DD20D46DC95], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T11:59:52.922+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=925723C13A8BDBE83D977DD20D46DC95], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T11:59:52.934+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=925723C13A8BDBE83D977DD20D46DC95], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:00:08.463+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /usuaris
+2025-03-27T12:00:08.463+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=925723C13A8BDBE83D977DD20D46DC95], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:00:08.464+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /usuaris
+2025-03-27T12:00:08.468+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0
+2025-03-27T12:00:08.483+01:00  WARN 17404 --- [EntreBicis] [http-nio-8080-exec-9] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-9][usuaris] Deprecated unwrapped fragment expression "fragments/navbar :: navbar" found in template usuaris, line 12, col 10. Please use the complete syntax of fragment expressions instead ("~{fragments/navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-27T12:00:08.499+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T12:00:08.499+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T12:00:08.499+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /img/iconUser.png
+2025-03-27T12:00:08.500+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /img/iconUser.png
+2025-03-27T12:00:08.500+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T12:00:08.500+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T12:00:08.504+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-10] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=925723C13A8BDBE83D977DD20D46DC95], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:00:08.504+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-2] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=925723C13A8BDBE83D977DD20D46DC95], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:00:08.514+01:00 DEBUG 17404 --- [EntreBicis] [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=925723C13A8BDBE83D977DD20D46DC95], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:01:11.952+01:00  INFO 15132 --- [EntreBicis] [main] c.c.y.entrebicis.EntreBicisApplication   : Starting EntreBicisApplication using Java 21.0.6 with PID 15132 (C:\Users\Yaiza\Documents\EntreBicis\BackEnd\target\classes started by Yaiza in C:\Users\Yaiza\Documents\EntreBicis)
+2025-03-27T12:01:11.955+01:00  INFO 15132 --- [EntreBicis] [main] c.c.y.entrebicis.EntreBicisApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-03-27T12:01:13.524+01:00  INFO 15132 --- [EntreBicis] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-27T12:01:13.540+01:00  INFO 15132 --- [EntreBicis] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-27T12:01:13.541+01:00  INFO 15132 --- [EntreBicis] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-27T12:01:13.605+01:00  INFO 15132 --- [EntreBicis] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-27T12:01:13.606+01:00  INFO 15132 --- [EntreBicis] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1606 ms
+2025-03-27T12:01:13.837+01:00  INFO 15132 --- [EntreBicis] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-27T12:01:13.919+01:00  INFO 15132 --- [EntreBicis] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-27T12:01:13.958+01:00  INFO 15132 --- [EntreBicis] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-27T12:01:14.281+01:00  INFO 15132 --- [EntreBicis] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-27T12:01:14.616+01:00  INFO 15132 --- [EntreBicis] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@269308cc
+2025-03-27T12:01:14.620+01:00  INFO 15132 --- [EntreBicis] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-27T12:01:14.665+01:00  WARN 15132 --- [EntreBicis] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-27T12:01:14.667+01:00  WARN 15132 --- [EntreBicis] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-03-27T12:01:14.685+01:00  INFO 15132 --- [EntreBicis] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-27T12:01:15.466+01:00  INFO 15132 --- [EntreBicis] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-27T12:01:15.841+01:00  WARN 15132 --- [EntreBicis] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-27T12:01:15.880+01:00  INFO 15132 --- [EntreBicis] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name validadorUsuari
+2025-03-27T12:01:16.219+01:00 DEBUG 15132 --- [EntreBicis] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CsrfFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-03-27T12:01:16.570+01:00  INFO 15132 --- [EntreBicis] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-27T12:01:16.578+01:00  INFO 15132 --- [EntreBicis] [main] c.c.y.entrebicis.EntreBicisApplication   : Started EntreBicisApplication in 5.126 seconds (process running for 5.456)
+2025-03-27T12:01:16.698+01:00 DEBUG 15132 --- [EntreBicis] [main] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0 
+    where
+        u1_0.email=?
+2025-03-27T12:01:19.276+01:00  INFO 15132 --- [EntreBicis] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-27T12:01:19.277+01:00  INFO 15132 --- [EntreBicis] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-27T12:01:19.279+01:00  INFO 15132 --- [EntreBicis] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-27T12:01:19.295+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /usuaris
+2025-03-27T12:01:19.303+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-27T12:01:19.323+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-2] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8080/usuaris?continue to session
+2025-03-27T12:01:19.324+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-2] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/login
+2025-03-27T12:01:19.331+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /login
+2025-03-27T12:01:19.332+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /login
+2025-03-27T12:01:19.579+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-27T12:01:19.698+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T12:01:19.699+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T12:01:19.712+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-27T12:01:19.742+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T12:01:19.743+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T12:01:19.748+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-27T12:01:20.816+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /login
+2025-03-27T12:01:20.883+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0 
+    where
+        u1_0.email=?
+2025-03-27T12:01:20.948+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-5] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2025-03-27T12:01:20.949+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-5] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from DDCAFC18AC6FF393667B11FAAD6AD46C
+2025-03-27T12:01:20.950+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-5] o.s.s.w.csrf.CsrfAuthenticationStrategy  : Replaced CSRF Token
+2025-03-27T12:01:20.951+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@3a68706c]
+2025-03-27T12:01:20.952+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-5] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]
+2025-03-27T12:01:20.953+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-5] o.s.s.web.DefaultRedirectStrategy        : Redirecting to /usuaris
+2025-03-27T12:01:20.957+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /usuaris
+2025-03-27T12:01:20.957+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:01:20.958+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /usuaris
+2025-03-27T12:01:20.976+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0
+2025-03-27T12:01:21.019+01:00  WARN 15132 --- [EntreBicis] [http-nio-8080-exec-6] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-6][usuaris] Deprecated unwrapped fragment expression "fragments/navbar :: navbar" found in template usuaris, line 10, col 6. Please use the complete syntax of fragment expressions instead ("~{fragments/navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-27T12:01:21.112+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T12:01:21.112+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T12:01:21.112+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /img/iconUser.png
+2025-03-27T12:01:21.113+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T12:01:21.113+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T12:01:21.113+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /img/iconUser.png
+2025-03-27T12:01:21.116+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:01:21.116+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:01:21.116+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:02:27.477+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /usuaris
+2025-03-27T12:02:27.478+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:02:27.479+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /usuaris
+2025-03-27T12:02:27.482+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0
+2025-03-27T12:02:27.498+01:00  WARN 15132 --- [EntreBicis] [http-nio-8080-exec-3] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-3][usuaris] Deprecated unwrapped fragment expression "fragments/navbar :: navbar" found in template usuaris, line 10, col 6. Please use the complete syntax of fragment expressions instead ("~{fragments/navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-27T12:02:27.520+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /img/iconUser.png
+2025-03-27T12:02:27.520+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T12:02:27.520+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T12:02:27.521+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T12:02:27.521+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T12:02:27.521+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /img/iconUser.png
+2025-03-27T12:02:27.527+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:02:27.527+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:02:27.540+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-4] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:02:35.383+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /usuaris
+2025-03-27T12:02:35.384+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:02:35.385+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /usuaris
+2025-03-27T12:02:35.388+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0
+2025-03-27T12:02:35.404+01:00  WARN 15132 --- [EntreBicis] [http-nio-8080-exec-7] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-7][usuaris] Deprecated unwrapped fragment expression "fragments/navbar :: navbar" found in template usuaris, line 10, col 6. Please use the complete syntax of fragment expressions instead ("~{fragments/navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-27T12:02:35.425+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T12:02:35.425+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T12:02:35.425+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /img/iconUser.png
+2025-03-27T12:02:35.426+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T12:02:35.426+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T12:02:35.426+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /img/iconUser.png
+2025-03-27T12:02:35.430+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-10] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:02:35.430+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:02:35.440+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:02:47.958+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T12:02:47.959+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T12:02:47.961+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:05:05.600+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /usuaris
+2025-03-27T12:05:05.601+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:05:05.602+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /usuaris
+2025-03-27T12:05:05.605+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0
+2025-03-27T12:05:05.620+01:00  WARN 15132 --- [EntreBicis] [http-nio-8080-exec-6] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-6][usuaris] Deprecated unwrapped fragment expression "fragments/navbar :: navbar" found in template usuaris, line 10, col 6. Please use the complete syntax of fragment expressions instead ("~{fragments/navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-27T12:05:05.651+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T12:05:05.652+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T12:05:05.665+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T12:05:05.666+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /img/iconUser.png
+2025-03-27T12:05:05.666+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T12:05:05.668+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /img/iconUser.png
+2025-03-27T12:05:05.672+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:05:05.673+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-10] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:05:05.673+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-4] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:07:11.138+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /usuaris
+2025-03-27T12:07:11.139+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:07:11.140+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /usuaris
+2025-03-27T12:07:11.143+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0
+2025-03-27T12:07:11.160+01:00  WARN 15132 --- [EntreBicis] [http-nio-8080-exec-3] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-3][usuaris] Deprecated unwrapped fragment expression "fragments/navbar :: navbar" found in template usuaris, line 10, col 6. Please use the complete syntax of fragment expressions instead ("~{fragments/navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-27T12:07:11.179+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T12:07:11.179+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T12:07:11.179+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /img/iconUser.png
+2025-03-27T12:07:11.180+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /img/iconUser.png
+2025-03-27T12:07:11.180+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T12:07:11.180+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T12:07:11.184+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:07:11.184+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:07:11.198+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-2] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:07:14.829+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /usuaris
+2025-03-27T12:07:14.830+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:07:14.831+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /usuaris
+2025-03-27T12:07:14.833+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0
+2025-03-27T12:07:14.848+01:00  WARN 15132 --- [EntreBicis] [http-nio-8080-exec-7] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-7][usuaris] Deprecated unwrapped fragment expression "fragments/navbar :: navbar" found in template usuaris, line 10, col 6. Please use the complete syntax of fragment expressions instead ("~{fragments/navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-27T12:07:14.864+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T12:07:14.864+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /img/iconUser.png
+2025-03-27T12:07:14.864+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T12:07:14.865+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /img/iconUser.png
+2025-03-27T12:07:14.865+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T12:07:14.866+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T12:07:14.870+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-4] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:07:14.869+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-10] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:07:14.870+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:07:30.888+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /usuaris
+2025-03-27T12:07:30.889+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:07:30.889+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /usuaris
+2025-03-27T12:07:30.892+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0
+2025-03-27T12:07:30.905+01:00  WARN 15132 --- [EntreBicis] [http-nio-8080-exec-9] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-9][usuaris] Deprecated unwrapped fragment expression "fragments/navbar :: navbar" found in template usuaris, line 10, col 6. Please use the complete syntax of fragment expressions instead ("~{fragments/navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-27T12:07:30.927+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T12:07:30.926+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T12:07:30.926+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /img/iconUser.png
+2025-03-27T12:07:30.927+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T12:07:30.927+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T12:07:30.928+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /img/iconUser.png
+2025-03-27T12:07:30.931+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:07:30.932+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:07:30.940+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:07:40.980+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /usuaris
+2025-03-27T12:07:40.981+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:07:40.981+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /usuaris
+2025-03-27T12:07:40.984+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0
+2025-03-27T12:07:40.999+01:00  WARN 15132 --- [EntreBicis] [http-nio-8080-exec-5] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-5][usuaris] Deprecated unwrapped fragment expression "fragments/navbar :: navbar" found in template usuaris, line 10, col 6. Please use the complete syntax of fragment expressions instead ("~{fragments/navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-27T12:07:41.018+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T12:07:41.018+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /img/iconUser.png
+2025-03-27T12:07:41.019+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T12:07:41.019+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /img/iconUser.png
+2025-03-27T12:07:41.019+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T12:07:41.019+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T12:07:41.023+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:07:41.023+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-4] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:07:41.032+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-2] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:08:02.156+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /usuaris
+2025-03-27T12:08:02.157+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-10] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:08:02.157+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /usuaris
+2025-03-27T12:08:02.160+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-10] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0
+2025-03-27T12:08:02.175+01:00  WARN 15132 --- [EntreBicis] [http-nio-8080-exec-10] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-10][usuaris] Deprecated unwrapped fragment expression "fragments/navbar :: navbar" found in template usuaris, line 10, col 6. Please use the complete syntax of fragment expressions instead ("~{fragments/navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-27T12:08:02.193+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T12:08:02.193+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T12:08:02.193+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /img/iconUser.png
+2025-03-27T12:08:02.193+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T12:08:02.194+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T12:08:02.194+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /img/iconUser.png
+2025-03-27T12:08:02.197+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:08:02.197+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:08:02.209+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:08:03.420+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /usuaris
+2025-03-27T12:08:03.420+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:08:03.421+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /usuaris
+2025-03-27T12:08:03.423+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0
+2025-03-27T12:08:03.438+01:00  WARN 15132 --- [EntreBicis] [http-nio-8080-exec-6] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-6][usuaris] Deprecated unwrapped fragment expression "fragments/navbar :: navbar" found in template usuaris, line 10, col 6. Please use the complete syntax of fragment expressions instead ("~{fragments/navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-27T12:08:03.456+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /img/iconUser.png
+2025-03-27T12:08:03.456+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T12:08:03.456+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T12:08:03.457+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /img/iconUser.png
+2025-03-27T12:08:03.457+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T12:08:03.457+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T12:08:03.460+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:08:03.460+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:08:03.460+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:08:18.822+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /usuaris
+2025-03-27T12:08:18.823+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-4] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:08:18.823+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /usuaris
+2025-03-27T12:08:18.826+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0
+2025-03-27T12:08:18.840+01:00  WARN 15132 --- [EntreBicis] [http-nio-8080-exec-4] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][usuaris] Deprecated unwrapped fragment expression "fragments/navbar :: navbar" found in template usuaris, line 10, col 6. Please use the complete syntax of fragment expressions instead ("~{fragments/navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-27T12:08:18.857+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T12:08:18.857+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /img/iconUser.png
+2025-03-27T12:08:18.857+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T12:08:18.858+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T12:08:18.858+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T12:08:18.858+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /img/iconUser.png
+2025-03-27T12:08:18.861+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:08:18.861+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-10] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:08:18.873+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-2] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:08:38.418+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /usuaris
+2025-03-27T12:08:38.419+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:08:38.419+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /usuaris
+2025-03-27T12:08:38.422+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0
+2025-03-27T12:08:38.435+01:00  WARN 15132 --- [EntreBicis] [http-nio-8080-exec-3] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-3][usuaris] Deprecated unwrapped fragment expression "fragments/navbar :: navbar" found in template usuaris, line 10, col 6. Please use the complete syntax of fragment expressions instead ("~{fragments/navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-27T12:08:38.456+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T12:08:38.456+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /img/iconUser.png
+2025-03-27T12:08:38.456+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T12:08:38.457+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T12:08:38.457+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /img/iconUser.png
+2025-03-27T12:08:38.457+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T12:08:38.460+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:08:38.460+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:08:38.460+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:08:41.950+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T12:08:41.950+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T12:08:41.952+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:11:15.182+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /usuaris
+2025-03-27T12:11:15.182+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-10] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:11:15.183+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /usuaris
+2025-03-27T12:11:15.186+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-10] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0
+2025-03-27T12:11:15.199+01:00  WARN 15132 --- [EntreBicis] [http-nio-8080-exec-10] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-10][usuaris] Deprecated unwrapped fragment expression "fragments/navbar :: navbar" found in template usuaris, line 10, col 6. Please use the complete syntax of fragment expressions instead ("~{fragments/navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-27T12:11:15.226+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T12:11:15.227+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T12:11:15.227+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /img/iconUser.png
+2025-03-27T12:11:15.227+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T12:11:15.228+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T12:11:15.228+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /img/iconUser.png
+2025-03-27T12:11:15.232+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:11:15.232+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:11:15.245+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-2] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:11:44.696+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T12:11:44.697+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T12:11:44.699+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:13:04.416+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /usuaris
+2025-03-27T12:13:04.416+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:13:04.417+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /usuaris
+2025-03-27T12:13:04.419+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0
+2025-03-27T12:13:04.433+01:00  WARN 15132 --- [EntreBicis] [http-nio-8080-exec-5] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-5][usuaris] Deprecated unwrapped fragment expression "fragments/navbar :: navbar" found in template usuaris, line 10, col 6. Please use the complete syntax of fragment expressions instead ("~{fragments/navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-27T12:13:04.456+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T12:13:04.456+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T12:13:04.457+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T12:13:04.457+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /img/iconUser.png
+2025-03-27T12:13:04.457+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T12:13:04.458+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /img/iconUser.png
+2025-03-27T12:13:04.462+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-10] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:13:04.462+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:13:04.473+01:00 DEBUG 15132 --- [EntreBicis] [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=DDCAFC18AC6FF393667B11FAAD6AD46C], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:13:09.732+01:00  INFO 15776 --- [EntreBicis] [main] c.c.y.entrebicis.EntreBicisApplication   : Starting EntreBicisApplication using Java 21.0.6 with PID 15776 (C:\Users\Yaiza\Documents\EntreBicis\BackEnd\target\classes started by Yaiza in C:\Users\Yaiza\Documents\EntreBicis)
+2025-03-27T12:13:09.734+01:00  INFO 15776 --- [EntreBicis] [main] c.c.y.entrebicis.EntreBicisApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-03-27T12:13:11.272+01:00  INFO 15776 --- [EntreBicis] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-27T12:13:11.291+01:00  INFO 15776 --- [EntreBicis] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-27T12:13:11.292+01:00  INFO 15776 --- [EntreBicis] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-27T12:13:11.356+01:00  INFO 15776 --- [EntreBicis] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-27T12:13:11.357+01:00  INFO 15776 --- [EntreBicis] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1578 ms
+2025-03-27T12:13:11.575+01:00  INFO 15776 --- [EntreBicis] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-27T12:13:11.652+01:00  INFO 15776 --- [EntreBicis] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-27T12:13:11.696+01:00  INFO 15776 --- [EntreBicis] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-27T12:13:12.012+01:00  INFO 15776 --- [EntreBicis] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-27T12:13:12.351+01:00  INFO 15776 --- [EntreBicis] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@371cd2fc
+2025-03-27T12:13:12.355+01:00  INFO 15776 --- [EntreBicis] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-27T12:13:12.402+01:00  WARN 15776 --- [EntreBicis] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-27T12:13:12.404+01:00  WARN 15776 --- [EntreBicis] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-03-27T12:13:12.421+01:00  INFO 15776 --- [EntreBicis] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-27T12:13:13.229+01:00  INFO 15776 --- [EntreBicis] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-27T12:13:13.598+01:00  WARN 15776 --- [EntreBicis] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-27T12:13:13.631+01:00  INFO 15776 --- [EntreBicis] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name validadorUsuari
+2025-03-27T12:13:13.968+01:00 DEBUG 15776 --- [EntreBicis] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CsrfFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-03-27T12:13:14.308+01:00  INFO 15776 --- [EntreBicis] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-27T12:13:14.317+01:00  INFO 15776 --- [EntreBicis] [main] c.c.y.entrebicis.EntreBicisApplication   : Started EntreBicisApplication in 5.115 seconds (process running for 5.454)
+2025-03-27T12:13:14.446+01:00 DEBUG 15776 --- [EntreBicis] [main] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0 
+    where
+        u1_0.email=?
+2025-03-27T12:13:16.533+01:00  INFO 15776 --- [EntreBicis] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-27T12:13:16.534+01:00  INFO 15776 --- [EntreBicis] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-27T12:13:16.535+01:00  INFO 15776 --- [EntreBicis] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-27T12:13:16.552+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /usuaris
+2025-03-27T12:13:16.562+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-27T12:13:16.583+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-1] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8080/usuaris?continue to session
+2025-03-27T12:13:16.585+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-1] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/login
+2025-03-27T12:13:16.592+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /login
+2025-03-27T12:13:16.593+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /login
+2025-03-27T12:13:16.828+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-27T12:13:16.855+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T12:13:16.855+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T12:13:16.856+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T12:13:16.856+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T12:13:16.867+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-27T12:13:16.867+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-27T12:13:18.734+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /login
+2025-03-27T12:13:18.802+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0 
+    where
+        u1_0.email=?
+2025-03-27T12:13:18.868+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-8] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2025-03-27T12:13:18.869+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-8] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from C2F7D0D2CAAE804D9D9924E82FD1CAE8
+2025-03-27T12:13:18.871+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-8] o.s.s.w.csrf.CsrfAuthenticationStrategy  : Replaced CSRF Token
+2025-03-27T12:13:18.872+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=C2F7D0D2CAAE804D9D9924E82FD1CAE8], Granted Authorities=[ROLE_ADMIN]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@379a93ee]
+2025-03-27T12:13:18.873+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-8] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=C2F7D0D2CAAE804D9D9924E82FD1CAE8], Granted Authorities=[ROLE_ADMIN]]
+2025-03-27T12:13:18.874+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-8] o.s.s.web.DefaultRedirectStrategy        : Redirecting to /usuaris
+2025-03-27T12:13:18.879+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /usuaris
+2025-03-27T12:13:18.879+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=C2F7D0D2CAAE804D9D9924E82FD1CAE8], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:13:18.880+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /usuaris
+2025-03-27T12:13:18.906+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0
+2025-03-27T12:13:18.941+01:00  WARN 15776 --- [EntreBicis] [http-nio-8080-exec-6] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-6][usuaris] Deprecated unwrapped fragment expression "fragments/navbar :: navbar" found in template usuaris, line 12, col 10. Please use the complete syntax of fragment expressions instead ("~{fragments/navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-27T12:13:19.053+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T12:13:19.053+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T12:13:19.054+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T12:13:19.054+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T12:13:19.054+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /img/iconUser.png
+2025-03-27T12:13:19.055+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /img/iconUser.png
+2025-03-27T12:13:19.057+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-10] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=C2F7D0D2CAAE804D9D9924E82FD1CAE8], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:13:19.058+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=C2F7D0D2CAAE804D9D9924E82FD1CAE8], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:13:19.060+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=C2F7D0D2CAAE804D9D9924E82FD1CAE8], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:17:00.944+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /usuaris
+2025-03-27T12:17:00.945+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-4] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=C2F7D0D2CAAE804D9D9924E82FD1CAE8], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:17:00.946+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /usuaris
+2025-03-27T12:17:00.949+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0
+2025-03-27T12:17:00.965+01:00  WARN 15776 --- [EntreBicis] [http-nio-8080-exec-4] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][usuaris] Deprecated unwrapped fragment expression "fragments/navbar :: navbar" found in template usuaris, line 12, col 10. Please use the complete syntax of fragment expressions instead ("~{fragments/navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-27T12:17:00.994+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T12:17:00.995+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T12:17:00.996+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T12:17:00.998+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T12:17:01.004+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=C2F7D0D2CAAE804D9D9924E82FD1CAE8], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:17:01.011+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /img/iconUser.png
+2025-03-27T12:17:01.012+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /img/iconUser.png
+2025-03-27T12:17:01.013+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=C2F7D0D2CAAE804D9D9924E82FD1CAE8], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:17:01.015+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=C2F7D0D2CAAE804D9D9924E82FD1CAE8], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:17:36.594+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /usuaris
+2025-03-27T12:17:36.594+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-10] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=C2F7D0D2CAAE804D9D9924E82FD1CAE8], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:17:36.595+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /usuaris
+2025-03-27T12:17:36.598+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-10] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0
+2025-03-27T12:17:36.615+01:00  WARN 15776 --- [EntreBicis] [http-nio-8080-exec-10] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-10][usuaris] Deprecated unwrapped fragment expression "fragments/navbar :: navbar" found in template usuaris, line 12, col 10. Please use the complete syntax of fragment expressions instead ("~{fragments/navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-27T12:17:36.647+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /css/styles.css
+2025-03-27T12:17:36.647+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /img/iconUser.png
+2025-03-27T12:17:36.647+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /img/LogoEntreBicis.png
+2025-03-27T12:17:36.648+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /css/styles.css
+2025-03-27T12:17:36.648+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /img/iconUser.png
+2025-03-27T12:17:36.648+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /img/LogoEntreBicis.png
+2025-03-27T12:17:36.653+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=C2F7D0D2CAAE804D9D9924E82FD1CAE8], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:17:36.653+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=C2F7D0D2CAAE804D9D9924E82FD1CAE8], Granted Authorities=[ROLE_ADMIN]]]
+2025-03-27T12:17:36.665+01:00 DEBUG 15776 --- [EntreBicis] [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin@admin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=C2F7D0D2CAAE804D9D9924E82FD1CAE8], Granted Authorities=[ROLE_ADMIN]]]
