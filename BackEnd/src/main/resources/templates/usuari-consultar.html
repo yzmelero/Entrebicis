@@ -14,23 +14,21 @@
 
     <div class="profile-container">
         <div class="profile-card">
-            <h2 th:text="${usuari.nom} + ' ' + ${usuari.cognoms}">Nom Usuari</h2>
             <div class="profile-image">
-                <img th:if="${imatgeBase64 != null}"
-                     th:src="'data:image/jpeg;base64,' + ${imatgeBase64}" 
-                     alt="Imatge Usuari">
+                <img th:if="${imatgeBase64 != null}" th:src="'data:image/jpeg;base64,' + ${imatgeBase64}" alt="Imatge Usuari">
             </div>
-            <p th:text="${usuari.email}">email@example.com</p>
-            <p th:text="${usuari.rol}">Rol</p>
-
-            <div class="profile-points">
-                <span th:text="${usuari.saldo}">0</span>
-                <img src="/img/coin-icon.png" alt="Punts">
-            </div>
-
-            <div class="profile-buttons">
-                <button class="btn-history">Historial Recompenses</button>
-                <button class="btn-history">Historial Rutes</button>
+            <div class="profile-info">
+                <h2 th:text="${usuari.nom} + ' ' + ${usuari.cognoms}">Nom Usuari</h2>
+                <p th:text="${usuari.email}">email@example.com</p>
+                <p th:text="${usuari.rol}">Rol</p>
+                <div class="profile-points">
+                    <span th:text="${usuari.saldo}">0</span>
+                    <img src="/img/coin-icon.png" alt="Punts" width="20">
+                </div>
+                <div class="profile-buttons">
+                    <button class="button">Historial Recompenses</button>
+                    <button class="button">Historial Rutes</button>
+                </div>
             </div>
         </div>
     </div>

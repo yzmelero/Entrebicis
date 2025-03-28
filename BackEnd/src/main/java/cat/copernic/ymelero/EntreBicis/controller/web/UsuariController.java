@@ -43,7 +43,6 @@ public class UsuariController {
                 imatgesBase64.put(usuari.getEmail(), imatgeBase64);
             }
         }
-
         model.addAttribute("usuaris", usuaris);
         model.addAttribute("imatgesBase64", imatgesBase64);
         return "usuaris";
