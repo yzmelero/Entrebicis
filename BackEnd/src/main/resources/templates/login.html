@@ -11,17 +11,20 @@
         <img class="logo-inici" src="/img/LogoEntreBicis.png" alt="Logo EntreBicis">
         <br>
         <div class="login-box">
+            <div th:if="${errorMessage}" class="error-message">
+                <p th:text="${errorMessage}"></p>
+            </div>
             <h2>Inici Sessió</h2>
             <form th:action="@{/login}" method="post">
                 <label>Email:</label>
                 <input type="email" name="email" required>
                 <label>Contrasenya:</label>
                 <input type="password" name="password" required>
-                <button type="submit">Confirmar</button>
+                <button class="button" type="submit">Confirmar</button>
             </form>
             <a class="link" href="#">Has oblidat la contrasenya?</a>
             <a href="https://www.entrebicis.org/formuluari-club" target="_blank">
-                <button>Formulari Alta</button>
+                <button class="button">Formulari Alta</button>
             </a>
         </div>
     </div>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Llista Usuaris</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <h1 class="title">Detalls Usuari</h1>
+
+    <div class="profile-container">
+        <div class="profile-card">
+            <img src="/img/modify-icon.png" alt="Editar Perfil" class="modify-icon">
+            <div class="profile-image">
+                <img th:if="${imatgeBase64 != null}" th:src="'data:image/jpeg;base64,' + ${imatgeBase64}" alt="Imatge Usuari">
+            </div>
+            <div class="profile-info">
+                <h2 th:text="${usuari.nom} + ' ' + ${usuari.cognoms}">Nom Usuari</h2>
+                <p th:text="${usuari.email}">email@example.com</p>
+                <p th:text="${usuari.rol}">Rol</p>
+                <div class="profile-points">
+                    <span th:text="${usuari.saldo}">0</span>
+                    <img src="/img/coin-icon.png" alt="Punts" width="20">
+                </div>
+                <div class="profile-buttons">
+                    <button class="button">Historial Recompenses</button>
+                    <button class="button">Historial Rutes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

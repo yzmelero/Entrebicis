@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - No tens permisos</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <div th:replace="fragments/navbar :: navbar"></div>
+
+    <div class="error-container">
+        <h1 class="error-title">Hi ha hagut un error</h1>
+        <p class="error-message">No tens permisos per accedir a aquesta pàgina o la pàgina no està disponible en aquests moments.</p>
+        <a href="/usuaris" class="button">Tornar a l'inici</a>
+    </div>
+</body>
+
+</html>
