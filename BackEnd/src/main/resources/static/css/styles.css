@@ -215,14 +215,15 @@ input {
 }
 
 .profile-card {
+    position: relative;
     display: flex;
     align-items: center;
     background: #9DFFE8;
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 60%;
-    height: 400px;
+    width: 50%;
+    height: 350px;
     gap: 40px;
 }
 
@@ -265,4 +266,14 @@ input {
     display: flex;
     gap: 20px;
     margin-top: 15px;
+}
+
+.modify-icon {
+    position: absolute;
+    margin: 20px;
+    top: 10px;
+    right: 10px;
+    width: 40px; 
+    height: 40px;
+    cursor: pointer;
 }
