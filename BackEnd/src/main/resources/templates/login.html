@@ -11,6 +11,9 @@
         <img class="logo-inici" src="/img/LogoEntreBicis.png" alt="Logo EntreBicis">
         <br>
         <div class="login-box">
+            <div th:if="${errorMessage}" class="error-message">
+                <p th:text="${errorMessage}"></p>
+            </div>
             <h2>Inici Sessió</h2>
             <form th:action="@{/login}" method="post">
                 <label>Email:</label>

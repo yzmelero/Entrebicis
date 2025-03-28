@@ -39,8 +39,8 @@ public class SecurityConfig {
                                                 .deleteCookies("JSESSIONID") // Eliminar cookies de sesión
                                                 .permitAll())
                                 .exceptionHandling(handling -> handling
-                                                .accessDeniedPage("/errorPermisos") // Página de error si no tiene
-                                                                                    // permisos
+                                                .accessDeniedPage("/error") // Página de error si no tiene
+                                                                            // permisos
                                 );
 
                 return http.build();

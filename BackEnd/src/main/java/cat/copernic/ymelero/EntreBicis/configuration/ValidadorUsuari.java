@@ -1,16 +1,18 @@
 package cat.copernic.ymelero.entrebicis.configuration;
 
-import cat.copernic.ymelero.entrebicis.entity.Usuari;
-import cat.copernic.ymelero.entrebicis.repository.UsuariRepository;
+import java.util.Optional;
+
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import java.util.Optional;
+
+import cat.copernic.ymelero.entrebicis.entity.Usuari;
+import cat.copernic.ymelero.entrebicis.repository.UsuariRepository;
 
 @Service
-public class ValidadorUsuari implements UserDetailsService { 
+public class ValidadorUsuari implements UserDetailsService {
 
     private final UsuariRepository usuariRepository;
 
@@ -20,12 +22,16 @@ public class ValidadorUsuari implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<Usuari> usuariOpt = usuariRepository.findByEmail(email);
-        if (usuariOpt.isEmpty()) {
+        Optional<Usuari> usuariV = usuariRepository.findByEmail(email);
+        if (usuariV.isEmpty()) {
             throw new UsernameNotFoundException("Usuari no trobat: " + email);
         }
-        Usuari usuari = usuariOpt.get();
-        
+        Usuari usuari = usuariV.get();
+
+        if (!"ADMIN".equals(usuari.getRol().name())) {
+            throw new UsernameNotFoundException("noAdmin");
+        }
+
         return User.builder()
                 .username(usuari.getEmail())
                 .password(usuari.getContrasenya())

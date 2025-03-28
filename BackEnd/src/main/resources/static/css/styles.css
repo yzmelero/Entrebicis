@@ -11,6 +11,24 @@ h1 {
     font-weight: bold;
     margin-bottom: 10px;
 }
+/* Error */
+.error-container {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.error-title {
+    font-size: 36px;
+    font-weight: bold;
+    color: red;
+    margin-bottom: 20px;
+}
+
+.error-message {
+    font-size: 15px;
+    color: #333;
+}
+
 /* Login */
 .logo-inici {
     width: 120px;
