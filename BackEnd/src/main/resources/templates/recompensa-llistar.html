@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Llista Recompenses</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <h1 class="title">Llista Recompenses</h1>
+
+    <div class="users-container">
+        <div class="user-card" th:each="recompensa : ${recompenses}">
+            <h2 th:text="${recompensa.nom}">Nom Recompensa</h2>
+            
+            <div class="reward-image">
+                <img th:if="${imatgesBase64[recompensa.id] != null}"
+                     th:src="'data:image/jpeg;base64,' + ${imatgesBase64[recompensa.id]}" 
+                     alt="Imatge Recompensa">
+                     
+                <img th:if="${imatgesBase64[recompensa.id] == null}"
+                     src="/img/defaultReward.png" 
+                     alt="Imatge Recompensa">
+            </div>
+
+            <p><strong>Punt de bescanvi:</strong> 
+                <span th:text="${recompensa.nomComerç}">Nom Comerç</span>,
+                <span th:text="${recompensa.adreçaComerç}">Adreça Comerç</span>
+            </p>
+            
+            <p><strong>Punts:</strong> <span th:text="${recompensa.punts}">0</span></p>
+
+            <p><strong>Estat:</strong> <span th:text="${recompensa.estat}">Disponible</span></p>
+
+            <p th:if="${recompensa.estat != 'DISPONIBLE'}">
+                <strong>Usuari:</strong> <span th:text="${recompensa.usuari.nom}">Nom Usuari</span>
+            </p>
+
+            <a th:href="@{/recompenses/detall/{id}(id=${recompensa.id})}" class="button">
+                Veure Detalls
+            </a>
+
+        </div>
+    </div>
+</body>
+
+</html>
