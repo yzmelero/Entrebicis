@@ -71,7 +71,7 @@ public class UsuariController {
             usuariLogica.crearUsuari(usuari);
             return "redirect:/usuaris";
         } catch (Exception e) {
-            model.addAttribute("error", "Error en guardar l'usuari: " + e.getMessage());
+            model.addAttribute("error", e.getMessage());
             model.addAttribute("usuari", usuari);
             return "usuari-alta";
         }
@@ -94,5 +94,65 @@ public class UsuariController {
         model.addAttribute("usuari", usuari);
 
         return "usuari-consultar";
+    }
+
+    @GetMapping("/modificar/{email}")
+    public String modificarUsuari(@PathVariable String email, Model model) {
+        Usuari usuari = usuariLogica.getUsuari(email);
+        if (usuari == null) {
+            model.addAttribute("error", "No s'ha trobat usuari amb correu: " + email);
+            return "redirect:/usuaris";
+        }
+        if (usuari.getFoto() != null) {
+            String imatgeBase64 = Base64.getEncoder().encodeToString(usuari.getFoto());
+            model.addAttribute("imatgeBase64", imatgeBase64);
+        } else {
+            model.addAttribute("imatgeBase64", null);
+        }
+        model.addAttribute("usuari", usuari);
+
+        return "usuari-modificar";
+    }
+
+    @PostMapping("/modificar")
+    public String guardarModificacioUsuari(@ModelAttribute Usuari usuari,
+            @RequestParam(value = "fotoFile", required = false) MultipartFile fotoFile,
+            @RequestParam(value = "confirmarContrasenya", required = false) String confirmarContrasenya,
+            Model model) {
+        try {
+            Usuari usuariAntic = usuariLogica.getUsuari(usuari.getEmail());
+            if (usuariAntic == null) {
+                throw new RuntimeException("L'usuari no existeix.");
+            }
+
+            if (fotoFile == null || fotoFile.isEmpty()) {
+                usuari.setFoto(usuariAntic.getFoto());
+            } else {
+                usuari.setFoto(fotoFile.getBytes());
+            }
+
+            if (usuari.getContrasenya() == null || usuari.getContrasenya().isEmpty()) {
+                usuari.setContrasenya(usuariAntic.getContrasenya());
+            } else {
+                if (!usuari.getContrasenya().equals(confirmarContrasenya)) {
+                    throw new RuntimeException("Les contrasenyes no coincideixen.");
+                }
+                usuari.setContrasenya(passwordEncoder.encode(usuari.getContrasenya()));
+            }
+            usuariLogica.modificarUsuari(usuari);
+            return "redirect:/usuaris/consulta/" + usuari.getEmail();
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("usuari", usuari);
+
+            if (usuari.getFoto() != null) {
+                String imatgeBase64 = Base64.getEncoder().encodeToString(usuari.getFoto());
+                model.addAttribute("imatgeBase64", imatgeBase64);
+            } else {
+                model.addAttribute("imatgeBase64", null);
+            }
+
+            return "usuari-modificar";
+        }
     }
 }

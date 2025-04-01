@@ -277,3 +277,28 @@ input {
     height: 40px;
     cursor: pointer;
 }
+
+/* Usuari modificar */
+.user-photo {
+    width: 150px; 
+    height: 150px; 
+    object-fit: cover; 
+    border-radius: 50%; 
+    margin-top: 10px;
+}
+
+.cancel-button {
+    background-color: #f44336;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+}
+
+.cancel-button:hover {
+    background-color: #d32f2f;
+}
