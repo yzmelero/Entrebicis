@@ -36,7 +36,7 @@
             <p><strong>Estat:</strong> <span th:text="${recompensa.estat}">Disponible</span></p>
 
             <p th:if="${recompensa.estat != 'DISPONIBLE'}">
-                <strong>Usuari:</strong> <span th:text="${recompensa.usuari.nom}">Nom Usuari</span>
+                <strong>Usuari:</strong> <span th:text="${recompensa.usuari}">Nom Usuari</span>
             </p>
 
             <a th:href="@{/recompenses/detall/{id}(id=${recompensa.id})}" class="button">
