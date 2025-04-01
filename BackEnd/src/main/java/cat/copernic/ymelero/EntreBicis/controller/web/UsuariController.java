@@ -57,9 +57,14 @@ public class UsuariController {
     @PostMapping("/crear")
     public String guardarNouUsuari(@ModelAttribute Usuari usuari,
             @RequestParam(value = "fotoFile", required = false) MultipartFile fotoFile,
+            @RequestParam(value = "confirmarContrasenya", required = false) String confirmarContrasenya,
             Model model) {
         try {
-            usuari.setContrasenya(passwordEncoder.encode(usuari.getContrasenya()));
+            if (!usuari.getContrasenya().equals(confirmarContrasenya)) {
+                throw new RuntimeException("Les contrasenyes no coincideixen.");
+            } else {
+                usuari.setContrasenya(passwordEncoder.encode(usuari.getContrasenya()));
+            }
 
             if (fotoFile != null && !fotoFile.isEmpty()) {
                 usuari.setFoto(fotoFile.getBytes());
