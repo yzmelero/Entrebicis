@@ -42,12 +42,17 @@
             
                 <div class="form-group">
                     <label for="contrasenya">Contrasenya (*):</label>
-                    <input type="password" id="contrasenya" th:field="*{contrasenya}">
+                    <input type="password" id="contrasenya" name="contrasenya" th:field="*{contrasenya}">
                 </div>
             
                 <div class="form-group">
                     <label for="poblacio">Població:</label>
                     <input type="text" id="poblacio" th:field="*{poblacio}">
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmarContrasenya">Confirmar Contrasenya (*):</label>
+                    <input type="password" id="confirmarContrasenya" name="confirmarContrasenya">
                 </div>
             
                 <div class="form-group">
