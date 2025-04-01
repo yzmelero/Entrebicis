@@ -71,7 +71,7 @@ public class UsuariController {
             usuariLogica.crearUsuari(usuari);
             return "redirect:/usuaris";
         } catch (Exception e) {
-            model.addAttribute("error", "Error en guardar l'usuari: " + e.getMessage());
+            model.addAttribute("error", e.getMessage());
             model.addAttribute("usuari", usuari);
             return "usuari-alta";
         }
@@ -117,6 +117,7 @@ public class UsuariController {
     @PostMapping("/modificar")
     public String guardarModificacioUsuari(@ModelAttribute Usuari usuari,
             @RequestParam(value = "fotoFile", required = false) MultipartFile fotoFile,
+            @RequestParam(value = "confirmarContrasenya", required = false) String confirmarContrasenya,
             Model model) {
         try {
             Usuari usuariAntic = usuariLogica.getUsuari(usuari.getEmail());
@@ -130,10 +131,18 @@ public class UsuariController {
                 usuari.setFoto(fotoFile.getBytes());
             }
 
+            if (usuari.getContrasenya() == null || usuari.getContrasenya().isEmpty()) {
+                usuari.setContrasenya(usuariAntic.getContrasenya());
+            } else {
+                if (!usuari.getContrasenya().equals(confirmarContrasenya)) {
+                    throw new RuntimeException("Les contrasenyes no coincideixen.");
+                }
+                usuari.setContrasenya(passwordEncoder.encode(usuari.getContrasenya()));
+            }
             usuariLogica.modificarUsuari(usuari);
-            return "redirect:/usuaris";
+            return "redirect:/usuaris/consulta/" + usuari.getEmail();
         } catch (Exception e) {
-            model.addAttribute("error", "Error en modificar l'usuari: " + e.getMessage());
+            model.addAttribute("error", e.getMessage());
             model.addAttribute("usuari", usuari);
 
             if (usuari.getFoto() != null) {
