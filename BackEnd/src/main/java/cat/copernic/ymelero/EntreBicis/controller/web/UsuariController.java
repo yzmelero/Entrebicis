@@ -95,4 +95,55 @@ public class UsuariController {
 
         return "usuari-consultar";
     }
+
+    @GetMapping("/modificar/{email}")
+    public String modificarUsuari(@PathVariable String email, Model model) {
+        Usuari usuari = usuariLogica.getUsuari(email);
+        if (usuari == null) {
+            model.addAttribute("error", "No s'ha trobat usuari amb correu: " + email);
+            return "redirect:/usuaris";
+        }
+        if (usuari.getFoto() != null) {
+            String imatgeBase64 = Base64.getEncoder().encodeToString(usuari.getFoto());
+            model.addAttribute("imatgeBase64", imatgeBase64);
+        } else {
+            model.addAttribute("imatgeBase64", null);
+        }
+        model.addAttribute("usuari", usuari);
+
+        return "usuari-modificar";
+    }
+
+    @PostMapping("/modificar")
+    public String guardarModificacioUsuari(@ModelAttribute Usuari usuari,
+            @RequestParam(value = "fotoFile", required = false) MultipartFile fotoFile,
+            Model model) {
+        try {
+            Usuari usuariAntic = usuariLogica.getUsuari(usuari.getEmail());
+            if (usuariAntic == null) {
+                throw new RuntimeException("L'usuari no existeix.");
+            }
+
+            if (fotoFile == null || fotoFile.isEmpty()) {
+                usuari.setFoto(usuariAntic.getFoto());
+            } else {
+                usuari.setFoto(fotoFile.getBytes());
+            }
+
+            usuariLogica.modificarUsuari(usuari);
+            return "redirect:/usuaris";
+        } catch (Exception e) {
+            model.addAttribute("error", "Error en modificar l'usuari: " + e.getMessage());
+            model.addAttribute("usuari", usuari);
+
+            if (usuari.getFoto() != null) {
+                String imatgeBase64 = Base64.getEncoder().encodeToString(usuari.getFoto());
+                model.addAttribute("imatgeBase64", imatgeBase64);
+            } else {
+                model.addAttribute("imatgeBase64", null);
+            }
+
+            return "usuari-modificar";
+        }
+    }
 }

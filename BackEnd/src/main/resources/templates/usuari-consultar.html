@@ -14,9 +14,12 @@
 
     <div class="profile-container">
         <div class="profile-card">
-            <img src="/img/modify-icon.png" alt="Editar Perfil" class="modify-icon">
+            <a th:href="@{/usuaris/modificar/{email}(email=${usuari.email})}">
+                <img src="/img/modify-icon.png" alt="Editar Perfil" class="modify-icon">
+            </a>
             <div class="profile-image">
                 <img th:if="${imatgeBase64 != null}" th:src="'data:image/jpeg;base64,' + ${imatgeBase64}" alt="Imatge Usuari">
+                <img th:if="${imatgeBase64 == null}" src="/img/iconUser.png" alt="Imatge Usuari">
             </div>
             <div class="profile-info">
                 <h2 th:text="${usuari.nom} + ' ' + ${usuari.cognoms}">Nom Usuari</h2>
