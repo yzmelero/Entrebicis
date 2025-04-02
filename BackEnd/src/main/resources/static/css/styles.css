@@ -338,26 +338,26 @@ input {
     border-radius: 8px;
 }
 
-.reward-status-points {
+.reward-estat-punts {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 10px 0;
 }
 
-.reward-status {
+.reward-estat {
     font-weight: bold;
     color: blue;
 }
 
-.reward-points {
+.reward-punts {
     font-weight: bold;
     display: flex;
     align-items: center;
     gap: 5px;
 }
 
-.reward-points img {
+.reward-punts img {
     width: 18px;
     height: 18px;
 }

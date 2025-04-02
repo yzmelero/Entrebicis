@@ -11,6 +11,7 @@
 <body>
     <div th:replace="fragments/navbar :: navbar"></div>
     <h1 class="title">Llista Recompenses</h1>
+    <a href="/recompenses/crear" class="button">+ Crear Recompensa</a>
 
     <div class="reward-container">
         <div class="reward-card" th:each="recompensa : ${recompenses}">
@@ -26,15 +27,11 @@
                 <img th:if="${imatgesBase64[recompensa.id] != null}"
                      th:src="'data:image/jpeg;base64,' + ${imatgesBase64[recompensa.id]}" 
                      alt="Imatge Recompensa">
-                     
-                <img th:if="${imatgesBase64[recompensa.id] == null}"
-                     src="/img/defaultReward.png" 
-                     alt="Imatge Recompensa">
             </div>
 
-            <div class="reward-status-points">
-                <span class="reward-status" th:text="${recompensa.estat}">Estat</span>
-                <span class="reward-points">
+            <div class="reward-estat-punts">
+                <span class="reward-estat" th:text="${recompensa.estat}">Estat</span>
+                <span class="reward-punts">
                     <span th:text="${recompensa.punts}">0</span>
                     <img src="/img/coin-icon.png" alt="Punts">
                 </span>
