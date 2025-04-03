@@ -157,7 +157,7 @@ input {
 }
 
 /* Usuari alta */
-.usuari-alta-container {
+.alta-container {
     width: 80%;
     margin: 50px auto;
     padding: 20px;
@@ -305,19 +305,37 @@ input {
 
 /* Recompensa llistat */
 .reward-container {
+    margin-top: 50px;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: center;
+    padding: 20px;
 }
 
 .reward-card {
-    background-color: #aaf3e1;
+    background-color: #9DFFE8;
     border-radius: 10px;
+    width: 250px;
+    height: 350px; 
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+.reward-image img {
+    width: 100%;
+    height: 150px; 
+    object-fit: cover;
+}
+
+.reward-content {
     padding: 15px;
     text-align: center;
-    width: 250px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    flex-grow: 1; 
 }
 
 .reward-title {
@@ -329,25 +347,32 @@ input {
 .reward-place {
     font-size: 14px;
     color: #555;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
-.reward-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
+.reward-user {
+    font-size: 16px;
+    color: #012f5e;
+    margin-top: 5px;
+    min-height: 20px;
 }
 
 .reward-estat-punts {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 10px 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 90%;
+    padding: 10px 15px;
+    background-color: #9DFFE8;
 }
 
 .reward-estat {
     font-weight: bold;
     color: blue;
+    font-size: 14px;
 }
 
 .reward-punts {
@@ -360,10 +385,4 @@ input {
 .reward-punts img {
     width: 18px;
     height: 18px;
-}
-
-.reward-user {
-    font-size: 14px;
-    color: #444;
-    margin-bottom: 10px;
 }

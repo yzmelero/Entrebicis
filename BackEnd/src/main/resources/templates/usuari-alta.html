@@ -11,7 +11,7 @@
 <body>
     <div th:replace="fragments/navbar :: navbar"></div>
 
-    <div class="usuari-alta-container">
+    <div class="alta-container">
         <h1>Crear Usuari</h1>
 
         <div th:if="${error}" class="error-message">
@@ -22,7 +22,7 @@
             <div class="form-grid">
                 <div class="form-group">
                     <label for="nom">Nom (*):</label>
-                    <input type="text" id="nom" th:field="*{nom}" required>
+                    <input type="text" id="nom" th:field="*{nom}">
                 </div>
             
                 <div class="form-group">
