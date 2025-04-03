@@ -29,8 +29,6 @@ public class Recompensa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nom;
-
     private String descripcio;
 
     private String observacions;
