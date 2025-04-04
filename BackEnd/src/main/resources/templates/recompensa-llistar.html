@@ -13,27 +13,27 @@
     <h1 class="title">Llista Recompenses</h1>
     <a href="/recompenses/crear" class="button">+ Crear Recompensa</a>
 
-    <div class="reward-container">
-        <a th:each="recompensa : ${recompenses}" th:href="@{/recompenses/detall/{id}(id=${recompensa.id})}"
-            class="reward-card">
+    <div class="rewards-container">
+        <a th:each="recompensa : ${recompenses}" th:href="@{/recompenses/consultar/{id}(id=${recompensa.id})}"
+            class="rewards-card">
 
-            <div class="reward-image">
+            <div class="rewards-image">
                 <img th:if="${imatgesBase64[recompensa.id] != null}"
                     th:src="'data:image/jpeg;base64,' + ${imatgesBase64[recompensa.id]}" alt="Imatge Recompensa">
             </div>
 
-            <div class="reward-content">
-                <h2 th:text="${recompensa.descripcio}" class="reward-title">Nom Recompensa</h2>
-                <p class="reward-place">
+            <div class="rewards-content">
+                <h2 th:text="${recompensa.descripcio}" class="rewards-title">Nom Recompensa</h2>
+                <p class="rewards-place">
                     <span th:text="${recompensa.nomComerç}">Nom Comerç</span><br>
                     <span th:text="${recompensa.adreçaComerç}">Adreça Comerç</span>
                 </p>
-                <p class="reward-user" th:if="${recompensa.estat != 'DISPONIBLE' and recompensa.usuari != null}">
+                <p class="rewards-user" th:if="${recompensa.estat != 'DISPONIBLE' and recompensa.usuari != null}">
                     <span th:text="${recompensa.usuari.nom + ' ' + recompensa.usuari.cognoms}">usuari@example.com</span>
                 </p>
-                <div class="reward-estat-punts">
-                    <span class="reward-estat" th:text="${recompensa.estat}">Estat</span>
-                    <span class="reward-punts">
+                <div class="rewards-estat-punts">
+                    <span class="rewards-estat" th:text="${recompensa.estat}">Estat</span>
+                    <span class="rewards-punts">
                         <span th:text="${recompensa.punts}">0</span>
                         <img src="/img/coin-icon.png" alt="Punts">
                     </span>

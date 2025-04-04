@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalls Recompensa</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <h1 class="title">Visualitzar Recompenses</h1>
+
+    <div class="reward-container">
+        <div class="reward-card">
+            <div class="reward-title-container">
+                <h2 class="reward-title" th:text="${recompensa.descripcio}">Nom Recompensa</h2>
+            </div>
+            <div class="reward-content">
+                <div class="reward-image">
+                    <img th:if="${imatgeBase64 != null}" th:src="'data:image/jpeg;base64,' + ${imatgeBase64}"
+                        alt="Imatge Recompensa">
+                    <img th:if="${imatgeBase64 == null}" src="/img/default-reward.png" alt="Imatge Recompensa">
+                </div>
+                <div class="reward-details">
+                    <div class="reward-info">
+                        <h3 th:text="${recompensa.nomComerç}">Nom Comerç</h3>
+                        <p th:text="${recompensa.adreçaComerç}">Adreça Comerç</p>
+
+                        <div th:if="${recompensa.estat != 'DISPONIBLE' and recompensa.usuari != null}">
+                            <label class="assigned-user-label">Usuari Assignat:</label>
+                            <span class="assigned-user"
+                                th:text="${recompensa.usuari.nom + ' ' + recompensa.usuari.cognoms}">Usuari</span>
+                        </div>
+                    </div>
+
+                    <div class="reward-status-container">
+                        <span class="status" th:classappend="${recompensa.estat == 'DISPONIBLE' ? 'status-disponible' :
+                                          recompensa.estat == 'RESERVADA' ? 'status-reservada' :
+                                          recompensa.estat == 'ASSIGNADA' ? 'status-assignada' :
+                                          'status-recollida'}" th:text="${recompensa.estat}">
+                        </span>
+
+                        <span class="reward-points">
+                            <span th:text="${recompensa.punts}">0</span>
+                            <img src="/img/coin-icon.png" alt="Punts">
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

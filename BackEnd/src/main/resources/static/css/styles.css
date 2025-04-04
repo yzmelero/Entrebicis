@@ -304,7 +304,7 @@ input {
 }
 
 /* Recompensa llistat */
-.reward-container {
+.rewards-container {
     margin-top: 50px;
     display: flex;
     justify-content: center;
@@ -313,7 +313,7 @@ input {
     padding: 20px;
 }
 
-.reward-card {
+.rewards-card {
     background-color: #9DFFE8;
     border-radius: 10px;
     width: 250px;
@@ -326,38 +326,38 @@ input {
     position: relative;
 }
 
-.reward-image img {
+.rewards-image img {
     width: 100%;
     height: 150px; 
     object-fit: cover;
 }
 
-.reward-content {
+.rewards-content {
     padding: 15px;
     text-align: center;
     flex-grow: 1; 
 }
 
-.reward-title {
+.rewards-title {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-.reward-place {
+.rewards-place {
     font-size: 14px;
     color: #555;
     margin-bottom: 5px;
 }
 
-.reward-user {
+.rewards-user {
     font-size: 16px;
     color: #012f5e;
     margin-top: 5px;
     min-height: 20px;
 }
 
-.reward-estat-punts {
+.rewards-estat-punts {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -369,20 +369,151 @@ input {
     background-color: #9DFFE8;
 }
 
-.reward-estat {
+.rewards-estat {
     font-weight: bold;
     color: blue;
     font-size: 14px;
 }
 
-.reward-punts {
+.rewards-punts {
     font-weight: bold;
     display: flex;
     align-items: center;
     gap: 5px;
 }
 
-.reward-punts img {
+.rewards-punts img {
     width: 18px;
     height: 18px;
+}
+
+/* Consulta recompensa */
+.reward-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+}
+.reward-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: left;
+    align-items: left;
+}
+
+.reward-card {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    background: #9DFFE8;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    height: auto;
+    gap: 30px;
+}
+
+.reward-title-container {
+    width: 100%;
+    text-align: left;
+}
+
+.reward-title {
+    text-align: left;
+    margin: 5px;
+    font-size: 35px;
+}
+
+.reward-details {
+    flex: 2; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+}
+.reward-image img {
+    width: 350px;
+    height: 350px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.reward-info {
+    flex: 1;
+    text-align: left;
+    margin-top: -20px;
+}
+
+.reward-info h3 {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.reward-info p {
+    font-size: 30px;
+    margin-top: 15px;
+}
+.assigned-user-label {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.assigned-user {
+    font-size: 22px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.reward-status-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+.reward-points {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bold;
+    gap: 5px;
+}
+
+.reward-points img {
+    width: 30px;
+    height: 30px;
+}
+
+.status {
+    font-weight: bold;
+    font-size: 20px;
+    padding: 7px 14px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    align-items: center;
+}
+
+.status-disponible {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.status-reservada {
+    background-color: #007BFF;
+    color: white;
+}
+
+.status-assignada {
+    background-color: #FF5733;
+    color: white;
+}
+
+.status-recollida {
+    background-color: #808080; 
+    color: white;
 }

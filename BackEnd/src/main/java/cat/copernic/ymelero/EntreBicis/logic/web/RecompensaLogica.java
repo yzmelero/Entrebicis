@@ -41,4 +41,7 @@ public class RecompensaLogica {
         return recompensaRepository.save(recompensa);
     }
 
+    public Recompensa getRecompensa(Long id) {
+        return recompensaRepository.findById(id).orElse(null);
+    }
 }
