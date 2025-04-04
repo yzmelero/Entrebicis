@@ -38,7 +38,13 @@ public class RecompensaLogica {
         if (recompensa.getEstat() == null) {
             recompensa.setEstat(EstatRecompensa.DISPONIBLE);
         }
+        if (recompensa.getEstat() == EstatRecompensa.DISPONIBLE) {
+            recompensa.setUsuari(null);
+        }
         return recompensaRepository.save(recompensa);
     }
 
+    public Recompensa getRecompensa(Long id) {
+        return recompensaRepository.findById(id).orElse(null);
+    }
 }

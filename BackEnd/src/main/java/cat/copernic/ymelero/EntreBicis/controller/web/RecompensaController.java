@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -71,4 +72,28 @@ public class RecompensaController {
         }
     }
 
+    @GetMapping("/consultar/{id}")
+    public String mostrarRecompensa(@PathVariable Long id, Model model) {
+        Recompensa recompensa = recompensaLogica.getRecompensa(id);
+        try {
+
+            if (recompensa == null) {
+                model.addAttribute("error", "No s'ha trobat la recompensa amb ID: " + id);
+                return "redirect:/recompenses";
+            }
+
+            if (recompensa.getFoto() != null) {
+                String imatgeBase64 = Base64.getEncoder().encodeToString(recompensa.getFoto());
+                model.addAttribute("imatgeBase64", imatgeBase64);
+            } else {
+                model.addAttribute("imatgeBase64", null);
+            }
+            model.addAttribute("recompensa", recompensa);
+
+            return "recompensa-consultar";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "redirect:/recompenses";
+        }
+    }
 }
