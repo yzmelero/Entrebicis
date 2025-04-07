@@ -52,7 +52,7 @@ public class RecompensaLogica {
         Recompensa recompensa = getRecompensa(id);
         if (recompensa != null) {
             if (EstatRecompensa.DISPONIBLE.equals(recompensa.getEstat())) {
-                recompensaRepository.delete(recompensa);
+                recompensaRepository.deleteById(id);
             } else {
                 throw new RuntimeException("Només es poden eliminar recompenses amb l'estat DISPONIBLE.");
             }
