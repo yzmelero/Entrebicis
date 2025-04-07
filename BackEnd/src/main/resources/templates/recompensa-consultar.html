@@ -14,6 +14,18 @@
 
     <div class="reward-container">
         <div class="reward-card">
+            <div class="delete-button-topright">
+                <button th:if="${recompensa.estat.toString() == 'DISPONIBLE'}" class="delete-button"
+                    th:onclick="'if(confirm(\'¿Estàs segur de que vols esborrar aquesta recompensa?\')) window.location.href=\'/recompenses/esborrar/' + ${recompensa.id} + '\';'"
+                    title="Eliminar recompensa">
+                    🗑
+                </button>
+
+                <button th:if="${recompensa.estat.toString() != 'DISPONIBLE'}" class="delete-button disabled-button"
+                    disabled title="Només es poden eliminar recompenses disponibles">
+                    🗑
+                </button>
+            </div>
             <div class="reward-title-container">
                 <h2 class="reward-title" th:text="${recompensa.descripcio}">Nom Recompensa</h2>
             </div>
@@ -36,8 +48,7 @@
                     </div>
 
                     <div class="reward-status-container">
-                        <span class="status" th:text="${recompensa.estat}" 
-                        th:class="${recompensa.estat.toString() == 'DISPONIBLE' ? 'status status-disponible' : 
+                        <span class="status" th:text="${recompensa.estat}" th:class="${recompensa.estat.toString() == 'DISPONIBLE' ? 'status status-disponible' : 
                                    (recompensa.estat.toString() == 'RESERVADA' ? 'status status-reservada' : 
                                    (recompensa.estat.toString() == 'ASSIGNADA' ? 'status status-assignada' : 
                                    'status status-recollida'))}">
