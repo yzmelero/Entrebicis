@@ -96,4 +96,15 @@ public class RecompensaController {
             return "redirect:/recompenses";
         }
     }
+
+    @GetMapping("/esborrar/{id}")
+    public String esborrarRecompensa(@PathVariable Long id, Model model) {
+        try {
+            recompensaLogica.eliminarRecompensa(id);
+            return "redirect:/recompenses";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "redirect:/recompenses";
+        }
+    }
 }

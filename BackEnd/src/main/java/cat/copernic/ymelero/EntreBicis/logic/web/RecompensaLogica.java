@@ -47,4 +47,17 @@ public class RecompensaLogica {
     public Recompensa getRecompensa(Long id) {
         return recompensaRepository.findById(id).orElse(null);
     }
+
+    public void eliminarRecompensa(Long id) {
+        Recompensa recompensa = getRecompensa(id);
+        if (recompensa != null) {
+            if (EstatRecompensa.DISPONIBLE.equals(recompensa.getEstat())) {
+                recompensaRepository.delete(recompensa);
+            } else {
+                throw new RuntimeException("Només es poden eliminar recompenses amb l'estat DISPONIBLE.");
+            }
+        } else {
+            throw new RuntimeException("No s'ha trobat la recompensa amb id: " + id);
+        }
+    }
 }

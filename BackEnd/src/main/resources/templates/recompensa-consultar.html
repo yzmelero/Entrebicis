@@ -14,6 +14,21 @@
 
     <div class="reward-container">
         <div class="reward-card">
+            <div class="delete-button-topright">
+                <a th:if="${recompensa.estat == 'DISPONIBLE'}" 
+                   th:href="@{'/recompenses/esborrar/' + ${recompensa.id}}"
+                   class="delete-button" 
+                   title="Eliminar recompensa">
+                    🗑
+                </a>
+        
+                <button th:if="${recompensa.estat != 'DISPONIBLE'}" 
+                        class="delete-button disabled-button" 
+                        disabled 
+                        title="Només es poden eliminar recompenses disponibles">
+                    🗑
+                </button>
+            </div>
             <div class="reward-title-container">
                 <h2 class="reward-title" th:text="${recompensa.descripcio}">Nom Recompensa</h2>
             </div>
