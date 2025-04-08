@@ -1,4 +1,5 @@
 package cat.copernic.ymelero.entrebicis.core.model
 
-class EstatRecompensa {
+enum class EstatRecompensa {
+    DISPONIBLE, RESERVADA, ASSIGNADA, RECOLLIDA
 }

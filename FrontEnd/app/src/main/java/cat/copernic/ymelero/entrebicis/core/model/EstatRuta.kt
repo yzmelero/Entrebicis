@@ -1,4 +1,5 @@
 package cat.copernic.ymelero.entrebicis.core.model
 
-class EstatRuta {
+enum class EstatRuta {
+    PENDENT, VALIDADA, NOVALIDADA
 }
