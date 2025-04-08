@@ -1,4 +1,5 @@
 package cat.copernic.ymelero.entrebicis.core.model
 
-class Rol {
+enum class Rol {
+    ADMIN, CICLISTA
 }
