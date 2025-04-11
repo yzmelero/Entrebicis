@@ -11,37 +11,22 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import cat.copernic.ymelero.entrebicis.core.ui.navigation.AppNavigation
 import cat.copernic.ymelero.entrebicis.core.ui.theme.EntrebicisTheme
+import cat.copernic.ymelero.entrebicis.usuaris.data.UserRepository
+import cat.copernic.ymelero.entrebicis.usuaris.domain.UseCases
+import cat.copernic.ymelero.entrebicis.usuaris.ui.viewmodel.UserViewModel
+import cat.copernic.ymelero.entrebicis.usuaris.ui.viewmodel.UserViewModelFactory
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        super.onCreate(savedInstanceState)
         setContent {
-            EntrebicisTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+            val useCases = UseCases(UserRepository())
+            val userViewModel: UserViewModel = viewModel(factory = UserViewModelFactory(useCases))
+            AppNavigation(userViewModel)
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    EntrebicisTheme {
-        Greeting("Android")
     }
 }

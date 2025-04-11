@@ -22,11 +22,23 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import cat.copernic.ymelero.entrebicis.R
+import cat.copernic.ymelero.entrebicis.usuaris.data.UserRepository
+import cat.copernic.ymelero.entrebicis.usuaris.domain.UseCases
+import cat.copernic.ymelero.entrebicis.usuaris.ui.viewmodel.UserViewModel
 
 @Composable
-fun LoginScreen(navController: NavController) {
+fun LoginScreen(navController: NavController, userViewModel: UserViewModel) {
     var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
+    var contrasenya by remember { mutableStateOf("") }
+
+    val loginSuccess by userViewModel.loginSuccess.collectAsState()
+
+    LaunchedEffect(loginSuccess) {
+        if (loginSuccess == true) {
+                navController.navigate("menu")
+
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -76,8 +88,8 @@ fun LoginScreen(navController: NavController) {
                 Spacer(modifier = Modifier.height(8.dp))
 
                 OutlinedTextField(
-                    value = password,
-                    onValueChange = { password = it },
+                    value = contrasenya,
+                    onValueChange = { contrasenya = it },
                     label = { Text("Contrasenya") },
                     visualTransformation = PasswordVisualTransformation(),
                     modifier = Modifier.fillMaxWidth()
@@ -86,7 +98,8 @@ fun LoginScreen(navController: NavController) {
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Button(
-                    onClick = { /* TODO login i validar */ },
+                    onClick = {
+                        userViewModel.loginUser(email, contrasenya)},
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFBEE1F4)),
                     modifier = Modifier
                         .fillMaxWidth()
@@ -128,6 +141,7 @@ fun LoginScreenPreview() {
     val fakeNavController =
         rememberNavController()
     LoginScreen(
-        navController = fakeNavController
+        navController = fakeNavController,
+        userViewModel = UserViewModel(UseCases(UserRepository()))
     )
 }

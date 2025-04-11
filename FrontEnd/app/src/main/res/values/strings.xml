@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Entrebicis</string>
+    <string name="unkViewModel">Unknown ViewModel class</string>
 </resources>
