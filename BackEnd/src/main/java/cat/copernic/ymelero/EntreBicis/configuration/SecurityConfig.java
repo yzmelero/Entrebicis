@@ -21,13 +21,14 @@ public class SecurityConfig {
         @Bean
         public SecurityFilterChain webSecurity(HttpSecurity http) throws Exception {
                 http
-                                .csrf(csrf -> csrf.disable()) // Desactivar CSRF para todas las rutas
+                                .csrf(csrf -> csrf.disable())
                                 .securityMatcher("/**")
                                 .authorizeHttpRequests(auth -> auth
-                                                .requestMatchers("/css/**", "/img/**", "/login", "/api/login/verify")
-                                                .permitAll()
-                                                .requestMatchers("/api/**").authenticated()
-                                                .requestMatchers("/**").hasAnyRole("ADMIN")
+                                                .requestMatchers("/api/login/verify", "/api/usuari/visualitzar/**")
+                                                .permitAll() // Login desde Android
+                                                .requestMatchers("/css/**", "/img/**", "/login").permitAll() // Recursos
+                                                .requestMatchers("/api/**").authenticated() // Resto de rutas de la API
+                                                .requestMatchers("/**").hasAnyRole("ADMIN") // Todo lo demás requiere
                                                 .anyRequest().authenticated())
                                 .formLogin(login -> login
                                                 .loginPage("/login") // Página de login personalizada

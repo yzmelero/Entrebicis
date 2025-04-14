@@ -35,4 +35,9 @@ class UserViewModel(private val useCases: UseCases) : ViewModel() {
             }
         }
     }
+
+    fun ObtenirUsuari(usuari: Usuari) {
+        _currentUser.value = usuari
+    }
+
 }
