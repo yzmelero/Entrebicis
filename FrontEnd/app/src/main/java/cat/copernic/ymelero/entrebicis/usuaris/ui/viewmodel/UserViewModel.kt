@@ -17,23 +17,28 @@ class UserViewModel(private val useCases: UseCases) : ViewModel() {
 
     fun loginUser(email: String, contrasenya: String) {
         viewModelScope.launch {
-            try {
-                val loginResponse = useCases.loginUser(email, contrasenya)
-
-                if (loginResponse.isSuccessful) {
-                    val userResponse = useCases.getUsuari(email)
+            val loginResponse = useCases.loginUser(email, contrasenya)
+            _loginSuccess.value = loginResponse.isSuccessful
+            if (loginResponse.isSuccessful) {
+                val userResponse = useCases.getUsuari(email)
+                if (userResponse.isSuccessful) {
                     val user = userResponse.body()
-
                     _currentUser.value = user
                     _loginSuccess.value = true
                 } else {
+                    _currentUser.value = null
                     _loginSuccess.value = false
                 }
-
-            } catch (e: Exception) {
-                _loginSuccess.value = false
             }
         }
+    }
+
+    /**
+     * Tanca la sessió de l'usuari actual.
+     */
+    fun logoutUser() {
+        _currentUser.value = null
+        _loginSuccess.value = false
     }
 
     fun ObtenirUsuari(usuari: Usuari) {
