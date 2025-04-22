@@ -14,11 +14,14 @@ import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -27,9 +30,11 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import cat.copernic.ymelero.entrebicis.R
 import cat.copernic.ymelero.entrebicis.usuaris.ui.viewmodel.UserViewModel
+import coil.compose.AsyncImage
 
 @Composable
 fun TopBar(navController: NavController, userViewModel: UserViewModel) {
+    val currentUser by userViewModel.currentUser.collectAsState()
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -40,34 +45,41 @@ fun TopBar(navController: NavController, userViewModel: UserViewModel) {
     ) {
         Image(
             painter = painterResource(R.drawable.iconuser),
-            contentDescription = "Avatar de usuario",
+            contentDescription = "Avatar por defecto",
             contentScale = ContentScale.Crop,
             modifier = Modifier
-                .size(36.dp)
+                .size(38.dp)
                 .clip(CircleShape)
-                .background(Color.White, shape = CircleShape)
+                .background(Color.Black, shape = CircleShape)
                 .padding(2.dp)
                 .clickable {
-                    //navController.navigate("perfil/${currentUser?.username}")
+                    navController.navigate("usuari/${currentUser?.email}")
                 }
         )
 
         Text(
             text = "EntreBicis",
-            color = Color.White,
+            color = Color.Black,
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold
         )
 
-        Icon(
-            Icons.Default.ExitToApp,
-            contentDescription = stringResource(R.string.logout),
-            Modifier
-                .size(40.dp)
-                .clickable {
-                    userViewModel.logoutUser()
-                    navController.navigate("login")
-                }
-        )
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.coin_icon),
+                contentDescription = "Icona monedas",
+                modifier = Modifier.size(24.dp)
+            )
+
+            Text(
+                text = "${currentUser?.saldo ?: 0}",
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black,
+                modifier = Modifier.padding(start = 4.dp)
+            )
+        }
     }
 }

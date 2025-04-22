@@ -41,7 +41,7 @@ fun BottomNavBar(navController: NavController, userViewModel: UserViewModel, sel
                     Image(
                         painter = painterResource(id = iconRes),
                         contentDescription = null,
-                        modifier = Modifier.size(30.dp)
+                        modifier = Modifier.size(36.dp)
                     )
                 },
                 selected = selectedItem == index,
