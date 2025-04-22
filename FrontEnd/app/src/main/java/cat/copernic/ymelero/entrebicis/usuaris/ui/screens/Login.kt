@@ -35,8 +35,7 @@ fun LoginScreen(navController: NavController, userViewModel: UserViewModel) {
 
     LaunchedEffect(loginSuccess) {
         if (loginSuccess == true) {
-                navController.navigate("menu")
-
+            navController.navigate("iniciarRuta")
         }
     }
 
