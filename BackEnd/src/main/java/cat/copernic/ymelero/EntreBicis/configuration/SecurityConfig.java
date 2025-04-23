@@ -6,25 +6,30 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
 
         @Autowired
         private ValidadorUsuari validadorUsuari;
 
         @Bean
-        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        public SecurityFilterChain webSecurity(HttpSecurity http) throws Exception {
                 http
+                                .csrf(csrf -> csrf.disable())
+                                .securityMatcher("/**")
                                 .authorizeHttpRequests(auth -> auth
-                                                .requestMatchers("/css/**", "/img/**").permitAll()
-                                                .requestMatchers("/login").permitAll()
-                                                .requestMatchers("/**").hasRole("ADMIN") // Solo el admin puede acceder
-                                                .anyRequest().authenticated() // Todo lo demás requiere autenticación
-                                )
+                                                .requestMatchers("/api/login/verify", "/api/usuari/visualitzar/**")
+                                                .permitAll() // Login desde Android
+                                                .requestMatchers("/css/**", "/img/**", "/login").permitAll() // Recursos
+                                                .requestMatchers("/api/**").authenticated() // Resto de rutas de la API
+                                                .requestMatchers("/**").hasAnyRole("ADMIN") // Todo lo demás requiere
+                                                .anyRequest().authenticated())
                                 .formLogin(login -> login
                                                 .loginPage("/login") // Página de login personalizada
                                                 .defaultSuccessUrl("/usuaris", true) // Redirigir a llista d'usuaris
@@ -39,10 +44,7 @@ public class SecurityConfig {
                                                 .deleteCookies("JSESSIONID") // Eliminar cookies de sesión
                                                 .permitAll())
                                 .exceptionHandling(handling -> handling
-                                                .accessDeniedPage("/error") // Página de error si no tiene
-                                                                            // permisos
-                                );
-
+                                                .accessDeniedPage("/error"));
                 return http.build();
         }
 
