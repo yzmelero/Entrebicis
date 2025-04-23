@@ -33,9 +33,6 @@ class UserViewModel(private val useCases: UseCases) : ViewModel() {
         }
     }
 
-    /**
-     * Tanca la sessió de l'usuari actual.
-     */
     fun logoutUser() {
         _currentUser.value = null
         _loginSuccess.value = false
