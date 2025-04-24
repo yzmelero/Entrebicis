@@ -39,10 +39,10 @@ public class Recompensa {
     private EstatRecompensa estat;
 
     @Column(name = "nom_comerç")
-    private String nomComerç;
+    private String nomComerc;
 
     @Column(name = "adreça_comerç")
-    private String adreçaComerç;
+    private String adrecaComerc;
 
     @Lob
     @Column(columnDefinition = "MEDIUMBLOB")

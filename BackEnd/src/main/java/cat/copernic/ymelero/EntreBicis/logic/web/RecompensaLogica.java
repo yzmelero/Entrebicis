@@ -29,10 +29,10 @@ public class RecompensaLogica {
         if (recompensa.getPunts() <= 0) {
             throw new RuntimeException("Els punts han de ser un valor positiu.");
         }
-        if (recompensa.getNomComerç() == null || recompensa.getNomComerç().isEmpty()) {
+        if (recompensa.getNomComerc() == null || recompensa.getNomComerc().isEmpty()) {
             throw new RuntimeException("El nom del comerç és obligatori.");
         }
-        if (recompensa.getAdreçaComerç() == null || recompensa.getAdreçaComerç().isEmpty()) {
+        if (recompensa.getAdrecaComerc() == null || recompensa.getAdrecaComerc().isEmpty()) {
             throw new RuntimeException("L'adreça del comerç és obligatòria.");
         }
         if (recompensa.getEstat() == null) {
