@@ -9,9 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ExitToApp
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -21,20 +18,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import cat.copernic.ymelero.entrebicis.R
 import cat.copernic.ymelero.entrebicis.usuaris.ui.viewmodel.UserViewModel
-import coil.compose.AsyncImage
 
 @Composable
 fun TopBar(navController: NavController, userViewModel: UserViewModel) {
     val currentUser by userViewModel.currentUser.collectAsState()
+    val userImageBitmap = currentUser?.foto?.let { userViewModel.base64ToBitmap(it) }
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -43,19 +39,31 @@ fun TopBar(navController: NavController, userViewModel: UserViewModel) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Image(
-            painter = painterResource(R.drawable.iconuser),
-            contentDescription = "Avatar por defecto",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .size(38.dp)
-                .clip(CircleShape)
-                .background(Color.Black, shape = CircleShape)
-                .padding(2.dp)
-                .clickable {
-                    navController.navigate("usuari/${currentUser?.email}")
-                }
-        )
+        if (userImageBitmap != null) {
+            Image(
+                bitmap = userImageBitmap,
+                contentDescription = "Avatar de l'usuari",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .size(38.dp)
+                    .clip(CircleShape)
+                    .clickable {
+                        navController.navigate("usuari/${currentUser?.email}")
+                    }
+            )
+        } else {
+            Image(
+                painter = painterResource(R.drawable.iconuser),
+                contentDescription = "Avatar per defecte",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .size(38.dp)
+                    .clip(CircleShape)
+                    .clickable {
+                        navController.navigate("usuari/${currentUser?.email}")
+                    }
+            )
+        }
 
         Text(
             text = "EntreBicis",

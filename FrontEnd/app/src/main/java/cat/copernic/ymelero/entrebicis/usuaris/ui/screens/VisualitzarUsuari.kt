@@ -43,6 +43,7 @@ import cat.copernic.ymelero.entrebicis.usuaris.ui.viewmodel.UserViewModel
 @Composable
 fun UsuariScreen(navController: NavController, userViewModel: UserViewModel) {
     val usuari by userViewModel.currentUser.collectAsState()
+    val imageBitmap = usuari?.foto?.let { userViewModel.base64ToBitmap(it) }
 
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
@@ -81,14 +82,27 @@ fun UsuariScreen(navController: NavController, userViewModel: UserViewModel) {
                         color = Color.Black
                     )
                     Spacer(modifier = Modifier.height(12.dp))
-                    Image(
-                        painter = painterResource(R.drawable.iconuser),
-                        contentDescription = "Foto de perfil",
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .size(240.dp)
-                            .clip(CircleShape)
-                    )
+
+                    if (imageBitmap != null) {
+                        Image(
+                            bitmap = imageBitmap,
+                            contentDescription = "Foto de perfil",
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier
+                                .size(240.dp)
+                                .clip(CircleShape)
+                        )
+                    } else {
+                        Image(
+                            painter = painterResource(R.drawable.iconuser),
+                            contentDescription = "Foto de perfil per defecte",
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier
+                                .size(240.dp)
+                                .clip(CircleShape)
+                        )
+                    }
+
                     Spacer(modifier = Modifier.height(12.dp))
                     Text(
                         text = usuari?.email ?: "",
@@ -121,7 +135,7 @@ fun UsuariScreen(navController: NavController, userViewModel: UserViewModel) {
                     }
                     Spacer(modifier = Modifier.height(32.dp))
                     Button(
-                        onClick = { /* Navegar a historial rutes */ },
+                        onClick = { navController.navigate("llistaRutes") },
                         modifier = Modifier.height(46.dp)
                     ) {
                         Text(
@@ -131,7 +145,7 @@ fun UsuariScreen(navController: NavController, userViewModel: UserViewModel) {
                     }
                     Spacer(modifier = Modifier.height(10.dp))
                     Button(
-                        onClick = { /* Navegar a historial recompenses */ },
+                        onClick = { navController.navigate("llistaRecompenses") },
                         modifier = Modifier.height(46.dp)
                     ) {
                         Text(
