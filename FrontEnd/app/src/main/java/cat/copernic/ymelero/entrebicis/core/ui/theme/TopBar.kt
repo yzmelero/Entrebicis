@@ -74,7 +74,7 @@ fun TopBar(navController: NavController, userViewModel: UserViewModel) {
             )
 
             Text(
-                text = "${currentUser?.saldo ?: 0}",
+                text = "${currentUser?.saldo?.toInt() ?: 0}",
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
