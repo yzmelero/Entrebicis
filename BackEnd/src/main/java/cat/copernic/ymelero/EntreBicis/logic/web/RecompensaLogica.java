@@ -60,4 +60,8 @@ public class RecompensaLogica {
             throw new RuntimeException("No s'ha trobat la recompensa amb id: " + id);
         }
     }
+
+    public List<Recompensa> getRecompensesDisponibles() {
+        return recompensaRepository.findByEstat(EstatRecompensa.DISPONIBLE);
+    }
 }
