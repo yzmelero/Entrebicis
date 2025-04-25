@@ -25,8 +25,8 @@
             <div class="rewards-content">
                 <h2 th:text="${recompensa.descripcio}" class="rewards-title">Nom Recompensa</h2>
                 <p class="rewards-place">
-                    <span th:text="${recompensa.nomComerç}">Nom Comerç</span><br>
-                    <span th:text="${recompensa.adreçaComerç}">Adreça Comerç</span>
+                    <span th:text="${recompensa.nomComerc}">Nom Comerç</span><br>
+                    <span th:text="${recompensa.adrecaComerc}">Adreça Comerç</span>
                 </p>
                 <p class="rewards-user" th:if="${recompensa.estat != 'DISPONIBLE' and recompensa.usuari != null}">
                     <span th:text="${recompensa.usuari.nom + ' ' + recompensa.usuari.cognoms}">usuari@example.com</span>

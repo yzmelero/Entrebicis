@@ -2,6 +2,7 @@ package cat.copernic.ymelero.entrebicis.recompenses.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,9 +16,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -66,25 +68,34 @@ fun LlistaRecompensesScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             header(navController, userViewModel)
-            Spacer(modifier = Modifier.height(10.dp))
-
-            Text(
-                text = "Llista recompenses",
-                fontSize = 28.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black,
-                modifier = Modifier.padding(bottom = 10.dp)
-            )
-
-            androidx.compose.foundation.lazy.LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(12.dp),
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = 16.dp)
+            Column(  modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState()),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                items(recompenses) { recompensa ->
-                    RecompensaCard(recompensa, recViewModel)
+                Spacer(modifier = Modifier.height(20.dp))
+                Text(
+                    text = "Llista recompenses",
+                    fontSize = 32.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black,
+                    modifier = Modifier.padding(bottom = 12.dp)
+                )
+                Column(
+                    modifier = Modifier
+                        .padding(horizontal = 16.dp)
+                        .padding(bottom = 80.dp),
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    recompenses.forEach { recompensa ->
+                        RecompensaCard(
+                            recompensa = recompensa,
+                            recViewModel = recViewModel,
+                            onClick = { navController.navigate("detallRecompensa/${recompensa.id}") }
+                        )
+                    }
                 }
+                Spacer(modifier = Modifier.height(20.dp))
             }
         }
         BottomSection(navController, userViewModel, 1)
@@ -92,40 +103,59 @@ fun LlistaRecompensesScreen(
 }
 
 @Composable
-fun RecompensaCard(recompensa: Recompensa, recViewModel: RecViewModel) {
+fun RecompensaCard(recompensa: Recompensa, recViewModel: RecViewModel, onClick: () -> Unit = {}
+) {
     val imageBitmap = recompensa.foto?.let { recViewModel.base64ToBitmap(it) }
 
-    Box(
+    Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color(0xFF98E0D6), shape = RoundedCornerShape(20.dp))
-            .padding(16.dp)
+            .clip(RoundedCornerShape(20.dp))
+            .background(Color(0xFF98E0D6))
+            .clickable { onClick() }
     ) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        if (imageBitmap != null) {
+            Image(
+                bitmap = imageBitmap,
+                contentDescription = recompensa.descripcio,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(180.dp)
+                    .clip(RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp))
+            )
+        } else {
+            Image(
+                painter = painterResource(id = R.drawable.iconreward),
+                contentDescription = "Imatge per defecte",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(180.dp)
+                    .clip(RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp))
+            )
+        }
+
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.Start
+        ) {
             Text(
                 text = recompensa.descripcio,
                 fontSize = 22.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black
             )
+
+            Spacer(modifier = Modifier.height(6.dp))
+
             Text(
                 text = recompensa.nomComerc,
-                fontSize = 16.sp,
+                fontSize = 18.sp,
                 color = Color.DarkGray
             )
-
-            Spacer(modifier = Modifier.height(12.dp))
-
-            if (imageBitmap != null) {
-                Image(
-                    bitmap = imageBitmap,
-                    contentDescription = recompensa.descripcio,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .size(220.dp)
-                        .clip(RoundedCornerShape(12.dp))
-                )
-            }
 
             Spacer(modifier = Modifier.height(12.dp))
 
@@ -134,9 +164,10 @@ fun RecompensaCard(recompensa: Recompensa, recViewModel: RecViewModel) {
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = recompensa.estat.name.capitalize(),
+                    text = recompensa.estat.name,
                     fontWeight = FontWeight.Bold,
-                    color = Color(0xFF007E33)
+                    color = Color(0xFF007E33),
+                    fontSize = 18.sp
                 )
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
@@ -152,12 +183,6 @@ fun RecompensaCard(recompensa: Recompensa, recViewModel: RecViewModel) {
                             .size(20.dp)
                     )
                 }
-            }
-
-            Spacer(modifier = Modifier.height(10.dp))
-
-            Button(onClick = { /* TO DO: Detall */ }) {
-                Text(text = "Veure Details")
             }
         }
     }

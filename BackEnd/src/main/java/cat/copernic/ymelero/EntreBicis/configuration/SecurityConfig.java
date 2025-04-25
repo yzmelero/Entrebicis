@@ -24,10 +24,8 @@ public class SecurityConfig {
                                 .csrf(csrf -> csrf.disable())
                                 .securityMatcher("/**")
                                 .authorizeHttpRequests(auth -> auth
-                                                .requestMatchers("/api/login/verify", "/api/usuari/visualitzar/**")
-                                                .permitAll() // Login desde Android
+                                                .requestMatchers("/api/**").permitAll()
                                                 .requestMatchers("/css/**", "/img/**", "/login").permitAll() // Recursos
-                                                .requestMatchers("/api/**").authenticated() // Resto de rutas de la API
                                                 .requestMatchers("/**").hasAnyRole("ADMIN") // Todo lo demás requiere
                                                 .anyRequest().authenticated())
                                 .formLogin(login -> login

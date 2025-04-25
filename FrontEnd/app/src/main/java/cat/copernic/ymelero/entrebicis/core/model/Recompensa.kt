@@ -9,7 +9,7 @@ data class Recompensa (
     val nomComerc: String,
     val adrecaComerc: String,
     val foto: String? = null,
-    val usuari: Usuari?,
-    val dataReserva: String?,
-    val dataRecollida: String?
+    val usuari: Usuari? = null,
+    val dataReserva: String? = null,
+    val dataRecollida: String? = null
 )

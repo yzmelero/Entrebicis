@@ -2,6 +2,7 @@ package cat.copernic.ymelero.entrebicis.recompenses.ui.viewmodel
 
 import android.graphics.BitmapFactory
 import android.util.Base64
+import android.util.Log
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.lifecycle.ViewModel
@@ -18,15 +19,19 @@ class RecViewModel(private val recUseCases: RecUseCases) : ViewModel() {
     private val _recompensesDisponibles = MutableStateFlow<List<Recompensa>>(emptyList())
     val recompensesDisponibles: StateFlow<List<Recompensa>> get() = _recompensesDisponibles
 
+
     fun llistaRecompensesDisponibles() {
         viewModelScope.launch {
             try {
                 val response = recUseCases.getRecompensesDisponibles()
                 if (response.isSuccessful && response.body() != null) {
+                    Log.d("RecViewModel", "Response: ${response.body()}")
+
                     _recompensesDisponibles.value = response.body()!!
                 } else {
-                    _recompensesDisponibles.value = emptyList()
+                    Log.e("RecViewModel", "Error: ${response.code()} - ${response.errorBody()?.string()}")
                 }
+
             } catch (e: Exception) {
                 _recompensesDisponibles.value = emptyList()
             }
