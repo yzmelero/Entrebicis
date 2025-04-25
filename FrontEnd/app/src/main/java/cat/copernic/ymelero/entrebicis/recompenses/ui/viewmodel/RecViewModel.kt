@@ -19,14 +19,11 @@ class RecViewModel(private val recUseCases: RecUseCases) : ViewModel() {
     private val _recompensesDisponibles = MutableStateFlow<List<Recompensa>>(emptyList())
     val recompensesDisponibles: StateFlow<List<Recompensa>> get() = _recompensesDisponibles
 
-
     fun llistaRecompensesDisponibles() {
         viewModelScope.launch {
             try {
                 val response = recUseCases.getRecompensesDisponibles()
                 if (response.isSuccessful && response.body() != null) {
-                    Log.d("RecViewModel", "Response: ${response.body()}")
-
                     _recompensesDisponibles.value = response.body()!!
                 } else {
                     Log.e("RecViewModel", "Error: ${response.code()} - ${response.errorBody()?.string()}")
@@ -38,6 +35,23 @@ class RecViewModel(private val recUseCases: RecUseCases) : ViewModel() {
         }
     }
 
+    private val _recompensesPropies = MutableStateFlow<List<Recompensa>>(emptyList())
+    val recompensesPropies: StateFlow<List<Recompensa>> get() = _recompensesPropies
+
+    fun llistaRecompensesPropies(email: String) {
+        viewModelScope.launch {
+            try {
+                val response = recUseCases.getRecompensesPropies(email)
+                if (response.isSuccessful && response.body() != null) {
+                    _recompensesPropies.value = response.body()!!
+                } else {
+                    Log.e("RecViewModel", "Error propies: ${response.code()} - ${response.errorBody()?.string()}")
+                }
+            } catch (e: Exception) {
+                _recompensesPropies.value = emptyList()
+            }
+        }
+    }
 
     fun base64ToBitmap(base64: String): ImageBitmap? {
         return try {

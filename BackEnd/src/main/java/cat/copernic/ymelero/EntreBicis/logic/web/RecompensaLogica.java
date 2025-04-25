@@ -1,5 +1,6 @@
 package cat.copernic.ymelero.entrebicis.logic.web;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,10 @@ public class RecompensaLogica {
         if (recompensa.getEstat() == EstatRecompensa.DISPONIBLE) {
             recompensa.setUsuari(null);
         }
+
+        if (recompensa.getDataCreacio() == null) {
+            recompensa.setDataCreacio(LocalDate.now());
+        }
         return recompensaRepository.save(recompensa);
     }
 
@@ -63,5 +68,9 @@ public class RecompensaLogica {
 
     public List<Recompensa> getRecompensesDisponibles() {
         return recompensaRepository.findByEstat(EstatRecompensa.DISPONIBLE);
+    }
+
+    public List<Recompensa> getRecompensesPropies(String email) {
+        return recompensaRepository.findByUsuari_Email(email);
     }
 }

@@ -13,4 +13,6 @@ public interface RecompensaRepository extends JpaRepository<Recompensa, Long> {
     Optional<Recompensa> findById(Long id);
 
     List<Recompensa> findByEstat(EstatRecompensa estat);
+
+    List<Recompensa> findByUsuari_Email(String email);
 }

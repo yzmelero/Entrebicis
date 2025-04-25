@@ -7,4 +7,9 @@ class RecRepository {
     suspend fun getRecompensesDisponibles(): Response<List<Recompensa>> {
         return RetrofitInstance.api.getRecompensesDisponibles()
     }
+
+    suspend fun getRecompensesPropies(email: String): Response<List<Recompensa>> {
+        return RetrofitInstance.api.getRecompensesPropies(email)
+    }
+
 }

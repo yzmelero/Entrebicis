@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -37,6 +36,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import cat.copernic.ymelero.entrebicis.R
+import cat.copernic.ymelero.entrebicis.core.model.EstatRecompensa
 import cat.copernic.ymelero.entrebicis.core.model.Recompensa
 import cat.copernic.ymelero.entrebicis.core.ui.BottomSection
 import cat.copernic.ymelero.entrebicis.core.ui.header
@@ -102,6 +102,15 @@ fun LlistaRecompensesScreen(
     }
 }
 
+fun estatColor(estat: EstatRecompensa): Color {
+    return when (estat) {
+        EstatRecompensa.DISPONIBLE -> Color(0xFF007E33)
+        EstatRecompensa.RESERVADA -> Color(0xFFFFA000)
+        EstatRecompensa.ASSIGNADA -> Color(0xFF1976D2)
+        EstatRecompensa.RECOLLIDA -> Color(0xFF9E9E9E)
+    }
+}
+
 @Composable
 fun RecompensaCard(recompensa: Recompensa, recViewModel: RecViewModel, onClick: () -> Unit = {}
 ) {
@@ -157,6 +166,48 @@ fun RecompensaCard(recompensa: Recompensa, recViewModel: RecViewModel, onClick: 
                 color = Color.DarkGray
             )
 
+            Text(
+                text = "Data creació: ${recompensa.dataCreacio ?: "N/A"}",
+                fontSize = 14.sp,
+                color = Color.DarkGray
+            )
+
+            if (recompensa.dataReserva != null) {
+                Text(
+                    text = "Data reserva: ${recompensa.dataReserva}",
+                    fontSize = 14.sp,
+                    color = Color.DarkGray
+                )
+            }
+
+            if (recompensa.dataAssignacio != null) {
+                Text(
+                    text = "Data assignació: ${recompensa.dataAssignacio}",
+                    fontSize = 14.sp,
+                    color = Color.DarkGray
+                )
+            }
+
+            if (recompensa.dataRecollida != null) {
+                Text(
+                    text = "Data recollida: ${recompensa.dataRecollida}",
+                    fontSize = 14.sp,
+                    color = Color.DarkGray
+                )
+            }
+
+            Spacer(modifier = Modifier.height(4.dp))
+
+            if (recompensa.estat.name in listOf("RESERVADA", "ASSIGNADA", "RECOLLIDA")) {
+                recompensa.usuari?.let { usuari ->
+                    Text(
+                        text = "Usuari: ${usuari.nom} ${usuari.cognoms}",
+                        fontSize = 16.sp,
+                        color = Color(0xFF444444)
+                    )
+                }
+            }
+
             Spacer(modifier = Modifier.height(12.dp))
 
             Row(
@@ -166,7 +217,7 @@ fun RecompensaCard(recompensa: Recompensa, recViewModel: RecViewModel, onClick: 
                 Text(
                     text = recompensa.estat.name,
                     fontWeight = FontWeight.Bold,
-                    color = Color(0xFF007E33),
+                    color = estatColor(recompensa.estat),
                     fontSize = 18.sp
                 )
                 Row(verticalAlignment = Alignment.CenterVertically) {

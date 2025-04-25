@@ -145,7 +145,7 @@ fun UsuariScreen(navController: NavController, userViewModel: UserViewModel) {
                     }
                     Spacer(modifier = Modifier.height(10.dp))
                     Button(
-                        onClick = { navController.navigate("llistaRecompenses") },
+                        onClick = { navController.navigate("llistaRecompensesPropies") },
                         modifier = Modifier.height(46.dp)
                     ) {
                         Text(

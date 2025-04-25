@@ -11,5 +11,7 @@ data class Recompensa (
     val foto: String? = null,
     val usuari: Usuari? = null,
     val dataReserva: String? = null,
-    val dataRecollida: String? = null
+    val dataRecollida: String? = null,
+    val dataCreacio: String? = null,
+    val dataAssignacio: String? = null,
 )
