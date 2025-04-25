@@ -6,12 +6,15 @@ import cat.copernic.ymelero.entrebicis.core.model.Usuari
 import retrofit2.Response
 
 class UserRepository {
+
     suspend fun loginUser(email: String, contrasenya: String): Response<LoginResponse> {
         val request = LoginRequest(email, contrasenya)
         return RetrofitInstance.api.loginUser(request)
     }
-
     suspend fun getUser(email: String): Response<Usuari> {
         return RetrofitInstance.api.getUsuari(email)
+    }
+    suspend fun updateUser(usuari: Usuari): Response<Usuari> {
+        return RetrofitInstance.api.modificarUsuari(usuari)
     }
 }

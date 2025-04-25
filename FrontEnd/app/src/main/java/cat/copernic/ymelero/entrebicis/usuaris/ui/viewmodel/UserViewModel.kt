@@ -1,6 +1,8 @@
 package cat.copernic.ymelero.entrebicis.usuaris.ui.viewmodel
 
+import android.content.Context
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.util.Base64
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
@@ -12,6 +14,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
+import java.io.InputStream
 
 class UserViewModel(private val useCases: UseCases) : ViewModel() {
     private val _loginSuccess = MutableStateFlow<Boolean?>(null)
@@ -43,8 +47,27 @@ class UserViewModel(private val useCases: UseCases) : ViewModel() {
         _loginSuccess.value = false
     }
 
-    fun ObtenirUsuari(usuari: Usuari) {
+    fun obtenirUsuari(usuari: Usuari) {
         _currentUser.value = usuari
+    }
+
+    private val _updateSuccess = MutableStateFlow<Boolean?>(null)
+    val updateSuccess: StateFlow<Boolean?> = _updateSuccess
+
+    fun updateSuccess(usuari: Usuari) {
+        viewModelScope.launch {
+            try {
+                val updateResponse = useCases.updateUsuari(usuari)
+                if (updateResponse.isSuccessful && updateResponse.body() != null) {
+                    _currentUser.value = updateResponse.body()!!
+                    _updateSuccess.value = true
+                } else {
+                    _updateSuccess.value = false
+                }
+            } catch (e: Exception) {
+                _updateSuccess.value = false
+            }
+        }
     }
 
     fun base64ToBitmap(base64: String): ImageBitmap? {
@@ -54,6 +77,26 @@ class UserViewModel(private val useCases: UseCases) : ViewModel() {
             val bitmap = BitmapFactory.decodeStream(byteArrayInputStream)
             bitmap?.asImageBitmap()
         } catch (e: Exception) {
+            null
+        }
+    }
+    fun uriToBase64(context: Context, uri: Uri): String? {
+        return try {
+            val inputStream: InputStream? = context.contentResolver.openInputStream(uri)
+            val byteArrayOutputStream = ByteArrayOutputStream()
+
+            inputStream?.use { stream ->
+                val buffer = ByteArray(1024)
+                var bytesRead: Int
+                while (stream.read(buffer).also { bytesRead = it } != -1) {
+                    byteArrayOutputStream.write(buffer, 0, bytesRead)
+                }
+            }
+
+            val byteArray = byteArrayOutputStream.toByteArray()
+            Base64.encodeToString(byteArray, Base64.DEFAULT)
+        } catch (e: Exception) {
+            e.printStackTrace()
             null
         }
     }

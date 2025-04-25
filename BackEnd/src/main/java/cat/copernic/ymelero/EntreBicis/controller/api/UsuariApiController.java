@@ -22,8 +22,13 @@ public class UsuariApiController {
     private UsuariLogica usuariLogica;
 
     @GetMapping("/visualitzar/{email}")
-    public Usuari getUsuari(@PathVariable String email) {
-        return usuariLogica.getUsuari(email);
+    public ResponseEntity<?> getUsuari(@PathVariable String email) {
+        Usuari usuari = usuariLogica.getUsuari(email);
+        if (usuari != null) {
+            return ResponseEntity.ok(usuari);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PutMapping("/modificar")

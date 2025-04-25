@@ -12,6 +12,7 @@ import cat.copernic.ymelero.entrebicis.rutes.ui.screens.IniciRutaScreen
 import cat.copernic.ymelero.entrebicis.rutes.ui.screens.LlistaRutesScreen
 import cat.copernic.ymelero.entrebicis.usuaris.ui.screens.LoginScreen
 import cat.copernic.ymelero.entrebicis.usuaris.ui.screens.MenuScreen
+import cat.copernic.ymelero.entrebicis.usuaris.ui.screens.ModificarUsuariScreen
 import cat.copernic.ymelero.entrebicis.usuaris.ui.screens.UsuariScreen
 import cat.copernic.ymelero.entrebicis.usuaris.ui.viewmodel.UserViewModel
 
@@ -27,5 +28,6 @@ fun AppNavigation(userViewModel: UserViewModel) {
         composable("iniciarRuta") { IniciRutaScreen(navController, userViewModel) }
         composable("usuari/{email}") {  UsuariScreen(navController, userViewModel) }
         composable("llistaRecompensesPropies") { LlistaRecompensesPropiesScreen(navController, userViewModel) }
+        composable("modificarUsuari") { ModificarUsuariScreen(navController, userViewModel) }
     }
 }
