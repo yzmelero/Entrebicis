@@ -39,10 +39,10 @@ public class Recompensa {
     private EstatRecompensa estat;
 
     @Column(name = "nom_comerç")
-    private String nomComerç;
+    private String nomComerc;
 
     @Column(name = "adreça_comerç")
-    private String adreçaComerç;
+    private String adrecaComerc;
 
     @Lob
     @Column(columnDefinition = "MEDIUMBLOB")
@@ -58,4 +58,12 @@ public class Recompensa {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "data_recollida")
     private LocalDate dataRecollida;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "data_creacio")
+    private LocalDate dataCreacio;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "data_assignacio")
+    private LocalDate dataAssignacio;
 }
