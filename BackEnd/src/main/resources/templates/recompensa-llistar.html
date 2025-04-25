@@ -44,7 +44,7 @@
                     </span>
                 </p>
                 <p class="rewards-user" th:if="${recompensa.estat != 'DISPONIBLE' and recompensa.usuari != null}">
-                    <span th:text="${recompensa.usuari.nom + ' ' + recompensa.usuari.cognoms}">usuari@example.com</span>
+                    <strong>Usuari:</strong> <span th:text="${recompensa.usuari.nom + ' ' + recompensa.usuari.cognoms}">usuari@example.com</span>
                 </p>
                 <div class="rewards-estat-punts">
                     <span class="rewards-estat" th:text="${recompensa.estat}">Estat</span>
