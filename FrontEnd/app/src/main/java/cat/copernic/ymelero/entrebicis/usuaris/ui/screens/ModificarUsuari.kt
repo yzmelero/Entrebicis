@@ -105,7 +105,8 @@ fun ModificarUsuariScreen(navController: NavController, userViewModel: UserViewM
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color(0xFFB3F0F8))
-                .windowInsetsPadding(WindowInsets.systemBars),
+                .windowInsetsPadding(WindowInsets.systemBars)
+                .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             header(navController, userViewModel)
@@ -117,8 +118,7 @@ fun ModificarUsuariScreen(navController: NavController, userViewModel: UserViewM
                     .fillMaxWidth()
                     .padding(20.dp)
                     .background(Color(0xFF98E0D6), shape = RoundedCornerShape(20.dp))
-                    .padding(16.dp)
-                    .verticalScroll(rememberScrollState()),
+                    .padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 OutlinedTextField(value = nom, onValueChange = { nom = it }, label = { Text("Nom") })
