@@ -69,7 +69,9 @@ fun UsuariScreen(navController: NavController, userViewModel: UserViewModel) {
                         text = "${usuari?.nom} ${usuari?.cognoms}",
                         fontSize = 30.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color.Black
+                        color = Color.Black,
+                        textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth()
                     )
                     Spacer(modifier = Modifier.height(12.dp))
 
