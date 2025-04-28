@@ -84,8 +84,6 @@ fun ModificarUsuariScreen(navController: NavController, userViewModel: UserViewM
             telefon = it.telefon
             poblacio = it.poblacio
             observacions = it.observacions ?: ""
-            contrasenya = it.contrasenya
-            repetirContrasenya = it.contrasenya
             dataNaixement = it.dataNaixement
             fotoBase64 = it.foto ?: ""
         }
@@ -180,30 +178,42 @@ fun ModificarUsuariScreen(navController: NavController, userViewModel: UserViewM
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Button(onClick = {
-                    if (contrasenya == repetirContrasenya) {
-                        usuari?.let {
-                            userViewModel.updateSuccess(
-                                it.copy(
-                                    nom = nom,
-                                    cognoms = cognoms,
-                                    telefon = telefon,
-                                    poblacio = poblacio,
-                                    observacions = observacions,
-                                    contrasenya = contrasenya,
-                                    dataNaixement = dataNaixement,
-                                    foto = fotoBase64
-                                )
+                    usuari?.let { user ->
+                        val novaContrasenya =
+                            if (contrasenya.isBlank() && repetirContrasenya.isBlank()) {
+                                user.contrasenya // Si no han escrit res, mantenim la que ja hi havia
+                            } else {
+                                if (contrasenya == repetirContrasenya) {
+                                    contrasenya // Nova contrasenya (però hauries d'encriptar-la si cal)
+                                } else {
+                                    Toast.makeText(
+                                        context,
+                                        "Les contrasenyes no coincideixen",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    return@let // Sortim sense guardar res
+                                }
+                            }
+
+                        userViewModel.updateSuccess(
+                            user.copy(
+                                nom = nom,
+                                cognoms = cognoms,
+                                telefon = telefon,
+                                poblacio = poblacio,
+                                observacions = observacions,
+                                contrasenya = novaContrasenya,
+                                dataNaixement = dataNaixement,
+                                foto = fotoBase64
                             )
-                        }
-                    } else {
-                        Toast.makeText(context, "Les contrasenyes no coincideixen", Toast.LENGTH_SHORT).show()
+                        )
                     }
                 }) {
                     Text("Confirmar", fontSize = 18.sp)
                 }
             }
+            Spacer(modifier = Modifier.height(80.dp))
         }
-
         BottomSection(navController, userViewModel, 3)
     }
 

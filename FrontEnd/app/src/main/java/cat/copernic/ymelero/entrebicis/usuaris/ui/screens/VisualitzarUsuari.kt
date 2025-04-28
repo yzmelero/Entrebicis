@@ -2,24 +2,13 @@ package cat.copernic.ymelero.entrebicis.usuaris.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.systemBars
-import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Create
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -63,32 +52,18 @@ fun UsuariScreen(navController: NavController, userViewModel: UserViewModel) {
                 color = Color.Black
             )
 
-            Spacer(modifier = Modifier.height(12.dp))
-
             Box(
                 modifier = Modifier
                     .wrapContentHeight()
-                    .background(Color(0xFF98E0D6), shape = RoundedCornerShape(20.dp))
-                    .padding(28.dp)
+                    .padding(horizontal = 20.dp, vertical = 12.dp),
+                contentAlignment = Alignment.TopEnd
             ) {
-                Button(
-                    onClick = { navController.navigate("modificarUsuari") },
-                    modifier = Modifier
-                        .align(Alignment.TopEnd)
-                        .size(40.dp),
-                    shape = CircleShape,
-                    contentPadding = androidx.compose.foundation.layout.PaddingValues(0.dp)
-                ) {
-                    Icon (
-                        Icons.Default.Create,
-                        contentDescription = "Editar",
-                        modifier = Modifier.size(24.dp),
-                        tint = Color.White
-                    )
-                }
                 Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.fillMaxWidth(0.9f)
+                    modifier = Modifier
+                        .background(Color(0xFF98E0D6), shape = RoundedCornerShape(20.dp))
+                        .padding(28.dp)
+                        .fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
                         text = "${usuari?.nom} ${usuari?.cognoms}",
@@ -144,7 +119,7 @@ fun UsuariScreen(navController: NavController, userViewModel: UserViewModel) {
                         )
                         Image(
                             painter = painterResource(id = R.drawable.coin_icon),
-                            contentDescription = "Icona monedas",
+                            contentDescription = "Icona monedes",
                             modifier = Modifier.size(28.dp)
                         )
                     }
@@ -169,7 +144,26 @@ fun UsuariScreen(navController: NavController, userViewModel: UserViewModel) {
                         )
                     }
                 }
+                Button(
+                    onClick = { navController.navigate("modificarUsuari") },
+                    modifier = Modifier
+                        .offset(x = 10.dp, y = (-10).dp)
+                        .size(50.dp),
+                    shape = CircleShape,
+                    contentPadding = PaddingValues(0.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFF7A5FFF)
+                    )
+                ) {
+                    Icon(
+                        Icons.Default.Create,
+                        contentDescription = "Editar",
+                        modifier = Modifier.size(28.dp),
+                        tint = Color.White
+                    )
+                }
             }
+            Spacer(modifier = Modifier.height(80.dp))
         }
         BottomSection(navController, userViewModel, 3)
     }
