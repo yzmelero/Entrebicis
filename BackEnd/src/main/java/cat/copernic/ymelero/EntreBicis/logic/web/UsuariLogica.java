@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import cat.copernic.ymelero.entrebicis.entity.Usuari;
@@ -15,6 +16,9 @@ public class UsuariLogica {
 
     @Autowired
     private UsuariRepository usuariRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public List<Usuari> getAllUsuaris() {
         return usuariRepository.findAll();
@@ -76,7 +80,9 @@ public class UsuariLogica {
                 throw new RuntimeException("El rol de l'usuari és obligatori.");
             }
             if (usuariModificat.getContrasenya() == null || usuariModificat.getContrasenya().isEmpty()) {
-                throw new RuntimeException("La contrasenya de l'usuari és obligatòria.");
+                usuariModificat.setContrasenya(usuariAntic.getContrasenya());
+            } else if (!usuariModificat.getContrasenya().equals(usuariAntic.getContrasenya())) {
+                usuariAntic.setContrasenya(passwordEncoder.encode(usuariModificat.getContrasenya()));
             }
 
             usuariAntic.setNom(usuariModificat.getNom());
@@ -84,7 +90,6 @@ public class UsuariLogica {
             usuariAntic.setDataNaixement(usuariModificat.getDataNaixement());
             usuariAntic.setTelefon(usuariModificat.getTelefon());
             usuariAntic.setRol(usuariModificat.getRol());
-            usuariAntic.setContrasenya(usuariModificat.getContrasenya());
             usuariAntic.setPoblacio(usuariModificat.getPoblacio());
             usuariAntic.setObservacions(usuariModificat.getObservacions());
 

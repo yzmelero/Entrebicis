@@ -138,12 +138,10 @@ public class UsuariController {
 
             if (usuari.getContrasenya() == null || usuari.getContrasenya().isEmpty()) {
                 usuari.setContrasenya(usuariAntic.getContrasenya());
-            } else {
-                if (!usuari.getContrasenya().equals(confirmarContrasenya)) {
-                    throw new RuntimeException("Les contrasenyes no coincideixen.");
-                }
-                usuari.setContrasenya(passwordEncoder.encode(usuari.getContrasenya()));
+            } else if (!usuari.getContrasenya().equals(confirmarContrasenya)) {
+                throw new RuntimeException("Les contrasenyes no coincideixen.");
             }
+
             usuariLogica.modificarUsuari(usuari);
             return "redirect:/usuaris/consulta/" + usuari.getEmail();
         } catch (Exception e) {
@@ -160,4 +158,5 @@ public class UsuariController {
             return "usuari-modificar";
         }
     }
+
 }
