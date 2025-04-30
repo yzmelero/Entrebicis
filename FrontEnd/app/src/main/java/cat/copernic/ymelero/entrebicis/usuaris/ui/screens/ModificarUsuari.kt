@@ -30,6 +30,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -64,12 +65,17 @@ fun ModificarUsuariScreen(navController: NavController, userViewModel: UserViewM
     var email by remember { mutableStateOf("") }
     var telefon by remember { mutableStateOf("") }
     var poblacio by remember { mutableStateOf("") }
-    var observacions by remember { mutableStateOf("") }
     var contrasenya by remember { mutableStateOf("") }
     var repetirContrasenya by remember { mutableStateOf("") }
     var dataNaixement by remember { mutableStateOf("") }
     var fotoBase64 by remember { mutableStateOf("") }
     var selectedImageUri by remember { mutableStateOf<Uri?>(null) }
+
+    DisposableEffect(Unit) {
+        onDispose {
+            userViewModel._updateSuccess.value = null
+        }
+    }
 
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickVisualMedia(),
@@ -83,7 +89,6 @@ fun ModificarUsuariScreen(navController: NavController, userViewModel: UserViewM
             email = it.email
             telefon = it.telefon
             poblacio = it.poblacio
-            observacions = it.observacions ?: ""
             dataNaixement = it.dataNaixement
             fotoBase64 = it.foto ?: ""
         }
@@ -125,7 +130,6 @@ fun ModificarUsuariScreen(navController: NavController, userViewModel: UserViewM
                 OutlinedTextField(value = dataNaixement, onValueChange = { dataNaixement = it }, label = { Text("Data Naixement") })
                 OutlinedTextField(value = telefon, onValueChange = { telefon = it }, label = { Text("Telèfon") })
                 OutlinedTextField(value = poblacio, onValueChange = { poblacio = it }, label = { Text("Població") })
-                OutlinedTextField(value = observacions, onValueChange = { observacions = it }, label = { Text("Observacions") })
                 OutlinedTextField(
                     value = contrasenya,
                     onValueChange = { contrasenya = it },
@@ -181,27 +185,26 @@ fun ModificarUsuariScreen(navController: NavController, userViewModel: UserViewM
                     usuari?.let { user ->
                         val novaContrasenya =
                             if (contrasenya.isBlank() && repetirContrasenya.isBlank()) {
-                                user.contrasenya // Si no han escrit res, mantenim la que ja hi havia
+                                user.contrasenya
                             } else {
                                 if (contrasenya == repetirContrasenya) {
-                                    contrasenya // Nova contrasenya (però hauries d'encriptar-la si cal)
+                                    contrasenya
                                 } else {
                                     Toast.makeText(
                                         context,
                                         "Les contrasenyes no coincideixen",
                                         Toast.LENGTH_SHORT
                                     ).show()
-                                    return@let // Sortim sense guardar res
+                                    return@let
                                 }
                             }
 
-                        userViewModel.updateSuccess(
+                        userViewModel.updateUser(
                             user.copy(
                                 nom = nom,
                                 cognoms = cognoms,
                                 telefon = telefon,
                                 poblacio = poblacio,
-                                observacions = observacions,
                                 contrasenya = novaContrasenya,
                                 dataNaixement = dataNaixement,
                                 foto = fotoBase64

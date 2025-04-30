@@ -51,10 +51,10 @@ class UserViewModel(private val useCases: UseCases) : ViewModel() {
         _currentUser.value = usuari
     }
 
-    private val _updateSuccess = MutableStateFlow<Boolean?>(null)
+    val _updateSuccess = MutableStateFlow<Boolean?>(null)
     val updateSuccess: StateFlow<Boolean?> = _updateSuccess
 
-    fun updateSuccess(usuari: Usuari) {
+    fun updateUser(usuari: Usuari) {
         viewModelScope.launch {
             try {
                 val updateResponse = useCases.updateUsuari(usuari)
