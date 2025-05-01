@@ -67,6 +67,9 @@ public class UsuariController {
             }
 
             if (fotoFile != null && !fotoFile.isEmpty()) {
+                if (fotoFile.getSize() > 1_000_000) { // 1MB
+                    throw new RuntimeException("La imatge és massa gran.");
+                }
                 usuari.setFoto(fotoFile.getBytes());
             } else {
                 ClassPathResource iconUser = new ClassPathResource("static/img/iconUser.png");
@@ -133,17 +136,16 @@ public class UsuariController {
             if (fotoFile == null || fotoFile.isEmpty()) {
                 usuari.setFoto(usuariAntic.getFoto());
             } else {
+
                 usuari.setFoto(fotoFile.getBytes());
             }
 
             if (usuari.getContrasenya() == null || usuari.getContrasenya().isEmpty()) {
                 usuari.setContrasenya(usuariAntic.getContrasenya());
-            } else {
-                if (!usuari.getContrasenya().equals(confirmarContrasenya)) {
-                    throw new RuntimeException("Les contrasenyes no coincideixen.");
-                }
-                usuari.setContrasenya(passwordEncoder.encode(usuari.getContrasenya()));
+            } else if (!usuari.getContrasenya().equals(confirmarContrasenya)) {
+                throw new RuntimeException("Les contrasenyes no coincideixen.");
             }
+
             usuariLogica.modificarUsuari(usuari);
             return "redirect:/usuaris/consulta/" + usuari.getEmail();
         } catch (Exception e) {

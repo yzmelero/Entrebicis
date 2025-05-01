@@ -47,8 +47,10 @@ fun BottomNavBar(navController: NavController, userViewModel: UserViewModel, sel
                 selected = selectedItem == index,
                 onClick = {
                     if (destinations[index] == "logout") {
+                        navController.navigate("login") {
+                            popUpTo(0) { inclusive = true }
+                        }
                         userViewModel.logoutUser()
-                        navController.navigate("login")
                     } else {
                         navController.navigate(destinations[index])
                     }
