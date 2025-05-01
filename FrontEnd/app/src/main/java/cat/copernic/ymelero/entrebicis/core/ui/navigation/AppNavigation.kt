@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import cat.copernic.ymelero.entrebicis.recompenses.ui.screens.DetallRecompensaScreen
 import cat.copernic.ymelero.entrebicis.recompenses.ui.screens.LlistaRecompensesPropiesScreen
 import cat.copernic.ymelero.entrebicis.recompenses.ui.screens.LlistaRecompensesScreen
 import cat.copernic.ymelero.entrebicis.rutes.ui.screens.IniciRutaScreen
@@ -26,5 +27,7 @@ fun AppNavigation(userViewModel: UserViewModel) {
         composable("usuari/{email}") {  UsuariScreen(navController, userViewModel) }
         composable("llistaRecompensesPropies") { LlistaRecompensesPropiesScreen(navController, userViewModel) }
         composable("modificarUsuari") { ModificarUsuariScreen(navController, userViewModel) }
+        composable("detallRecompensa") { DetallRecompensaScreen(navController, userViewModel) }
+
     }
 }

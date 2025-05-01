@@ -119,7 +119,7 @@ fun ModificarUsuariScreen(navController: NavController, userViewModel: UserViewM
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(20.dp)
-                    .background(Color(0xFF98E0D6), shape = RoundedCornerShape(20.dp))
+                    .background(Color(0xFFE1FAF7), shape = RoundedCornerShape(20.dp))
                     .padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {

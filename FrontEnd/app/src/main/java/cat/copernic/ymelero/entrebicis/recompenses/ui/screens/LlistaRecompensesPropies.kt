@@ -84,7 +84,10 @@ fun LlistaRecompensesPropiesScreen(
                         RecompensaCard(
                             recompensa = recompensa,
                             recViewModel = recViewModel,
-                            onClick = { navController.navigate("detallRecompensa/${recompensa.id}") }
+                            onClick = {
+                                navController.currentBackStackEntry?.savedStateHandle?.set("recompensaId", recompensa.id)
+                                navController.navigate("detallRecompensa")
+                            }
                         )
                     }
                 }

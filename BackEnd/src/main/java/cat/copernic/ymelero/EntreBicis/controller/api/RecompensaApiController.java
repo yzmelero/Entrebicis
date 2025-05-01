@@ -29,4 +29,10 @@ public class RecompensaApiController {
     public List<Recompensa> getRecompensesPropies(@RequestParam String email) {
         return recompensaLogica.getRecompensesPropies(email);
     }
+
+    @GetMapping
+    public Recompensa getRecompensa(@RequestParam Long id) {
+        return recompensaLogica.getRecompensa(id);
+    }
+
 }

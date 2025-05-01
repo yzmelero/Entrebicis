@@ -12,4 +12,8 @@ class RecRepository {
         return RetrofitInstance.api.getRecompensesPropies(email)
     }
 
+    suspend fun getRecompensaPerId(id: Long): Response<Recompensa> {
+        return RetrofitInstance.api.getRecompensaPerId(id)
+    }
+
 }

@@ -60,7 +60,7 @@ fun UsuariScreen(navController: NavController, userViewModel: UserViewModel) {
             ) {
                 Column(
                     modifier = Modifier
-                        .background(Color(0xFF98E0D6), shape = RoundedCornerShape(20.dp))
+                        .background(Color(0xFFE1FAF7), shape = RoundedCornerShape(20.dp))
                         .padding(28.dp)
                         .fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally
