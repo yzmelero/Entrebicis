@@ -58,6 +58,7 @@ import cat.copernic.ymelero.entrebicis.usuaris.ui.viewmodel.UserViewModel
 fun ModificarUsuariScreen(navController: NavController, userViewModel: UserViewModel) {
     val context = LocalContext.current
     val updateSuccess by userViewModel.updateSuccess.collectAsState()
+    val updateError by userViewModel.updateError.collectAsState()
     val usuari by userViewModel.currentUser.collectAsState()
 
     var nom by remember { mutableStateOf("") }
@@ -67,7 +68,6 @@ fun ModificarUsuariScreen(navController: NavController, userViewModel: UserViewM
     var poblacio by remember { mutableStateOf("") }
     var contrasenya by remember { mutableStateOf("") }
     var repetirContrasenya by remember { mutableStateOf("") }
-    var dataNaixement by remember { mutableStateOf("") }
     var fotoBase64 by remember { mutableStateOf("") }
     var selectedImageUri by remember { mutableStateOf<Uri?>(null) }
 
@@ -89,7 +89,6 @@ fun ModificarUsuariScreen(navController: NavController, userViewModel: UserViewM
             email = it.email
             telefon = it.telefon
             poblacio = it.poblacio
-            dataNaixement = it.dataNaixement
             fotoBase64 = it.foto ?: ""
         }
     }
@@ -127,7 +126,6 @@ fun ModificarUsuariScreen(navController: NavController, userViewModel: UserViewM
                 OutlinedTextField(value = nom, onValueChange = { nom = it }, label = { Text("Nom") })
                 OutlinedTextField(value = cognoms, onValueChange = { cognoms = it }, label = { Text("Cognoms") })
                 OutlinedTextField(value = email, onValueChange = {}, label = { Text("Email") }, enabled = false)
-                OutlinedTextField(value = dataNaixement, onValueChange = { dataNaixement = it }, label = { Text("Data Naixement") })
                 OutlinedTextField(value = telefon, onValueChange = { telefon = it }, label = { Text("Telèfon") })
                 OutlinedTextField(value = poblacio, onValueChange = { poblacio = it }, label = { Text("Població") })
                 OutlinedTextField(
@@ -206,7 +204,6 @@ fun ModificarUsuariScreen(navController: NavController, userViewModel: UserViewM
                                 telefon = telefon,
                                 poblacio = poblacio,
                                 contrasenya = novaContrasenya,
-                                dataNaixement = dataNaixement,
                                 foto = fotoBase64
                             )
                         )
@@ -221,13 +218,15 @@ fun ModificarUsuariScreen(navController: NavController, userViewModel: UserViewM
     }
 
     LaunchedEffect(updateSuccess) {
-        updateSuccess?.let {
-            if (it) {
-                Toast.makeText(context, "Usuari actualitzat correctament", Toast.LENGTH_LONG).show()
-                navController.popBackStack()
-            } else {
-                Toast.makeText(context, "Error actualitzant l'usuari", Toast.LENGTH_LONG).show()
-            }
+        if (updateSuccess == true) {
+            Toast.makeText(context, "Usuari actualitzat correctament", Toast.LENGTH_LONG).show()
+            navController.popBackStack()
+        }
+    }
+    LaunchedEffect(updateError) {
+        updateError?.let {
+            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+            userViewModel.clearError()
         }
     }
 }

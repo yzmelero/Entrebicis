@@ -26,20 +26,38 @@ class UserViewModel(private val useCases: UseCases) : ViewModel() {
 
     fun loginUser(email: String, contrasenya: String) {
         viewModelScope.launch {
-            val loginResponse = useCases.loginUser(email, contrasenya)
-            _loginSuccess.value = loginResponse.isSuccessful
-            if (loginResponse.isSuccessful) {
-                val userResponse = useCases.getUsuari(email)
-                if (userResponse.isSuccessful) {
-                    val user = userResponse.body()
-                    _currentUser.value = user
-                    _loginSuccess.value = true
+            try {
+                val loginResponse = useCases.loginUser(email, contrasenya)
+                if (loginResponse.isSuccessful) {
+                    val userResponse = useCases.getUsuari(email)
+                    if (userResponse.isSuccessful) {
+                        val user = userResponse.body()
+                        _currentUser.value = user
+                        _loginSuccess.value = true
+                        _loginError.value = null
+                    } else {
+                        _currentUser.value = null
+                        _loginSuccess.value = false
+                        _loginError.value = "No s'ha pogut obtenir l'usuari."
+                    }
                 } else {
-                    _currentUser.value = null
+                    val error = loginResponse.errorBody()?.string() ?: "Error d'autenticació"
                     _loginSuccess.value = false
+                    _loginError.value = error
                 }
+            } catch (e: Exception) {
+                _loginSuccess.value = false
+                _loginError.value = "${e.message}"
             }
         }
+    }
+
+
+    private val _loginError = MutableStateFlow<String?>(null)
+    val loginError: StateFlow<String?> = _loginError
+
+    fun clearLoginError() {
+        _loginError.value = null
     }
 
     fun logoutUser() {
@@ -61,14 +79,27 @@ class UserViewModel(private val useCases: UseCases) : ViewModel() {
                 if (updateResponse.isSuccessful && updateResponse.body() != null) {
                     _currentUser.value = updateResponse.body()!!
                     _updateSuccess.value = true
+                    _updateError.value = null
                 } else {
+                    val errorMsg = updateResponse.errorBody()?.string() ?: "Error desconegut"
+                    _updateError.value = errorMsg
                     _updateSuccess.value = false
                 }
             } catch (e: Exception) {
+                _updateError.value = "${e.message}"
                 _updateSuccess.value = false
             }
         }
     }
+
+    private val _updateError = MutableStateFlow<String?>(null)
+    val updateError: StateFlow<String?> = _updateError
+
+    fun clearError() {
+        _updateError.value = null
+    }
+
+
 
     fun base64ToBitmap(base64: String): ImageBitmap? {
         return try {

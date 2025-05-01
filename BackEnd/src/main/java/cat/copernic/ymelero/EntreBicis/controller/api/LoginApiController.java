@@ -27,6 +27,16 @@ public class LoginApiController {
 
     @PostMapping("/verify")
     public ResponseEntity<?> verifyUser(@RequestBody LoginRequest loginRequest) {
+
+        if (loginRequest.getEmail() == null || loginRequest.getEmail().isEmpty()) {
+            return ResponseEntity.badRequest().body("El correu electrònic és obligatori.");
+        }
+        if (!loginRequest.getEmail().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+            return ResponseEntity.badRequest().body("El format del correu no és vàlid.");
+        }
+        if (loginRequest.getContrasenya() == null || loginRequest.getContrasenya().isEmpty()) {
+            return ResponseEntity.badRequest().body("La contrasenya és obligatòria.");
+        }
         Optional<Usuari> optionalUsuari = usuariRepository.findByEmail(loginRequest.getEmail());
 
         if (!optionalUsuari.isPresent()) {

@@ -2,6 +2,7 @@ package cat.copernic.ymelero.entrebicis.usuaris.ui.screens
 
 import android.content.Intent
 import android.net.Uri
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -32,6 +33,7 @@ fun LoginScreen(navController: NavController, userViewModel: UserViewModel) {
     var contrasenya by remember { mutableStateOf("") }
 
     val loginSuccess by userViewModel.loginSuccess.collectAsState()
+    val loginError by userViewModel.loginError.collectAsState()
 
     LaunchedEffect(loginSuccess) {
         if (loginSuccess == true) {
@@ -130,6 +132,14 @@ fun LoginScreen(navController: NavController, userViewModel: UserViewModel) {
                     Text("Formulari Alta", color = Color.Black)
                 }
             }
+        }
+    }
+    val context = LocalContext.current
+
+    LaunchedEffect(loginError) {
+        loginError?.let {
+            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+            userViewModel.clearLoginError()
         }
     }
 }
