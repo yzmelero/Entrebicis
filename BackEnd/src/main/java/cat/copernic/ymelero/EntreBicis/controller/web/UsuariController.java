@@ -67,6 +67,9 @@ public class UsuariController {
             }
 
             if (fotoFile != null && !fotoFile.isEmpty()) {
+                if (fotoFile.getSize() > 1_000_000) { // 1MB
+                    throw new RuntimeException("La imatge és massa gran.");
+                }
                 usuari.setFoto(fotoFile.getBytes());
             } else {
                 ClassPathResource iconUser = new ClassPathResource("static/img/iconUser.png");
@@ -133,6 +136,7 @@ public class UsuariController {
             if (fotoFile == null || fotoFile.isEmpty()) {
                 usuari.setFoto(usuariAntic.getFoto());
             } else {
+
                 usuari.setFoto(fotoFile.getBytes());
             }
 
@@ -158,5 +162,4 @@ public class UsuariController {
             return "usuari-modificar";
         }
     }
-
 }

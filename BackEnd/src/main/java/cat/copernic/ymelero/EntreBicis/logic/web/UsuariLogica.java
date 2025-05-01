@@ -66,8 +66,8 @@ public class UsuariLogica {
         if (usuari.getTelefon() == null || usuari.getTelefon().isEmpty()) {
             throw new RuntimeException("El telèfon de l'usuari és obligatori.");
         }
-        if (!usuari.getTelefon().matches("\\d{10}")) {
-            throw new RuntimeException("El telèfon ha de contenir exactament 10 dígits numèrics.");
+        if (!usuari.getTelefon().matches("\\d{9}")) {
+            throw new RuntimeException("El telèfon ha de contenir exactament 9 dígits numèrics.");
         }
         if (usuari.getRol() == null) {
             throw new RuntimeException("El rol de l'usuari és obligatori.");
@@ -104,6 +104,9 @@ public class UsuariLogica {
         }
         if (usuari.getDataAlta() == null) {
             usuari.setDataAlta(LocalDate.now());
+        }
+        if (usuari.getFoto() != null && usuari.getFoto().length > 1_000_000) { // 1 MB
+            throw new RuntimeException("La foto és massa gran. Ha de ser inferior a 1MB.");
         }
         return usuariRepository.save(usuari);
     }
@@ -194,6 +197,9 @@ public class UsuariLogica {
 
             if (usuariModificat.getFoto() != null && usuariModificat.getFoto().length > 0) {
                 usuariAntic.setFoto(usuariModificat.getFoto());
+            }
+            if (usuariModificat.getFoto() != null && usuariModificat.getFoto().length > 1_000_000) { // 1 MB
+                throw new RuntimeException("La foto és massa gran. Ha de ser inferior a 1MB.");
             }
 
             return usuariRepository.save(usuariAntic);
