@@ -92,12 +92,12 @@ fun DetallRecompensaScreen(
 
                     Text(
                         text = r.nomComerc,
-                        fontSize = 18.sp,
+                        fontSize = 20.sp,
                         color = Color.DarkGray
                     )
                     Text(
                         text = r.adrecaComerc,
-                        fontSize = 14.sp,
+                        fontSize = 18.sp,
                         color = Color.Gray
                     )
 
