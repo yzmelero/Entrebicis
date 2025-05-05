@@ -8,13 +8,18 @@ import org.springframework.stereotype.Service;
 
 import cat.copernic.ymelero.entrebicis.entity.EstatRecompensa;
 import cat.copernic.ymelero.entrebicis.entity.Recompensa;
+import cat.copernic.ymelero.entrebicis.entity.Usuari;
 import cat.copernic.ymelero.entrebicis.repository.RecompensaRepository;
+import cat.copernic.ymelero.entrebicis.repository.UsuariRepository;
 
 @Service
 public class RecompensaLogica {
 
     @Autowired
     private RecompensaRepository recompensaRepository;
+
+    @Autowired
+    private UsuariRepository usuariRepository;
 
     public List<Recompensa> getAllRecompenses() {
         return recompensaRepository.findAll();
@@ -73,4 +78,44 @@ public class RecompensaLogica {
     public List<Recompensa> getRecompensesPropies(String email) {
         return recompensaRepository.findByUsuari_Email(email);
     }
+
+    public Recompensa reservarRecompensa(Long recompensaId, String emailUsuari, Integer saldoUsuari) {
+        Recompensa recompensa = getRecompensa(recompensaId);
+
+        if (recompensa == null) {
+            throw new RuntimeException("No s'ha trobat la recompensa.");
+        }
+
+        if (recompensa.getEstat() != EstatRecompensa.DISPONIBLE) {
+            throw new RuntimeException("La recompensa no està disponible.");
+        }
+
+        if (recompensa.getPunts() > saldoUsuari) {
+            throw new RuntimeException("Saldo insuficient.");
+        }
+
+        List<Recompensa> recompensesUsuari = recompensaRepository.findByUsuari_Email(emailUsuari);
+        boolean recompensaReservada = false;
+
+        for (Recompensa r : recompensesUsuari) {
+            if (r.getEstat() == EstatRecompensa.RESERVADA || r.getEstat() == EstatRecompensa.ASSIGNADA) {
+                recompensaReservada = true;
+                break;
+            }
+        }
+
+        if (recompensaReservada) {
+            throw new RuntimeException("Ja tens una recompensa reservada o assignada.");
+        }
+
+        Usuari usuari = usuariRepository.findByEmail(emailUsuari)
+                .orElseThrow(() -> new RuntimeException("No s'ha trobat l'usuari."));
+
+        recompensa.setEstat(EstatRecompensa.RESERVADA);
+        recompensa.setDataReserva(LocalDate.now());
+        recompensa.setUsuari(usuari);
+
+        return recompensaRepository.save(recompensa);
+    }
+
 }
