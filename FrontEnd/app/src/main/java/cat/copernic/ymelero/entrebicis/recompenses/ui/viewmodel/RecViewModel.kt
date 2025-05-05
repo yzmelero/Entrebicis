@@ -53,6 +53,26 @@ class RecViewModel(private val recUseCases: RecUseCases) : ViewModel() {
         }
     }
 
+    private val _recompensa = MutableStateFlow<Recompensa?>(null)
+    val recompensa: StateFlow<Recompensa?> get() = _recompensa
+
+    fun carregarRecompensaPerId(id: Long) {
+        viewModelScope.launch {
+            try {
+                val response = recUseCases.getRecompensaPerId(id)
+                if (response.isSuccessful) {
+                    _recompensa.value = response.body()
+                } else {
+                    Log.e("RecViewModel", "Error detall: ${response.code()} - ${response.errorBody()?.string()}")
+                    _recompensa.value = null
+                }
+            } catch (e: Exception) {
+                Log.e("RecViewModel", "Excepció carregant detall: ${e.message}")
+                _recompensa.value = null
+            }
+        }
+    }
+
     fun base64ToBitmap(base64: String): ImageBitmap? {
         return try {
             val decodedBytes = Base64.decode(base64, Base64.DEFAULT)

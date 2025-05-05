@@ -91,7 +91,10 @@ fun LlistaRecompensesScreen(
                         RecompensaCard(
                             recompensa = recompensa,
                             recViewModel = recViewModel,
-                            onClick = { navController.navigate("detallRecompensa/${recompensa.id}") }
+                            onClick = {
+                                navController.currentBackStackEntry?.savedStateHandle?.set("recompensaId", recompensa.id)
+                                navController.navigate("detallRecompensa")
+                            }
                         )
                     }
                 }
@@ -120,7 +123,7 @@ fun RecompensaCard(recompensa: Recompensa, recViewModel: RecViewModel, onClick: 
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(20.dp))
-            .background(Color(0xFF98E0D6))
+            .background(Color(0xFFE1FAF7))
             .clickable { onClick() }
     ) {
         if (imageBitmap != null) {
