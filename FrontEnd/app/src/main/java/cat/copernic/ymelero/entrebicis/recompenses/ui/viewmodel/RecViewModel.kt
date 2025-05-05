@@ -73,6 +73,21 @@ class RecViewModel(private val recUseCases: RecUseCases) : ViewModel() {
         }
     }
 
+    fun reservarRecompensa(recompensaId: Long, email: String, saldo: Long) {
+        viewModelScope.launch {
+            try {
+                val response = recUseCases.reservarRecompensa(recompensaId, email, saldo)
+                if (response.isSuccessful) {
+                    Log.d("RecViewModel", "Reserva feta correctament.")
+                } else {
+                    Log.e("RecViewModel", "Error reservant: ${response.code()} - ${response.errorBody()?.string()}")
+                }
+            } catch (e: Exception) {
+                Log.e("RecViewModel", "Excepció reservant: ${e.message}")
+            }
+        }
+    }
+
     fun base64ToBitmap(base64: String): ImageBitmap? {
         return try {
             val decodedBytes = Base64.decode(base64, Base64.DEFAULT)
