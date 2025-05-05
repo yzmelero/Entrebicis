@@ -1,5 +1,6 @@
 package cat.copernic.ymelero.entrebicis.recompenses.ui.screens
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -27,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -52,7 +54,19 @@ fun DetallRecompensaScreen(
 
     val recViewModel: RecViewModel = viewModel(factory = RecViewModelFactory(RecUseCases(RecRepository())))
     val recompensa by recViewModel.recompensa.collectAsState()
+    val usuari by userViewModel.currentUser.collectAsState()
 
+    val context = LocalContext.current
+    val missatgeReserva by recViewModel.missatgeReserva.collectAsState()
+
+    LaunchedEffect(missatgeReserva) {
+        missatgeReserva?.let {
+            if (it.isNotBlank()) {
+                Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+                recViewModel.resetMissatgeReserva()
+            }
+        }
+    }
     LaunchedEffect(recompensaId) {
         recViewModel.carregarRecompensaPerId(recompensaId)
     }
@@ -155,7 +169,7 @@ fun DetallRecompensaScreen(
                         )
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Text(
-                                text = "${r.punts.toInt()}",
+                                text = "${r.punts}",
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 18.sp
                             )
@@ -186,26 +200,29 @@ fun DetallRecompensaScreen(
                     r.dataRecollida?.let { DetallText("Data de recollida", it) }
 
                     Spacer(modifier = Modifier.height(20.dp))
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clip(RoundedCornerShape(10.dp))
-                            .background(Color(0xFF6AD0D3))
-                            .clickable {
-                                navController.navigate("reservaRecompensa/${r.id}")
-                            }
-                            .padding(vertical = 12.dp),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            text = "Reservar",
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.Medium,
-                            color = Color.White
-                        )
+                    if (r.estat.name == "DISPONIBLE") {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(10.dp))
+                                .background(Color(0xFF6AD0D3))
+                                .clickable {
+                                    usuari?.let { u ->
+                                        recViewModel.reservarRecompensa(r.id, u.email, u.saldo)
+                                    }
+                                }
+                                .padding(vertical = 12.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = "Reservar",
+                                fontSize = 18.sp,
+                                fontWeight = FontWeight.Medium,
+                                color = Color.White
+                            )
+                        }
                     }
                 }
-
                 Spacer(modifier = Modifier.height(80.dp))
             }
             BottomSection(navController, userViewModel, 1)

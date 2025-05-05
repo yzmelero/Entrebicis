@@ -32,7 +32,7 @@ public class EntreBicisApplication {
 				admin.setPoblacio("Ciutat");
 				admin.setTelefon("123456789");
 				admin.setRol(Rol.ADMIN);
-				admin.setSaldo(0.0);
+				admin.setSaldo(0);
 				admin.setDataAlta(LocalDate.now());
 				admin.setContrasenya(passwordEncoder.encode("admin123"));
 				admin.setObservacions("Administrador del sistema");

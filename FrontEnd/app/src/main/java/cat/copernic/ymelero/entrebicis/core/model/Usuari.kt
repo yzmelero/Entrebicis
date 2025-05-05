@@ -9,7 +9,7 @@ data class Usuari (
     val poblacio: String,
     val telefon: String,
     val rol: Rol,
-    val saldo: Double,
+    val saldo: Int,
     val dataAlta: String,
     val contrasenya: String,
     val observacions: String? = null

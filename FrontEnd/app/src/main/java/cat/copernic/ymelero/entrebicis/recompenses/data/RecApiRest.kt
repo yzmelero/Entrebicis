@@ -3,6 +3,7 @@ package cat.copernic.ymelero.entrebicis.recompenses.data
 import cat.copernic.ymelero.entrebicis.core.model.Recompensa
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface RecApiRest {
@@ -15,4 +16,6 @@ interface RecApiRest {
     @GET("api/recompenses")
     suspend fun getRecompensaPerId(@Query("id") id: Long): Response<Recompensa>
 
+    @POST("api/recompenses/reservar")
+    suspend fun reservarRecompensa(@Query("recompensaId") recompensaId: Long, @Query("email") email: String, @Query("saldo") saldo: Int): Response<Recompensa>
 }

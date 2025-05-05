@@ -73,6 +73,30 @@ class RecViewModel(private val recUseCases: RecUseCases) : ViewModel() {
         }
     }
 
+    private val _missatgeReserva = MutableStateFlow<String?>(null)
+    val missatgeReserva: StateFlow<String?> get() = _missatgeReserva
+
+    fun reservarRecompensa(recompensaId: Long, email: String, saldo: Int) {
+        viewModelScope.launch {
+            try {
+                val response = recUseCases.reservarRecompensa(recompensaId, email, saldo)
+                if (response.isSuccessful) {
+                    _recompensa.value = response.body()
+                    _missatgeReserva.value = "Recompensa reservada amb èxit!"
+                } else {
+                    val errorText = response.errorBody()?.string() ?: "Error reservant."
+                    _missatgeReserva.value = errorText
+                }
+            } catch (e: Exception) {
+                _missatgeReserva.value = "Error: ${e.message}"
+            }
+        }
+    }
+    fun resetMissatgeReserva() {
+        _missatgeReserva.value = null
+    }
+
+
     fun base64ToBitmap(base64: String): ImageBitmap? {
         return try {
             val decodedBytes = Base64.decode(base64, Base64.DEFAULT)

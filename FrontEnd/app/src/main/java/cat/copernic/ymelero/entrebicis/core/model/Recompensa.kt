@@ -4,7 +4,7 @@ data class Recompensa (
     val id: Long,
     val descripcio: String,
     val observacions: String?,
-    val punts: Double,
+    val punts: Int,
     val estat: EstatRecompensa,
     val nomComerc: String,
     val adrecaComerc: String,
