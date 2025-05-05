@@ -3,6 +3,8 @@ package cat.copernic.ymelero.entrebicis.controller.api;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,10 +39,15 @@ public class RecompensaApiController {
     }
 
     @PostMapping("/reservar")
-    public Recompensa reservarRecompensa(
+    public ResponseEntity<?> reservarRecompensa(
             @RequestParam Long recompensaId,
             @RequestParam String email,
-            @RequestParam Long saldo) {
-        return recompensaLogica.reservarRecompensa(recompensaId, email, saldo);
+            @RequestParam Integer saldo) {
+        try {
+            Recompensa recompensa = recompensaLogica.reservarRecompensa(recompensaId, email, saldo);
+            return ResponseEntity.ok(recompensa);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 }

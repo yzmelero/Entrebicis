@@ -17,5 +17,5 @@ interface RecApiRest {
     suspend fun getRecompensaPerId(@Query("id") id: Long): Response<Recompensa>
 
     @POST("api/recompenses/reservar")
-    suspend fun reservarRecompensa(@Query("recompensaId") recompensaId: Long, @Query("email") email: String, @Query("saldo") saldo: Long): Response<Recompensa>
+    suspend fun reservarRecompensa(@Query("recompensaId") recompensaId: Long, @Query("email") email: String, @Query("saldo") saldo: Int): Response<Recompensa>
 }

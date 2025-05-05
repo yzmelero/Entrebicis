@@ -16,7 +16,7 @@ class RecRepository {
         return RetrofitInstance.api.getRecompensaPerId(id)
     }
 
-    suspend fun reservarRecompensa(recompensaId: Long, email: String, saldo: Long): Response<Recompensa> {
+    suspend fun reservarRecompensa(recompensaId: Long, email: String, saldo: Int): Response<Recompensa> {
         return RetrofitInstance.api.reservarRecompensa(recompensaId, email, saldo)
     }
 

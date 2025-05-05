@@ -33,7 +33,7 @@ public class Recompensa {
 
     private String observacions;
 
-    private Double punts;
+    private Integer punts;
 
     @Enumerated(EnumType.STRING)
     private EstatRecompensa estat;
