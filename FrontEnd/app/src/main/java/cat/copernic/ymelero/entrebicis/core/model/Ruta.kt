@@ -1,4 +1,14 @@
 package cat.copernic.ymelero.entrebicis.core.model
 
-class Ruta {
-}
+data class Ruta (
+    val id: Long? = 0L,
+    val usuari: Usuari,
+    val estat: EstatRuta,
+    val distancia: Double,
+    val tempsTotal: Double,
+    val velocitatMaxima: Double,
+    val velocitatMitjana: Double,
+    val puntsGPS: List<PuntGPS>?,
+    val validada: Boolean,
+    val dataCreacio: String
+)
