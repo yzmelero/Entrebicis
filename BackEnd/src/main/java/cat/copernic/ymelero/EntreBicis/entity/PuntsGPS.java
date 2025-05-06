@@ -1,6 +1,6 @@
 package cat.copernic.ymelero.entrebicis.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -17,7 +17,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "puntsgps")
+@Table(name = "puntgps")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -39,6 +39,6 @@ public class PuntsGPS {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "marca_temps", nullable = false)
-    private LocalDate marcaTemps;
+    private LocalDateTime marcaTemps;
 
 }

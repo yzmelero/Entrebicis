@@ -17,11 +17,11 @@ public class ParametresSistema {
     @Id
     private Long id = 1L;
 
-    private Double velocitatMaxima = 60.0;
+    private Integer velocitatMaxima = 60;
 
     private Integer tempsMaximAturada = 5;
 
-    private Double conversioQuilometreSaldo = 1.0;
+    private double conversioQuilometreSaldo = 1.0;
 
     private Integer tempsMaximRecollidaRecompensa = 72;
 }
