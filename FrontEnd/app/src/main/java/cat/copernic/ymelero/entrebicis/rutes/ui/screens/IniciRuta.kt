@@ -99,21 +99,36 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-                // Botó per iniciar la ruta
-                Button(
-                    onClick = {
-                        rutaViewModel.iniciarRuta(usuari!!)
-                        Toast.makeText(context, "Ruta iniciada!", Toast.LENGTH_SHORT).show()
-                    },
-                    modifier = Modifier
-                        .height(60.dp)
-                        .width(180.dp)
-                ) {
-                    Icon(Icons.Default.PlayArrow, contentDescription = "Iniciar")
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text("Iniciar Ruta", fontSize = 18.sp)
+                if (ruta == null) {
+                    Button(
+                        onClick = {
+                            rutaViewModel.iniciarRuta(usuari!!)
+                            Toast.makeText(context, "Ruta iniciada!", Toast.LENGTH_SHORT).show()
+                        },
+                        modifier = Modifier
+                            .height(60.dp)
+                            .width(180.dp)
+                    ) {
+                        Icon(Icons.Default.PlayArrow, contentDescription = "Iniciar")
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text("Iniciar Ruta", fontSize = 18.sp)
+                    }
+                } else {
+                    Button(
+                        onClick = {
+                            rutaViewModel.finalitzarRuta()
+                            Toast.makeText(context, "Ruta finalitzada!", Toast.LENGTH_SHORT).show()
+                        },
+                        modifier = Modifier
+                            .height(60.dp)
+                            .width(180.dp),
+                        colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
+                    ) {
+                        Icon(Icons.Default.PlayArrow, contentDescription = "Finalitzar") // pots canviar icona
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text("Finalitzar Ruta", fontSize = 18.sp)
+                    }
                 }
-
             }
         }
             BottomSection(navController, userViewModel, 0)

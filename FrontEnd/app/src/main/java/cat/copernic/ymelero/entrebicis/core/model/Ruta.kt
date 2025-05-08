@@ -8,7 +8,7 @@ data class Ruta (
     val tempsTotal: Double,
     val velocitatMaxima: Double,
     val velocitatMitjana: Double,
-    val puntsGPS: List<PuntGPS>?,
+    val puntGPS: List<PuntGPS>?,
     val validada: Boolean,
     val dataCreacio: String
 )

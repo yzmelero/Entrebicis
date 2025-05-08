@@ -1,19 +1,17 @@
 package cat.copernic.ymelero.entrebicis.controller.api;
 
-import java.time.LocalDate;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cat.copernic.ymelero.entrebicis.entity.EstatRuta;
+import cat.copernic.ymelero.entrebicis.entity.PuntGPS;
 import cat.copernic.ymelero.entrebicis.entity.Ruta;
-import cat.copernic.ymelero.entrebicis.entity.Usuari;
 import cat.copernic.ymelero.entrebicis.logic.web.RutaLogica;
-import cat.copernic.ymelero.entrebicis.repository.UsuariRepository;
 
 @RestController
 @RequestMapping("/api/ruta")
@@ -22,29 +20,33 @@ public class RutaApiController {
     @Autowired
     private RutaLogica rutaLogica;
 
-    @Autowired
-    private UsuariRepository usuariRepository;
-
     @PostMapping("/iniciar")
     public ResponseEntity<?> iniciarRuta(@RequestBody Ruta ruta) {
         try {
-            if (ruta.getUsuari() == null || ruta.getUsuari().getEmail() == null) {
-                return ResponseEntity.badRequest().body("L'usuari o el correu electrònic és nul.");
-            }
-
-            Usuari usuari = usuariRepository.findByEmail(ruta.getUsuari().getEmail())
-                    .orElseThrow(() -> new RuntimeException("Usuari no trobat"));
-
-            ruta.setUsuari(usuari);
-            ruta.setDataCreacio(LocalDate.now());
-            ruta.setEstat(EstatRuta.PENDENT);
-
             Ruta novaRuta = rutaLogica.iniciarRuta(ruta);
-
             return ResponseEntity.ok(novaRuta);
         } catch (Exception e) {
-            e.printStackTrace();
             return ResponseEntity.internalServerError().body("Error al iniciar ruta: " + e.getMessage());
+        }
+    }
+
+    @PostMapping("/{idRuta}/puntgps")
+    public ResponseEntity<?> afegirPuntGPS(@PathVariable Long idRuta, @RequestBody PuntGPS punt) {
+        try {
+            PuntGPS nouPunt = rutaLogica.afegirPuntGPS(idRuta, punt);
+            return ResponseEntity.ok(nouPunt);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
+    }
+
+    @PutMapping("/{idRuta}/finalitzar")
+    public ResponseEntity<?> finalitzarRuta(@PathVariable Long idRuta) {
+        try {
+            Ruta rutaFinalitzada = rutaLogica.finalitzarRuta(idRuta);
+            return ResponseEntity.ok(rutaFinalitzada);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 }

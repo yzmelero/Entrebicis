@@ -27,7 +27,7 @@ class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
                     tempsTotal = 0.0,
                     velocitatMaxima = 0.0,
                     velocitatMitjana = 0.0,
-                    puntsGPS = null,
+                    puntGPS = null,
                     validada = false,
                     dataCreacio = ""
                 )
@@ -39,6 +39,23 @@ class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
                 }
             } catch (e: Exception) {
                 Log.e("RutaViewModel", "Excepció: ${e.message}")
+            }
+        }
+    }
+
+    fun finalitzarRuta() {
+        val ruta = _rutaActual.value ?: return
+        viewModelScope.launch {
+            try {
+                val response = rutaUseCases.finalitzarRuta(ruta.id!!)
+                if (response.isSuccessful) {
+                    _rutaActual.value = response.body()
+                    Log.i("RutaViewModel", "Ruta finalitzada correctament")
+                } else {
+                    Log.e("RutaViewModel", "Error finalitzant: ${response.errorBody()?.string()}")
+                }
+            } catch (e: Exception) {
+                Log.e("RutaViewModel", "Excepció finalitzant ruta: ${e.message}")
             }
         }
     }
