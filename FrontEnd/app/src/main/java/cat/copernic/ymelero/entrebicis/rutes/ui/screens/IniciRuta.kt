@@ -36,6 +36,8 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
     val context = LocalContext.current
     val rutaViewModel = remember { RutaViewModel(RutaUseCases(RutaRepository())) }
     val usuari by userViewModel.currentUser.collectAsState()
+    val ruta by rutaViewModel.rutaActual.collectAsState()
+
     var permisUbicacioDonat by remember { mutableStateOf(false) }
 
     val estatCamera = rememberCameraPositionState {
@@ -116,6 +118,12 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
         }
             BottomSection(navController, userViewModel, 0)
         }
+    LaunchedEffect(ruta) {
+        if (ruta != null) {
+            Toast.makeText(context, "Ruta iniciada correctament!", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 }
 
 @Composable

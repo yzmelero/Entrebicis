@@ -20,7 +20,7 @@ class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
         viewModelScope.launch {
             try {
                 val novaRuta = Ruta(
-                    id = 0L,
+                    id = null,
                     usuari = usuari,
                     estat = EstatRuta.PENDENT,
                     distancia = 0.0,

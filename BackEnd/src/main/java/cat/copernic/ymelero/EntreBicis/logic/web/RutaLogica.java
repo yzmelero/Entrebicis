@@ -17,6 +17,9 @@ public class RutaLogica {
     public Ruta iniciarRuta(Ruta ruta) {
         if (ruta.getDataCreacio() == null) {
             ruta.setDataCreacio(LocalDate.now());
+            System.out.println("Usuari: " + ruta.getUsuari());
+            System.out.println("Data: " + ruta.getDataCreacio());
+            System.out.println("Estat: " + ruta.getEstat());
         }
         return rutaRepository.save(ruta);
     }
