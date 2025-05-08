@@ -1,12 +1,15 @@
 package cat.copernic.ymelero.entrebicis.rutes.ui.viewmodel
 
 import android.util.Log
+import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cat.copernic.ymelero.entrebicis.core.model.EstatRuta
+import cat.copernic.ymelero.entrebicis.core.model.PuntGPS
 import cat.copernic.ymelero.entrebicis.core.model.Ruta
 import cat.copernic.ymelero.entrebicis.core.model.Usuari
 import cat.copernic.ymelero.entrebicis.rutes.domain.RutaUseCases
+import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -49,13 +52,35 @@ class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
             try {
                 val response = rutaUseCases.finalitzarRuta(ruta.id!!)
                 if (response.isSuccessful) {
-                    _rutaActual.value = response.body()
+                    _rutaActual.value = null
+                    puntsRuta.clear()
                     Log.i("RutaViewModel", "Ruta finalitzada correctament")
                 } else {
                     Log.e("RutaViewModel", "Error finalitzant: ${response.errorBody()?.string()}")
                 }
             } catch (e: Exception) {
                 Log.e("RutaViewModel", "Excepció finalitzant ruta: ${e.message}")
+            }
+        }
+    }
+
+    val puntsRuta = mutableStateListOf<LatLng>()
+
+    fun afegirPuntGPS(lat: Double, lng: Double) {
+        val ruta = _rutaActual.value ?: return
+        viewModelScope.launch {
+            try {
+                val punt = PuntGPS(
+                    id = null,
+                    latitud = lat,
+                    longitud = lng,
+                    marcaTemps = ""
+                )
+                rutaUseCases.afegirPuntGPS(ruta.id!!, punt)
+                puntsRuta.add(LatLng(lat, lng))
+                Log.i("RutaViewModel", "Punt GPS afegit")
+            } catch (e: Exception) {
+                Log.e("RutaViewModel", "Error afegint punt GPS: ${e.message}")
             }
         }
     }
