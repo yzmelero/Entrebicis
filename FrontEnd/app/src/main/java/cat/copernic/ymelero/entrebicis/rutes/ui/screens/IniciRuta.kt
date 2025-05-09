@@ -34,7 +34,6 @@ import cat.copernic.ymelero.entrebicis.rutes.ui.viewmodel.RutaViewModel
 import cat.copernic.ymelero.entrebicis.usuaris.ui.viewmodel.UserViewModel
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.*
 import kotlinx.coroutines.delay
@@ -68,7 +67,7 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
             val location = clientUbicacio.lastLocation.await()
             location?.let {
                 val inicial = LatLng(it.latitude, it.longitude)
-                estatCamera.move(CameraUpdateFactory.newLatLngZoom(inicial, 26f))
+                estatCamera.move(CameraUpdateFactory.newLatLngZoom(inicial, 17f))
             }
         }
     }
@@ -114,7 +113,7 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
                             Polyline(
                                 points = rutaViewModel.puntsRuta.toList(),
                                 color = Color.Blue,
-                                width = 8f
+                                width = 24f
                             )
 
                         }
@@ -164,7 +163,7 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
         if (ruta != null) {
             Toast.makeText(context, "Ruta iniciada correctament!", Toast.LENGTH_SHORT).show()
 
-            val segonsEntrePunts = 5
+            val segonsEntrePunts = 2
             val margeConsideratAturat = 5f
             val tempsMaximAturat = parametres!!.tempsMaximAturada * 60
             var segonsAturat = 0
@@ -200,7 +199,7 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
                         }
                         rutaViewModel.afegirPuntGPS(actual.latitude, actual.longitude)
                         anterior = actual
-                        estatCamera.animate(CameraUpdateFactory.newLatLngZoom(actual, 26f))
+                        estatCamera.animate(CameraUpdateFactory.newLatLngZoom(actual, 20f))
                     }
                 } catch (e: SecurityException) {
                     Log.e("IniciRutaScreen", "Permís denegat: ${e.message}")
