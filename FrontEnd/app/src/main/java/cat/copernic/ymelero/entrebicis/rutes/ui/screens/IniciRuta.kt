@@ -36,12 +36,14 @@ import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.*
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.tasks.await
 
 @Composable
 fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) {
     val context = LocalContext.current
     val rutaViewModel = remember { RutaViewModel(RutaUseCases(RutaRepository())) }
     val usuari by userViewModel.currentUser.collectAsState()
+    val parametres by userViewModel.parametresSistema.collectAsState()
     val ruta by rutaViewModel.rutaActual.collectAsState()
     var ubicacioAutoritzada by remember { mutableStateOf(false) }
     val clientUbicacio = remember { LocationServices.getFusedLocationProviderClient(context) }
@@ -49,7 +51,19 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
         position = CameraPosition.fromLatLngZoom(LatLng(41.3851, 2.1734), 14f)
     }
 
+    DisposableEffect(Unit) {
+        onDispose {
+            if (ruta != null) {
+                rutaViewModel.finalitzarRuta()
+                Log.i("IniciRutaScreen", "Ruta finalitzada per onDispose")
+            }
+        }
+    }
+
     DemanarPermisUbicacio(context) { ubicacioAutoritzada = true }
+    LaunchedEffect(Unit) {
+        userViewModel.carregarParametresSistema()
+    }
 
     Box(
         modifier = Modifier.fillMaxSize()
@@ -133,26 +147,52 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
                 }
             }
         }
-        BottomSection(navController, userViewModel, 0)
+        BottomSection(navController, userViewModel, 2)
     }
+
     LaunchedEffect(ruta) {
         if (ruta != null) {
             Toast.makeText(context, "Ruta iniciada correctament!", Toast.LENGTH_SHORT).show()
 
-            while (true) {
-                if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
-                    == PackageManager.PERMISSION_GRANTED) {
+            val tempsMaximAturada = parametres!!.tempsMaximAturada * 60
+            var segonsAturat = 0
+            var anterior: LatLng? = null
 
-                    clientUbicacio.lastLocation.addOnSuccessListener { location ->
-                        if (location != null) {
-                            rutaViewModel.afegirPuntGPS(
-                                lat = location.latitude,
-                                lng = location.longitude
-                            )
+            while (true) {
+                try {
+                val location = clientUbicacio.lastLocation.await()
+                if (location != null) {
+                    val actual = LatLng(location.latitude, location.longitude)
+
+                    if (anterior != null) {
+                        val resultat = FloatArray(1)
+                        android.location.Location.distanceBetween(
+                            anterior.latitude, anterior.longitude,
+                            actual.latitude, actual.longitude,
+                            resultat
+                        )
+                        val distancia = resultat[0]
+
+                        if (distancia < 5f) {
+                            segonsAturat += 5
+                        } else {
+                            segonsAturat = 0
+                        }
+
+                        if (segonsAturat >= tempsMaximAturada) {
+                            rutaViewModel.finalitzarRuta()
+                            Toast.makeText(context, "Temps d'aturada exedit, ruta finalitzada automàticament.", Toast.LENGTH_SHORT).show()
+                            break
                         }
                     }
-                } else {
-                    Log.w("IniciRutaScreen", "Permís d'ubicació no concedit en aquest moment")
+                    rutaViewModel.afegirPuntGPS(actual.latitude, actual.longitude)
+                    anterior = actual
+                }
+                } catch (e: SecurityException) {
+                    Log.e("IniciRutaScreen", "Permís denegat: ${e.message}")
+                    break
+                } catch (e: Exception) {
+                    Log.e("IniciRutaScreen", "Error inesperat: ${e.message}")
                 }
                 delay(5000)
             }

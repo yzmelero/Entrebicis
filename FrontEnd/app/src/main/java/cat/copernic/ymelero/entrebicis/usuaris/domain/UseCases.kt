@@ -10,4 +10,6 @@ class UseCases(private val repository: UserRepository) {
     suspend fun loginUser(email: String, contrasenya: String) = repository.loginUser(email, contrasenya)
     
     suspend fun updateUsuari(usuari: Usuari) = repository.updateUser(usuari)
+
+    suspend fun getParametresSistema() = repository.getParametresSistema()
 }

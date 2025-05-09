@@ -46,12 +46,16 @@ class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
         }
     }
 
+    private val _rutaFinalitzada = MutableStateFlow<Ruta?>(null)
+    val rutaFinalitzada: StateFlow<Ruta?> get() = _rutaFinalitzada
+
     fun finalitzarRuta() {
         val ruta = _rutaActual.value ?: return
         viewModelScope.launch {
             try {
                 val response = rutaUseCases.finalitzarRuta(ruta.id!!)
                 if (response.isSuccessful) {
+                    _rutaFinalitzada.value = response.body()
                     _rutaActual.value = null
                     puntsRuta.clear()
                     Log.i("RutaViewModel", "Ruta finalitzada correctament")
@@ -62,6 +66,10 @@ class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
                 Log.e("RutaViewModel", "Excepció finalitzant ruta: ${e.message}")
             }
         }
+    }
+
+    fun resetRutaFinalitzada() {
+        _rutaFinalitzada.value = null
     }
 
     val puntsRuta = mutableStateListOf<LatLng>()

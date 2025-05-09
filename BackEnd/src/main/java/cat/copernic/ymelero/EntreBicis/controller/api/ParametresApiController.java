@@ -16,11 +16,11 @@ public class ParametresApiController {
     @Autowired
     private ParametresLogica parametresLogica;
 
-    @GetMapping("/aturada")
-    public ResponseEntity<Integer> getTempsMaximAturada() {
+    @GetMapping
+    public ResponseEntity<ParametresSistema> obtenirParametres() {
         ParametresSistema parametres = parametresLogica.getParametres();
         if (parametres != null) {
-            return ResponseEntity.ok(parametres.getTempsMaximAturada());
+            return ResponseEntity.ok(parametres);
         } else {
             return ResponseEntity.notFound().build();
         }

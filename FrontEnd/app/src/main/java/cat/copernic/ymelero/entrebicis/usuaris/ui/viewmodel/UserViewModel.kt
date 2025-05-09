@@ -4,11 +4,14 @@ import android.content.Context
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.util.Base64
+import android.util.Log
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import cat.copernic.ymelero.entrebicis.core.model.Parametres
 import cat.copernic.ymelero.entrebicis.core.model.Usuari
+import cat.copernic.ymelero.entrebicis.rutes.ui.viewmodel.RutaViewModel
 import cat.copernic.ymelero.entrebicis.usuaris.domain.UseCases
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -60,13 +63,13 @@ class UserViewModel(private val useCases: UseCases) : ViewModel() {
         _loginError.value = null
     }
 
-    fun logoutUser() {
+    fun logoutUser(rutaViewModel: RutaViewModel? = null) {
+        rutaViewModel?.rutaActual?.value?.let {
+            rutaViewModel.finalitzarRuta()
+        }
+
         _currentUser.value = null
         _loginSuccess.value = false
-    }
-
-    fun obtenirUsuari(usuari: Usuari) {
-        _currentUser.value = usuari
     }
 
     val _updateSuccess = MutableStateFlow<Boolean?>(null)
@@ -99,7 +102,21 @@ class UserViewModel(private val useCases: UseCases) : ViewModel() {
         _updateError.value = null
     }
 
+    private val _parametresSistema = MutableStateFlow<Parametres?>(null)
+    val parametresSistema: StateFlow<Parametres?> = _parametresSistema
 
+    fun carregarParametresSistema() {
+        viewModelScope.launch {
+            try {
+                val response = useCases.getParametresSistema()
+                if (response.isSuccessful) {
+                    _parametresSistema.value = response.body()
+                }
+            } catch (e: Exception) {
+                Log.e("UserViewModel", "Error carregant paràmetres: ${e.message}")
+            }
+        }
+    }
 
     fun base64ToBitmap(base64: String): ImageBitmap? {
         return try {
@@ -123,7 +140,6 @@ class UserViewModel(private val useCases: UseCases) : ViewModel() {
                     byteArrayOutputStream.write(buffer, 0, bytesRead)
                 }
             }
-
             val byteArray = byteArrayOutputStream.toByteArray()
             Base64.encodeToString(byteArray, Base64.DEFAULT)
         } catch (e: Exception) {
@@ -131,5 +147,4 @@ class UserViewModel(private val useCases: UseCases) : ViewModel() {
             null
         }
     }
-
 }
