@@ -3,6 +3,7 @@ package cat.copernic.ymelero.entrebicis.rutes.ui.screens
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
+import android.location.Location
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -32,6 +33,7 @@ import cat.copernic.ymelero.entrebicis.rutes.domain.RutaUseCases
 import cat.copernic.ymelero.entrebicis.rutes.ui.viewmodel.RutaViewModel
 import cat.copernic.ymelero.entrebicis.usuaris.ui.viewmodel.UserViewModel
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.*
@@ -47,9 +49,7 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
     val ruta by rutaViewModel.rutaActual.collectAsState()
     var ubicacioAutoritzada by remember { mutableStateOf(false) }
     val clientUbicacio = remember { LocationServices.getFusedLocationProviderClient(context) }
-    val estatCamera = rememberCameraPositionState {
-        position = CameraPosition.fromLatLngZoom(LatLng(41.3851, 2.1734), 14f)
-    }
+    val estatCamera = rememberCameraPositionState()
 
     DisposableEffect(Unit) {
         onDispose {
@@ -63,6 +63,14 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
     DemanarPermisUbicacio(context) { ubicacioAutoritzada = true }
     LaunchedEffect(Unit) {
         userViewModel.carregarParametresSistema()
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
+            == PackageManager.PERMISSION_GRANTED) {
+            val location = clientUbicacio.lastLocation.await()
+            location?.let {
+                val inicial = LatLng(it.latitude, it.longitude)
+                estatCamera.move(CameraUpdateFactory.newLatLngZoom(inicial, 26f))
+            }
+        }
     }
 
     Box(
@@ -104,9 +112,11 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
                             uiSettings = MapUiSettings(zoomControlsEnabled = true)
                         )  {
                             Polyline(
-                                points = rutaViewModel.puntsRuta,
-                                color = Color.Blue
+                                points = rutaViewModel.puntsRuta.toList(),
+                                color = Color.Blue,
+                                width = 8f
                             )
+
                         }
                     } else {
                         Text(
@@ -154,47 +164,51 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
         if (ruta != null) {
             Toast.makeText(context, "Ruta iniciada correctament!", Toast.LENGTH_SHORT).show()
 
-            val tempsMaximAturada = parametres!!.tempsMaximAturada * 60
+            val segonsEntrePunts = 5
+            val margeConsideratAturat = 5f
+            val tempsMaximAturat = parametres!!.tempsMaximAturada * 60
             var segonsAturat = 0
             var anterior: LatLng? = null
+            var finalitzar = false
 
-            while (true) {
+            while (!finalitzar) {
                 try {
-                val location = clientUbicacio.lastLocation.await()
-                if (location != null) {
-                    val actual = LatLng(location.latitude, location.longitude)
+                    val location = clientUbicacio.lastLocation.await()
+                    if (location != null) {
+                        val actual = LatLng(location.latitude, location.longitude)
 
-                    if (anterior != null) {
-                        val resultat = FloatArray(1)
-                        android.location.Location.distanceBetween(
-                            anterior.latitude, anterior.longitude,
-                            actual.latitude, actual.longitude,
-                            resultat
-                        )
-                        val distancia = resultat[0]
+                        if (anterior != null) {
+                            val resultat = FloatArray(1)
+                            Location.distanceBetween(
+                                anterior.latitude, anterior.longitude,
+                                actual.latitude, actual.longitude,
+                                resultat
+                            )
+                            val distanciaEntrePunts = resultat[0]
 
-                        if (distancia < 5f) {
-                            segonsAturat += 5
-                        } else {
-                            segonsAturat = 0
+                            if (distanciaEntrePunts < margeConsideratAturat) {
+                                segonsAturat += segonsEntrePunts
+                            } else {
+                                segonsAturat = 0
+                            }
+
+                            if (segonsAturat >= tempsMaximAturat) {
+                                rutaViewModel.finalitzarRuta()
+                                Toast.makeText(context, "Temps d'aturada superat. Ruta finalitzada automàticament.", Toast.LENGTH_SHORT).show()
+                                finalitzar = true
+                            }
                         }
-
-                        if (segonsAturat >= tempsMaximAturada) {
-                            rutaViewModel.finalitzarRuta()
-                            Toast.makeText(context, "Temps d'aturada exedit, ruta finalitzada automàticament.", Toast.LENGTH_SHORT).show()
-                            break
-                        }
+                        rutaViewModel.afegirPuntGPS(actual.latitude, actual.longitude)
+                        anterior = actual
+                        estatCamera.animate(CameraUpdateFactory.newLatLngZoom(actual, 26f))
                     }
-                    rutaViewModel.afegirPuntGPS(actual.latitude, actual.longitude)
-                    anterior = actual
-                }
                 } catch (e: SecurityException) {
                     Log.e("IniciRutaScreen", "Permís denegat: ${e.message}")
-                    break
+                    finalitzar = true
                 } catch (e: Exception) {
                     Log.e("IniciRutaScreen", "Error inesperat: ${e.message}")
                 }
-                delay(5000)
+                delay(segonsEntrePunts * 1000L)
             }
         }
     }

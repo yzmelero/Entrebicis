@@ -76,6 +76,7 @@ class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
 
     fun afegirPuntGPS(lat: Double, lng: Double) {
         val ruta = _rutaActual.value ?: return
+        puntsRuta.add(LatLng(lat, lng))
         viewModelScope.launch {
             try {
                 val punt = PuntGPS(
@@ -85,7 +86,6 @@ class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
                     marcaTemps = ""
                 )
                 rutaUseCases.afegirPuntGPS(ruta.id!!, punt)
-                puntsRuta.add(LatLng(lat, lng))
                 Log.i("RutaViewModel", "Punt GPS afegit")
             } catch (e: Exception) {
                 Log.e("RutaViewModel", "Error afegint punt GPS: ${e.message}")
