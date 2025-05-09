@@ -1,11 +1,12 @@
 package cat.copernic.ymelero.entrebicis.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,18 +18,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "puntsgps")
+@Table(name = "puntgps")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PuntsGPS {
+public class PuntGPS {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "ruta_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ruta", nullable = false)
+    @JsonBackReference
     private Ruta ruta;
 
     @Column(nullable = false)
@@ -37,8 +39,7 @@ public class PuntsGPS {
     @Column(nullable = false)
     private Double longitud;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "marca_temps", nullable = false)
-    private LocalDate marcaTemps;
+    private LocalDateTime marcaTemps;
 
 }

@@ -2,6 +2,7 @@ package cat.copernic.ymelero.entrebicis.usuaris.data
 
 import cat.copernic.ymelero.entrebicis.core.model.LoginRequest
 import cat.copernic.ymelero.entrebicis.core.model.LoginResponse
+import cat.copernic.ymelero.entrebicis.core.model.Parametres
 import cat.copernic.ymelero.entrebicis.core.model.Usuari
 import retrofit2.Response
 import retrofit2.http.Body
@@ -19,5 +20,8 @@ interface UserApiRest {
 
     @PUT("api/usuari/modificar")
     suspend fun modificarUsuari(@Body usuari: Usuari): Response<Usuari>
+
+    @GET("api/parametres")
+    suspend fun getParametresSistema(): Response<Parametres>
 
 }

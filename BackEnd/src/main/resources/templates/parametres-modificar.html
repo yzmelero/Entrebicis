@@ -17,7 +17,7 @@
             <form th:action="@{/parametres}" th:object="${parametres}" method="post" class="form">
                 <div class="form-group">
                     <label for="velocitatMaxima">Velocitat Màxima Vàlida (km/h):</label>
-                    <input type="number" step="0.1" min="0" id="velocitatMaxima" th:field="*{velocitatMaxima}" required>
+                    <input type="number" min="0" id="velocitatMaxima" th:field="*{velocitatMaxima}" required>
                 </div>
 
                 <div class="form-group">
