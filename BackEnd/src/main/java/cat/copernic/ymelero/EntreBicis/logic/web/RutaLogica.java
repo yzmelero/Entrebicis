@@ -37,6 +37,12 @@ public class RutaLogica {
                 .orElseThrow(() -> new RuntimeException("Ruta no trobada"));
     }
 
+    public List<Ruta> llistarRutesPerUsuari(String email) {
+        usuariRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Usuari no trobat"));
+        return rutaRepository.findByUsuariEmailOrderByDataCreacioDesc(email);
+    }
+
     public Ruta iniciarRuta(Ruta ruta) {
         if (ruta.getUsuari() == null || ruta.getUsuari().getEmail() == null) {
             throw new RuntimeException("L'usuari o el correu electrònic és nul.");

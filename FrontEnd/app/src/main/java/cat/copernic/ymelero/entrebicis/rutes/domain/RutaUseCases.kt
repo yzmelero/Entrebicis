@@ -9,5 +9,5 @@ class RutaUseCases (private val rutaRepository: RutaRepository) {
     suspend fun afegirPuntGPS(idRuta: Long, punt: PuntGPS) = rutaRepository.afegirPuntGPS(idRuta, punt)
     suspend fun finalitzarRuta(idRuta: Long) = rutaRepository.finalitzarRuta(idRuta)
     suspend fun obtenirRuta(idRuta: Long) = rutaRepository.obtenirRuta(idRuta)
-
+    suspend fun getRutesPerUsuari(email: String) = rutaRepository.obtenirRutesPerUsuari(email)
 }

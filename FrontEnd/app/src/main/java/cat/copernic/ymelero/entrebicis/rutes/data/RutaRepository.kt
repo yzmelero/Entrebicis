@@ -21,4 +21,8 @@ class RutaRepository {
         return RetrofitInstance.api.obtenirRuta(idRuta)
     }
 
+    suspend fun obtenirRutesPerUsuari(email: String): Response<List<Ruta>> {
+        return RetrofitInstance.api.getRutesPerUsuari(email)
+    }
+
 }
