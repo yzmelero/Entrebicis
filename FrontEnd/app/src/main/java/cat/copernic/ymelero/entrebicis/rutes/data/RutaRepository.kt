@@ -17,4 +17,8 @@ class RutaRepository {
         return RetrofitInstance.api.afegirPuntGPS(idRuta, punt)
     }
 
+    suspend fun obtenirRuta(idRuta: Long): Response<Ruta> {
+        return RetrofitInstance.api.obtenirRuta(idRuta)
+    }
+
 }

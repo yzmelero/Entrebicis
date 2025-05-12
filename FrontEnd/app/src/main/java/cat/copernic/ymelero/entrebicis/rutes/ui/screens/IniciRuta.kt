@@ -43,6 +43,7 @@ import kotlinx.coroutines.tasks.await
 fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) {
     val context = LocalContext.current
     val rutaViewModel = remember { RutaViewModel(RutaUseCases(RutaRepository())) }
+    val rutaFinalitzada by rutaViewModel.rutaFinalitzada.collectAsState()
     val usuari by userViewModel.currentUser.collectAsState()
     val parametres by userViewModel.parametresSistema.collectAsState()
     val ruta by rutaViewModel.rutaActual.collectAsState()
@@ -209,6 +210,13 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
                 }
                 delay(segonsEntrePunts * 1000L)
             }
+        }
+    }
+
+    LaunchedEffect(rutaFinalitzada) {
+        rutaFinalitzada?.let { ruta ->
+            navController.navigate("detallsRuta/${ruta.id}")
+            rutaViewModel.resetRutaFinalitzada()
         }
     }
 }

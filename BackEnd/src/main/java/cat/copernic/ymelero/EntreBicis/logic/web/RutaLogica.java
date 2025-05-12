@@ -28,6 +28,11 @@ public class RutaLogica {
     @Autowired
     private PuntsRepository puntsRepository;
 
+    public Ruta obtenirRuta(Long idRuta) {
+        return rutaRepository.findById(idRuta)
+                .orElseThrow(() -> new RuntimeException("Ruta no trobada"));
+    }
+
     public Ruta iniciarRuta(Ruta ruta) {
         if (ruta.getUsuari() == null || ruta.getUsuari().getEmail() == null) {
             throw new RuntimeException("L'usuari o el correu electrònic és nul.");

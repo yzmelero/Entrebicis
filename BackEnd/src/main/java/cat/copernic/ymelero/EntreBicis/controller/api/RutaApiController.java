@@ -2,6 +2,7 @@ package cat.copernic.ymelero.entrebicis.controller.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -19,6 +20,16 @@ public class RutaApiController {
 
     @Autowired
     private RutaLogica rutaLogica;
+
+    @GetMapping("/{idRuta}")
+    public ResponseEntity<?> obtenirRuta(@PathVariable Long idRuta) {
+        try {
+            Ruta ruta = rutaLogica.obtenirRuta(idRuta);
+            return ResponseEntity.ok(ruta);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     @PostMapping("/iniciar")
     public ResponseEntity<?> iniciarRuta(@RequestBody Ruta ruta) {
