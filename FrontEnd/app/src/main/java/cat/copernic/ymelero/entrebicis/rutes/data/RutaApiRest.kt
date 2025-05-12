@@ -22,7 +22,7 @@ interface RutaApiRest {
     @GET("api/ruta/{idRuta}")
     suspend fun obtenirRuta(@Path("idRuta") idRuta: Long): Response<Ruta>
 
-    @GET("ruta/usuari/{email}")
+    @GET("api/ruta/usuari/{email}")
     suspend fun getRutesPerUsuari(@Path("email") email: String): Response<List<Ruta>>
 
 }
