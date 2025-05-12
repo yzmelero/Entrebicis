@@ -32,7 +32,8 @@ class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
                     velocitatMitjana = 0.0,
                     puntGPS = null,
                     validada = false,
-                    dataCreacio = ""
+                    dataCreacio = "",
+                    saldoObtingut = 0.0
                 )
                 val response = rutaUseCases.iniciarRuta(novaRuta)
                 if (response.isSuccessful) {

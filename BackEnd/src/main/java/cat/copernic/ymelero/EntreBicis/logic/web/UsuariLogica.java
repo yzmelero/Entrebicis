@@ -100,7 +100,7 @@ public class UsuariLogica {
             }
         }
         if (usuari.getSaldo() == null) {
-            usuari.setSaldo(0);
+            usuari.setSaldo(0.0);
         }
         if (usuari.getDataAlta() == null) {
             usuari.setDataAlta(LocalDate.now());

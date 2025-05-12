@@ -10,5 +10,6 @@ data class Ruta (
     val velocitatMitjana: Double,
     val puntGPS: List<PuntGPS>?,
     val validada: Boolean,
-    val dataCreacio: String
+    val dataCreacio: String,
+    val saldoObtingut: Double,
 )

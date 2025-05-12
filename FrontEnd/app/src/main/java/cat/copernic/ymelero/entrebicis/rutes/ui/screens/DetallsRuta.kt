@@ -1,5 +1,6 @@
 package cat.copernic.ymelero.entrebicis.rutes.ui.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -25,10 +27,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import cat.copernic.ymelero.entrebicis.R
 import cat.copernic.ymelero.entrebicis.core.ui.BottomSection
 import cat.copernic.ymelero.entrebicis.core.ui.header
 import cat.copernic.ymelero.entrebicis.rutes.data.RutaRepository
@@ -116,18 +120,27 @@ fun DetallsRutaScreen(navController: NavController, userViewModel: UserViewModel
                                 color = Color.Black
                             )
 
+                            Text(
+                                text = "Data: ${ruta.dataCreacio}",
+                                fontSize = 16.sp,
+                                color = Color.Black,
+                                modifier = Modifier.padding(top = 4.dp)
+                            )
+
                             Spacer(modifier = Modifier.height(12.dp))
 
                             Box(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .height(400.dp)
+                                    .height(380.dp)
                                     .clip(RoundedCornerShape(12.dp))
                             ) {
                                 GoogleMap(
                                     modifier = Modifier.fillMaxSize(),
                                     cameraPositionState = cameraState,
-                                    uiSettings = MapUiSettings(zoomControlsEnabled = false)
+                                    uiSettings = MapUiSettings(zoomControlsEnabled = true,
+                                        scrollGesturesEnabled = true,
+                                        zoomGesturesEnabled = true)
                                 ) {
                                     Polyline(points = puntsRuta, width = 6f, color = Color.Red)
 
@@ -170,9 +183,24 @@ fun DetallsRutaScreen(navController: NavController, userViewModel: UserViewModel
                                     )
                                 }
                             }
-
                             Spacer(modifier = Modifier.height(16.dp))
-
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.coin_icon),
+                                    contentDescription = "Icona monedas",
+                                    modifier = Modifier.size(24.dp)
+                                )
+                                Text(
+                                    text = "%.2f".format(ruta.saldoObtingut),
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 20.sp,
+                                    color = Color.Black,
+                                    modifier = Modifier.padding(start = 4.dp)
+                                )
+                            }
+                            Spacer(modifier = Modifier.height(16.dp))
                             Text(
                                 text = if (ruta.validada) "Validada" else "No Validada",
                                 color = if (ruta.validada) Color(0xFF4CAF50) else Color.Red,

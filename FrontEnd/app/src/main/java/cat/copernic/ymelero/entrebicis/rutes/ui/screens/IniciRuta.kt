@@ -79,7 +79,7 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0xFFB3F0F8))
+                .background(Color(0xFFD3FCFF))
                 .windowInsetsPadding(WindowInsets.systemBars),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -88,25 +88,20 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(Color(0xFFB3F0F8))
                     .padding(top = 16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(
-                    text = "Iniciar Ruta",
-                    fontSize = 26.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                Spacer(modifier = Modifier.height(16.dp))
                 Box(
                     modifier = Modifier
                         .fillMaxWidth(0.95f)
-                        .height(540.dp)
+                        .height(600.dp)
                         .clip(RoundedCornerShape(12.dp))
                 ) {
                     if (ubicacioAutoritzada) {
                         GoogleMap(
-                            modifier = Modifier.fillMaxSize(),
+                            modifier = Modifier.fillMaxSize()
+                                .background(Color(0xFF9DFFE8))
+                                .padding(10.dp),
                             cameraPositionState = estatCamera,
                             properties = MapProperties(isMyLocationEnabled = true),
                             uiSettings = MapUiSettings(zoomControlsEnabled = true)
@@ -116,7 +111,6 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
                                 color = Color.Blue,
                                 width = 24f
                             )
-
                         }
                     } else {
                         Text(
@@ -125,7 +119,7 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
                         )
                     }
                 }
-                Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(16.dp))
                 if (ruta == null) {
                     Button(
                         onClick = {

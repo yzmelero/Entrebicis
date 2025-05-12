@@ -35,7 +35,7 @@ fun LlistaRutesScreen(navController: NavController, userViewModel: UserViewModel
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0xFFB3F0F8))
+                .background(Color(0xFFD3FCFF))
                 .windowInsetsPadding(WindowInsets.systemBars),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {

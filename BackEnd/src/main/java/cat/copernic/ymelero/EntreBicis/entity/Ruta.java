@@ -55,4 +55,8 @@ public class Ruta {
     private LocalDate dataCreacio;
 
     private boolean validada;
+
+    @Column(name = "saldo_obtingut")
+    private Double saldoObtingut = 0.0;
+
 }

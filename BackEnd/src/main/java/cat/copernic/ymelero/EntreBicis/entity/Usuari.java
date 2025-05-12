@@ -45,7 +45,7 @@ public class Usuari {
     @Enumerated(EnumType.STRING)
     private Rol rol;
 
-    private Integer saldo;
+    private Double saldo;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "data_alta")
