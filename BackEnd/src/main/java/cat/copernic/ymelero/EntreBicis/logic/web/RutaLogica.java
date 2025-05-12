@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cat.copernic.ymelero.entrebicis.entity.EstatRuta;
+import cat.copernic.ymelero.entrebicis.entity.ParametresSistema;
 import cat.copernic.ymelero.entrebicis.entity.PuntGPS;
 import cat.copernic.ymelero.entrebicis.entity.Ruta;
 import cat.copernic.ymelero.entrebicis.entity.Usuari;
@@ -27,6 +28,14 @@ public class RutaLogica {
 
     @Autowired
     private PuntsRepository puntsRepository;
+
+    @Autowired
+    private ParametresLogica parametresLogica;
+
+    public Ruta obtenirRuta(Long idRuta) {
+        return rutaRepository.findById(idRuta)
+                .orElseThrow(() -> new RuntimeException("Ruta no trobada"));
+    }
 
     public Ruta iniciarRuta(Ruta ruta) {
         if (ruta.getUsuari() == null || ruta.getUsuari().getEmail() == null) {
@@ -81,19 +90,19 @@ public class RutaLogica {
             PuntGPS anterior = punts.get(i - 1);
             PuntGPS actual = punts.get(i);
 
-            double d = calcularDistanciaHaversine(
+            double distancia = calcularDistanciaHaversine(
                     anterior.getLatitud(), anterior.getLongitud(),
                     actual.getLatitud(), actual.getLongitud());
 
-            distanciaTotal += d;
+            distanciaTotal += distancia;
 
             Duration duracio = Duration.between(anterior.getMarcaTemps(), actual.getMarcaTemps());
             long segons = duracio.getSeconds();
 
             if (segons > 0) {
-                double v = (d / segons) * 3.6; // m/s a km/h
-                if (v > velocitatMax)
-                    velocitatMax = v;
+                double velocitat = (distancia / segons) * 3.6; // m/s a km/h
+                if (velocitat > velocitatMax)
+                    velocitatMax = velocitat;
             }
         }
 
@@ -101,9 +110,14 @@ public class RutaLogica {
         double horesTotals = segonsTotals / 3600.0;
         double velocitatMitjana = horesTotals > 0 ? (distanciaTotal / 1000.0) / horesTotals : 0;
 
+        ParametresSistema parametres = parametresLogica.getParametres();
+        double km = distanciaTotal / 1000.0;
+        double saldoObtingut = km * parametres.getConversioQuilometreSaldo();
+
         System.out.printf("Distància: %.2f m | Temps: %.2f h | VMax: %.2f km/h | VMitjana: %.2f km/h%n",
                 distanciaTotal, horesTotals, velocitatMax, velocitatMitjana);
 
+        ruta.setSaldoObtingut(saldoObtingut);
         ruta.setDistancia(distanciaTotal);
         ruta.setTempsTotal(horesTotals);
         ruta.setVelocitatMaxima(velocitatMax);

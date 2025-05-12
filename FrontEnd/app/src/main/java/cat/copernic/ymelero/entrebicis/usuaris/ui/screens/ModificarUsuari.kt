@@ -106,7 +106,7 @@ fun ModificarUsuariScreen(navController: NavController, userViewModel: UserViewM
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0xFFB3F0F8))
+                .background(Color(0xFFD3FCFF))
                 .windowInsetsPadding(WindowInsets.systemBars)
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -119,7 +119,7 @@ fun ModificarUsuariScreen(navController: NavController, userViewModel: UserViewM
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(20.dp)
-                    .background(Color(0xFFE1FAF7), shape = RoundedCornerShape(20.dp))
+                    .background(Color(0xFF9DFFE8), shape = RoundedCornerShape(20.dp))
                     .padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {

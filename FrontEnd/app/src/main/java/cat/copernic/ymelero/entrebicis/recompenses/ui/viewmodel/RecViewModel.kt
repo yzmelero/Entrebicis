@@ -76,7 +76,7 @@ class RecViewModel(private val recUseCases: RecUseCases) : ViewModel() {
     private val _missatgeReserva = MutableStateFlow<String?>(null)
     val missatgeReserva: StateFlow<String?> get() = _missatgeReserva
 
-    fun reservarRecompensa(recompensaId: Long, email: String, saldo: Int) {
+    fun reservarRecompensa(recompensaId: Long, email: String, saldo: Double) {
         viewModelScope.launch {
             try {
                 val response = recUseCases.reservarRecompensa(recompensaId, email, saldo)

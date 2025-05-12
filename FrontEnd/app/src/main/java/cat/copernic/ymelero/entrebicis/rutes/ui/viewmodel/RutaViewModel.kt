@@ -32,7 +32,8 @@ class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
                     velocitatMitjana = 0.0,
                     puntGPS = null,
                     validada = false,
-                    dataCreacio = ""
+                    dataCreacio = "",
+                    saldoObtingut = 0.0
                 )
                 val response = rutaUseCases.iniciarRuta(novaRuta)
                 if (response.isSuccessful) {
@@ -92,4 +93,24 @@ class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
             }
         }
     }
+
+    private val _rutaCarregada = MutableStateFlow<Ruta?>(null)
+    val rutaCarregada: StateFlow<Ruta?> get() = _rutaCarregada
+
+    fun carregarRutaPerId(idRuta: Long) {
+        viewModelScope.launch {
+            try {
+                val response = rutaUseCases.obtenirRuta(idRuta)
+                if (response.isSuccessful) {
+                    _rutaCarregada.value = response.body()
+                    Log.i("RutaViewModel", "Ruta carregada correctament")
+                } else {
+                    Log.e("RutaViewModel", "Error carregant ruta: ${response.errorBody()?.string()}")
+                }
+            } catch (e: Exception) {
+                Log.e("RutaViewModel", "Excepció carregant ruta: ${e.message}")
+            }
+        }
+    }
+
 }

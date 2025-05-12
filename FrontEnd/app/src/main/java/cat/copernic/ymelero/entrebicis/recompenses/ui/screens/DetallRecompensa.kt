@@ -45,10 +45,7 @@ import cat.copernic.ymelero.entrebicis.recompenses.ui.viewmodel.RecViewModelFact
 import cat.copernic.ymelero.entrebicis.usuaris.ui.viewmodel.UserViewModel
 
 @Composable
-fun DetallRecompensaScreen(
-    navController: NavController,
-    userViewModel: UserViewModel
-) {
+fun DetallRecompensaScreen(navController: NavController, userViewModel: UserViewModel) {
     val recompensaId = navController.previousBackStackEntry
         ?.savedStateHandle?.get<Long>("recompensaId") ?: return
 
@@ -78,7 +75,7 @@ fun DetallRecompensaScreen(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(Color(0xFFB3F0F8))
+                    .background(Color(0xFFD3FCFF))
                     .windowInsetsPadding(WindowInsets.systemBars),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -90,7 +87,7 @@ fun DetallRecompensaScreen(
                     modifier = Modifier
                         .padding(16.dp)
                         .clip(RoundedCornerShape(20.dp))
-                        .background(Color(0xFFE1FAF7))
+                        .background(Color(0xFF9DFFE8))
                         .padding(28.dp)
                         .fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally
@@ -169,7 +166,7 @@ fun DetallRecompensaScreen(
                         )
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Text(
-                                text = "${r.punts}",
+                                text = "${r.punts.toInt()}",
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 18.sp
                             )

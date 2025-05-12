@@ -38,7 +38,7 @@ fun UsuariScreen(navController: NavController, userViewModel: UserViewModel) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0xFFB3F0F8))
+                .background(Color(0xFFD3FCFF))
                 .windowInsetsPadding(WindowInsets.systemBars),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -60,7 +60,7 @@ fun UsuariScreen(navController: NavController, userViewModel: UserViewModel) {
             ) {
                 Column(
                     modifier = Modifier
-                        .background(Color(0xFFE1FAF7), shape = RoundedCornerShape(20.dp))
+                        .background(Color(0xFF9DFFE8), shape = RoundedCornerShape(20.dp))
                         .padding(28.dp)
                         .fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally

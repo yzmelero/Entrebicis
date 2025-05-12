@@ -47,10 +47,7 @@ import cat.copernic.ymelero.entrebicis.recompenses.ui.viewmodel.RecViewModelFact
 import cat.copernic.ymelero.entrebicis.usuaris.ui.viewmodel.UserViewModel
 
 @Composable
-fun LlistaRecompensesScreen(
-    navController: NavController,
-    userViewModel: UserViewModel
-) {
+fun LlistaRecompensesScreen(navController: NavController, userViewModel: UserViewModel) {
     val recUseCase = RecUseCases(RecRepository())
     val recViewModel: RecViewModel = viewModel(factory = RecViewModelFactory(recUseCase))
     val recompenses by recViewModel.recompensesDisponibles.collectAsState()
@@ -63,7 +60,7 @@ fun LlistaRecompensesScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0xFFB3F0F8))
+                .background(Color(0xFFD3FCFF))
                 .windowInsetsPadding(WindowInsets.systemBars),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -123,7 +120,7 @@ fun RecompensaCard(recompensa: Recompensa, recViewModel: RecViewModel, onClick: 
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(20.dp))
-            .background(Color(0xFFE1FAF7))
+            .background(Color(0xFF9DFFE8))
             .clickable { onClick() }
     ) {
         if (imageBitmap != null) {
