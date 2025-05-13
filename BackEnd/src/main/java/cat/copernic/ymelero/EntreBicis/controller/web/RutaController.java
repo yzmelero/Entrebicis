@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cat.copernic.ymelero.entrebicis.entity.Ruta;
@@ -34,5 +35,11 @@ public class RutaController {
         model.addAttribute("puntGPS", ruta.getPuntGPS());
         model.addAttribute("maxVelocitat", rutaLogica.getParametres().getVelocitatMaxima());
         return "ruta-consultar";
+    }
+
+    @PostMapping("/validar/{idRuta}")
+    public String validarRuta(@PathVariable Long idRuta) {
+        rutaLogica.validarRuta(idRuta);
+        return "redirect:/rutes/consultar/" + idRuta;
     }
 }
