@@ -17,6 +17,7 @@ h1 {
     margin-bottom: 25px;
     color: #1976d2;
 }
+
 /* Error */
 .error-container {
     text-align: center;
@@ -43,12 +44,14 @@ h1 {
     justify-content: center;
     align-items: center;
 }
+
 .login-box form {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
+
 .login-header {
     text-align: center;
     margin-bottom: 20px;
@@ -89,9 +92,10 @@ h1 {
 .logo-inici {
     width: 140px;
     border-radius: 20%;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     margin-bottom: 10px;
 }
+
 .button {
     background-color: #1976d2;
     color: white;
@@ -121,7 +125,7 @@ h1 {
 /* Barra de navegació */
 .navbar {
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     align-items: center;
     background-color: #1976d2;
     padding: 10px 30px;
@@ -129,7 +133,7 @@ h1 {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0; 
+    right: 0;
     z-index: 1000;
 }
 
@@ -141,7 +145,7 @@ h1 {
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 20px; 
+    gap: 20px;
     padding: 0;
     margin: 0;
 }
@@ -293,21 +297,25 @@ h1 {
     border-radius: 50%;
     object-fit: cover;
 }
+
 .profile-info {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     text-align: left;
 }
+
 .profile-info h2 {
     font-size: 40px;
     font-weight: bold;
     margin-bottom: 5px;
 }
+
 .profile-info p {
     font-size: 25px;
     margin: 3px 0;
 }
+
 .profile-points {
     display: flex;
     align-items: center;
@@ -333,17 +341,17 @@ h1 {
     margin: 20px;
     top: 10px;
     right: 10px;
-    width: 40px; 
+    width: 40px;
     height: 40px;
     cursor: pointer;
 }
 
 /* Usuari modificar */
 .user-photo {
-    width: 150px; 
-    height: 150px; 
-    object-fit: cover; 
-    border-radius: 50%; 
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
     margin-top: 10px;
 }
 
@@ -368,7 +376,8 @@ h1 {
 }
 
 /* Recompensa llistat */
-.rutes-container, .rewards-container {
+.rutes-container,
+.rewards-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -376,7 +385,8 @@ h1 {
     padding: 30px 20px;
 }
 
-.ruta-card, .rewards-card {
+.ruta-card,
+.rewards-card {
     background-color: #f0fffa;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -394,7 +404,8 @@ h1 {
     color: inherit;
 }
 
-.ruta-card:hover, .rewards-card:hover {
+.ruta-card:hover,
+.rewards-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
@@ -434,6 +445,7 @@ h1 {
     margin-top: 5px;
     min-height: 20px;
 }
+
 .rewards-estat-punts {
     display: flex;
     justify-content: space-between;
@@ -442,8 +454,9 @@ h1 {
     border-top: 1px solid #ddd;
     font-size: 14px;
     font-weight: 600;
-    margin-top: auto; 
+    margin-top: auto;
 }
+
 .rewards-title {
     font-size: 20px;
     font-weight: 600;
@@ -476,6 +489,7 @@ h1 {
     width: 18px;
     height: 18px;
 }
+
 .rewards-estat {
     font-weight: bold;
     font-size: 14px;
@@ -490,6 +504,7 @@ h1 {
     margin-top: 20px;
     width: 100%;
 }
+
 .reward-content {
     display: flex;
     flex-wrap: wrap;
@@ -523,12 +538,13 @@ h1 {
 }
 
 .reward-details {
-    flex: 2; 
+    flex: 2;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 15px;
 }
+
 .reward-image img {
     width: 350px;
     height: 350px;
@@ -552,11 +568,13 @@ h1 {
     font-size: 30px;
     margin-top: 15px;
 }
+
 .assigned-user-label {
     font-size: 22px;
     font-weight: bold;
     margin-bottom: 5px;
 }
+
 .assigned-user {
     font-size: 22px;
     display: block;
@@ -609,7 +627,7 @@ h1 {
 }
 
 .status-recollida {
-    background-color: #808080; 
+    background-color: #808080;
     color: white;
 }
 
@@ -641,7 +659,7 @@ h1 {
     line-height: 40px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .delete-button:hover {
@@ -671,6 +689,7 @@ h1 {
     width: 100%;
     max-width: 700px;
 }
+
 /* Llista rutes */
 .text-success {
     color: green;
@@ -704,7 +723,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 90px; 
+    gap: 90px;
     margin: 12px 0;
 }
 
@@ -720,3 +739,49 @@ h1 {
     height: 20px;
 }
 
+/* Consultar ruta */
+.detall-card {
+    background-color: #f0fffa;
+    border-radius: 15px;
+    padding: 30px;
+    width: 80%;
+    margin:  50px auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.detall-card h2 {
+    font-size: 32px;
+    color: #1976d2;
+    margin-bottom: 20px;
+}
+
+.detall-card p {
+    font-size: 18px;
+    margin: 8px 0;
+}
+
+#mapa {
+    height: 500px;
+    width: 100%;
+    border-radius: 12px;
+    margin-top: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.velocitat-maxima.excedida {
+    color: red;
+    font-weight: bold;
+}
+
+.section-parell {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.section-parell>div {
+    flex: 1;
+    padding: 10px;
+}

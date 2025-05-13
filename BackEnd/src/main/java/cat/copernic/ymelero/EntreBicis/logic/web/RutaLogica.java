@@ -48,6 +48,10 @@ public class RutaLogica {
         return rutes;
     }
 
+    public ParametresSistema getParametres() {
+        return parametresLogica.getParametres();
+    }
+
     public List<Ruta> llistarRutesPerUsuari(String email) {
         if (email == null || email.isEmpty()) {
             throw new RuntimeException("El correu electrònic de l'usuari és obligatori.");
