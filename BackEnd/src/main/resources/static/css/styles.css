@@ -1,15 +1,21 @@
 body {
-    background-color: #bef9fd;
-    text-align: center;
-    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #bef9fd, #d0f8ff);
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    padding-top: 90px;
+    color: #333;
+    text-align: center;
 }
+
+.body-with-navbar {
+    padding-top: 80px;
+}
+
 h1 {
-    font-size: 40px;
-    font-weight: bold;
-    margin-bottom: 10px;
+    font-size: 42px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #1976d2;
 }
 /* Error */
 .error-container {
@@ -30,48 +36,82 @@ h1 {
 }
 
 /* Login */
-.logo-inici {
-    width: 120px;
-    border-radius: 30%;
-    margin: 10px;
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-.container {
-    margin-top: 50px;
+.login-box form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
+.login-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .login-box {
-    background-color: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3); 
-    display: inline-block;
+    background-color: #ffffff;
+    padding: 25px 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-input {
+
+.login-box h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #1976d2;
+}
+
+.login-box input {
     width: 90%;
-    margin: 5px 0;
+    margin: 8px 0;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.login-box .button {
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.logo-inici {
+    width: 140px;
+    border-radius: 20%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    margin-bottom: 10px;
 }
 .button {
-    background-color: #7bd4f2;
-    color: black;
-    font-weight: bold;
-    border-radius: 5px;
+    background-color: #1976d2;
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
     border: none;
-    padding: 10px 40px; 
+    padding: 10px 20px;
     cursor: pointer;
-    margin-top: 10px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 139, 0.6); 
-    display: inline-block; 
-    text-decoration: none; 
-    text-align: center;
+    box-shadow: 0px 3px 10px rgba(0, 0, 139, 0.4);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
 }
+
 .button:hover {
-    background-color: #47caf6;
-    box-shadow: 0px 5px 20px rgba(0, 0, 139, 0.9);
+    background-color: #0d47a1;
 }
+
 .link {
     font-size: 14px;
     display: block;
@@ -83,7 +123,7 @@ input {
     display: flex;
     justify-content: space-between; 
     align-items: center;
-    background-color: #099a9a;
+    background-color: #1976d2;
     padding: 10px 30px;
     height: 60px;
     position: fixed;
@@ -127,33 +167,53 @@ input {
 }
 
 /* Llistat Usuaris */
+.user-card {
+    background-color: #f0fffa;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 280px;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.user-image img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    margin-bottom: 12px;
+}
+
+.user-card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1976d2;
+    margin: 0 0 5px 0;
+}
+
+.user-card p {
+    font-size: 14px;
+    color: #444;
+    margin: 3px 0;
+}
+
 .users-container {
     margin-top: 50px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 20px; 
-    padding: 20px;
-}
-
-.user-card {
-    background-color: #9DFFE8;
-    border-radius: 10px;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
-    width: 250px; 
-    padding: 20px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: transform 0.2s;
-}
-
-.user-image img {
-    width: 120px;
-    height: 120px; 
-    object-fit: cover; 
-    border-radius: 50%;
+    gap: 24px;
+    padding: 30px 20px;
 }
 
 /* Usuari alta */
@@ -218,7 +278,7 @@ input {
     position: relative;
     display: flex;
     align-items: center;
-    background: #9DFFE8;
+    background: #f0fffa;
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -290,13 +350,17 @@ input {
 .cancel-button {
     background-color: #f44336;
     color: white;
-    text-align: center;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    display: inline-block;
+    font-weight: 600;
+    border-radius: 8px;
     border: none;
+    padding: 10px 20px;
     cursor: pointer;
+    box-shadow: 0px 3px 10px rgba(0, 0, 139, 0.4);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
 }
 
 .cancel-button:hover {
@@ -304,38 +368,52 @@ input {
 }
 
 /* Recompensa llistat */
-.rewards-container {
-    margin-top: 50px;
+.rutes-container, .rewards-container {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
+    justify-content: center;
+    gap: 24px;
+    padding: 30px 20px;
+}
+
+.ruta-card, .rewards-card {
+    background-color: #f0fffa;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 280px;
     padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .rewards-card {
-    background-color: #9DFFE8;
-    border-radius: 10px;
-    width: 280px;
-    height: 430px; 
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    position: relative;
+    color: inherit;
+}
+
+.ruta-card:hover, .rewards-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 .rewards-image img {
     width: 100%;
-    height: 160px; 
+    height: 160px;
     object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .rewards-content {
     padding: 15px;
-    text-align: center;
-    flex-grow: 1; 
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 8px;
 }
 
 .rewards-title {
@@ -356,35 +434,52 @@ input {
     margin-top: 5px;
     min-height: 20px;
 }
-
 .rewards-estat-punts {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 90%;
-    padding: 10px 15px;
-    background-color: #9DFFE8;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: auto; 
+}
+.rewards-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1976d2;
+    margin-bottom: 0;
 }
 
-.rewards-estat {
-    font-weight: bold;
-    color: blue;
+.rewards-place {
     font-size: 14px;
+    color: #444;
+    margin: 0;
+}
+
+.rewards-user {
+    font-size: 14px;
+    color: #333;
+    margin-top: 8px;
 }
 
 .rewards-punts {
-    font-weight: bold;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
+    color: #388e3c;
+    font-weight: bold;
 }
+
 
 .rewards-punts img {
     width: 18px;
     height: 18px;
+}
+.rewards-estat {
+    font-weight: bold;
+    font-size: 14px;
+    color: #1976d2;
 }
 
 /* Consulta recompensa */
@@ -407,7 +502,7 @@ input {
     display: flex;
     flex-direction: column;
     align-items: left;
-    background: #9DFFE8;
+    background: #f0fffa;
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -520,9 +615,9 @@ input {
 
 /* Botó eliminar */
 .reward-card {
-    position: relative; /* Necesario para que el botón se posicione respecto a este contenedor */
+    position: relative;
     padding: 1rem;
-    background-color: #fff;
+    background-color: #f0fffa;
     border-radius: 1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -569,10 +664,59 @@ input {
 }
 
 .parametres-card {
-    background-color: white;
+    background-color: #f0fffa;
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 700px;
 }
+/* Llista rutes */
+.text-success {
+    color: green;
+    font-weight: bold;
+}
+
+.text-danger {
+    color: red;
+    font-weight: bold;
+}
+
+.ruta-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #1976d2;
+    margin-bottom: 0px;
+}
+
+.ruta-subtitle {
+    font-size: 14px;
+    font-style: italic;
+    margin-bottom: 12px;
+}
+
+.ruta-info p {
+    font-size: 14px;
+    margin: 4px 0;
+}
+
+.ruta-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 90px; 
+    margin: 12px 0;
+}
+
+.ruta-punts {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: bold;
+}
+
+.ruta-punts img {
+    width: 20px;
+    height: 20px;
+}
+
