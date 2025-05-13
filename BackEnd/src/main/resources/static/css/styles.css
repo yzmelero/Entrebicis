@@ -285,10 +285,11 @@ h1 {
     background: #f0fffa;
     padding: 40px;
     border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 50%;
-    height: 350px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 80%;
     gap: 40px;
+    margin: 50px auto; 
+    flex-wrap: wrap; 
 }
 
 .profile-image img {
@@ -312,8 +313,9 @@ h1 {
 }
 
 .profile-info p {
-    font-size: 25px;
-    margin: 3px 0;
+    font-size: 18px;
+    margin: 6px 0;
+    color: #444;
 }
 
 .profile-points {
