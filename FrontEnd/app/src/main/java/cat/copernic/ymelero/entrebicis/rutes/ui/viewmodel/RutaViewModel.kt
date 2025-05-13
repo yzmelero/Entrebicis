@@ -112,5 +112,19 @@ class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
             }
         }
     }
+    private val _llistaRutes = MutableStateFlow<List<Ruta>>(emptyList())
+    val llistaRutes: StateFlow<List<Ruta>> get() = _llistaRutes
 
+    fun carregarRutesUsuari(email: String) {
+        viewModelScope.launch {
+            try {
+                val resposta = rutaUseCases.getRutesPerUsuari(email)
+                if (resposta.isSuccessful) {
+                    _llistaRutes.value = resposta.body() ?: emptyList()
+                }
+            } catch (e: Exception) {
+                Log.e("RutaViewModel", "Error carregant rutes: ${e.message}")
+            }
+        }
+    }
 }

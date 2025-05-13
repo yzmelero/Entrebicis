@@ -33,13 +33,32 @@ public class RutaLogica {
     private ParametresLogica parametresLogica;
 
     public Ruta obtenirRuta(Long idRuta) {
+        if (idRuta == null || idRuta <= 0) {
+            throw new RuntimeException("L'identificador de la ruta és invàlid.");
+        }
         return rutaRepository.findById(idRuta)
-                .orElseThrow(() -> new RuntimeException("Ruta no trobada"));
+                .orElseThrow(() -> new RuntimeException("Ruta no trobada amb id: " + idRuta));
+    }
+
+    public List<Ruta> llistarRutesPerUsuari(String email) {
+        if (email == null || email.isEmpty()) {
+            throw new RuntimeException("El correu electrònic de l'usuari és obligatori.");
+        }
+        usuariRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Usuari no trobat"));
+        return rutaRepository.findByUsuariEmailOrderByDataCreacioDesc(email);
     }
 
     public Ruta iniciarRuta(Ruta ruta) {
+        if (ruta.getDistancia() != null && ruta.getDistancia() < 0) {
+            throw new RuntimeException("La distància no pot ser negativa.");
+        }
+        if (ruta.getTempsTotal() != null && ruta.getTempsTotal() < 0) {
+            throw new RuntimeException("El temps total no pot ser negatiu.");
+        }
+
         if (ruta.getUsuari() == null || ruta.getUsuari().getEmail() == null) {
-            throw new RuntimeException("L'usuari o el correu electrònic és nul.");
+            throw new RuntimeException("Usuari no trobat amb email: " + ruta.getUsuari().getEmail());
         }
 
         Usuari usuari = usuariRepository.findByEmail(ruta.getUsuari().getEmail())
@@ -58,6 +77,9 @@ public class RutaLogica {
     }
 
     public PuntGPS afegirPuntGPS(Long idRuta, PuntGPS punt) {
+        if (punt.getLatitud() == null || punt.getLongitud() == null) {
+            throw new RuntimeException("Les coordenades del punt GPS són obligatòries.");
+        }
         Ruta ruta = rutaRepository.findById(idRuta)
                 .orElseThrow(() -> new RuntimeException("Ruta no trobada"));
 
@@ -113,6 +135,12 @@ public class RutaLogica {
         ParametresSistema parametres = parametresLogica.getParametres();
         double km = distanciaTotal / 1000.0;
         double saldoObtingut = km * parametres.getConversioQuilometreSaldo();
+        if (horesTotals <= 0 || distanciaTotal <= 0) {
+            throw new RuntimeException("No es pot finalitzar la ruta perquè les dades són invàlides.");
+        }
+        if (saldoObtingut < 0) {
+            throw new RuntimeException("El saldo obtingut no pot ser negatiu.");
+        }
 
         System.out.printf("Distància: %.2f m | Temps: %.2f h | VMax: %.2f km/h | VMitjana: %.2f km/h%n",
                 distanciaTotal, horesTotals, velocitatMax, velocitatMitjana);
