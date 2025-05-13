@@ -193,4 +193,25 @@ public class RutaLogica {
         usuariRepository.save(usuari);
         rutaRepository.save(ruta);
     }
+
+    public void invalidarRuta(Long idRuta) {
+        Ruta ruta = obtenirRuta(idRuta);
+
+        if (ruta.getEstat() != EstatRuta.VALIDADA) {
+            throw new RuntimeException("Només es poden invalidar rutes amb estat VALIDADA.");
+        }
+
+        Usuari usuari = ruta.getUsuari();
+
+        if (usuari.getSaldo() == null || usuari.getSaldo() < ruta.getSaldoObtingut()) {
+            throw new RuntimeException("El saldo de l'usuari és insuficient per invalidar la ruta.");
+        }
+
+        usuari.setSaldo(usuari.getSaldo() - ruta.getSaldoObtingut());
+        ruta.setValidada(false);
+        ruta.setEstat(EstatRuta.NOVALIDADA);
+        usuariRepository.save(usuari);
+        rutaRepository.save(ruta);
+    }
+
 }
