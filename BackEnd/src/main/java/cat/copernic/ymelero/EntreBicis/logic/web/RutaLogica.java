@@ -40,6 +40,14 @@ public class RutaLogica {
                 .orElseThrow(() -> new RuntimeException("Ruta no trobada amb id: " + idRuta));
     }
 
+    public List<Ruta> llistarTotesLesRutes() {
+        List<Ruta> rutes = rutaRepository.findAllByOrderByDataCreacioDesc();
+        if (rutes.isEmpty()) {
+            throw new RuntimeException("No hi ha rutes disponibles.");
+        }
+        return rutes;
+    }
+
     public List<Ruta> llistarRutesPerUsuari(String email) {
         if (email == null || email.isEmpty()) {
             throw new RuntimeException("El correu electrònic de l'usuari és obligatori.");

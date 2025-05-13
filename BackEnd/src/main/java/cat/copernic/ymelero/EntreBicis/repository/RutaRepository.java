@@ -8,4 +8,7 @@ import cat.copernic.ymelero.entrebicis.entity.Ruta;
 
 public interface RutaRepository extends JpaRepository<Ruta, Long> {
     List<Ruta> findByUsuariEmailOrderByDataCreacioDesc(String email);
+
+    List<Ruta> findAllByOrderByDataCreacioDesc();
+
 }
