@@ -6,10 +6,11 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>EntreBicis</h1>
-        <img class="logo-inici" src="/img/LogoEntreBicis.png" alt="Logo EntreBicis">
-        <br>
+    <div class="login-container">
+        <div class="login-header">
+            <img class="logo-inici" src="/img/LogoEntreBicis.png" alt="Logo EntreBicis">
+        </div>
+
         <div class="login-box">
             <div th:if="${errorMessage}" class="error-message">
                 <p th:text="${errorMessage}"></p>
@@ -29,4 +30,3 @@
         </div>
     </div>
 </body>
-</html>
