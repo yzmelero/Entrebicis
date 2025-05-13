@@ -94,6 +94,12 @@ fun LlistaRutesScreen(navController: NavController, userViewModel: UserViewModel
                     ) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Text("Ruta ${index + 1}", fontWeight = FontWeight.Bold, fontSize = 20.sp)
+                            Text(
+                                text = "Data: ${ruta.dataCreacio}",
+                                fontSize = 16.sp,
+                                color = Color.Black,
+                                modifier = Modifier.padding(top = 4.dp)
+                            )
 
                             Spacer(modifier = Modifier.height(8.dp))
 
