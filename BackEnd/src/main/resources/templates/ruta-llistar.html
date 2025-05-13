@@ -9,7 +9,7 @@
 </head>
 
 <body class="body-with-navbar">
-    <div th:replace="fragments/navbar :: navbar"></div>
+    <div th:replace="fragments/navbar :: navbar('rutes')"></div>
     <h1 class="title">Llista de Rutes</h1>
 
    <div class="rutes-container">
@@ -27,7 +27,7 @@
         <div class="ruta-footer">
             <div class="ruta-punts">
                 <img src="/img/coin-icon.png" alt="Punts">
-                <span th:text="${#numbers.formatDecimal(ruta.saldoObtingut, 1, 2)}"></span>
+                <span th:text="${#numbers.formatDecimal(ruta.saldoObtingut ?: 0.0, 1, 2)}">0.00</span>
             </div>
             <span class="ruta-estat" th:text="${ruta.validada ? 'Validada' : 'No Validada'}"
                 th:classappend="${ruta.validada} ? 'text-success' : 'text-danger'"></span>

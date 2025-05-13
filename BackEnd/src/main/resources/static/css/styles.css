@@ -188,6 +188,43 @@ h1 {
     transform: translateY(-4px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
+.title-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 0 30px;
+    padding: 0 40px;
+}
+
+.title-container .title {
+    margin: 0 auto;
+    font-size: 42px;
+    font-weight: 600;
+    color: #1976d2;
+}
+
+.add-user-button {
+    position: absolute;
+    right: 100px;
+    background-color: #1976d2;
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    line-height: 48px;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 3px 10px rgba(0, 0, 139, 0.3);
+    transition: background-color 0.3s ease;
+}
+
+.add-user-button:hover {
+    background-color: #0d47a1;
+}
+
 
 .user-image img {
     width: 120px;
