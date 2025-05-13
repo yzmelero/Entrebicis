@@ -3,35 +3,40 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Llista Usuaris</title>
+    <title>Detalls Usuari</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body class="body-with-navbar">
-    <div th:replace="fragments/navbar :: navbar"></div>
-    <h1 class="title">Detalls Usuari</h1>
+    <div th:replace="fragments/navbar :: navbar('usuaris')"></div>
 
-    <div class="profile-container">
+    <div class="profile-container" style="margin-bottom: 50px;">
         <div class="profile-card">
             <a th:href="@{/usuaris/modificar/{email}(email=${usuari.email})}">
                 <img src="/img/modify-icon.png" alt="Editar Perfil" class="modify-icon">
             </a>
+
             <div class="profile-image">
                 <img th:if="${imatgeBase64 != null}" th:src="'data:image/jpeg;base64,' + ${imatgeBase64}" alt="Imatge Usuari">
                 <img th:if="${imatgeBase64 == null}" src="/img/iconUser.png" alt="Imatge Usuari">
             </div>
+
             <div class="profile-info">
                 <h2 th:text="${usuari.nom} + ' ' + ${usuari.cognoms}">Nom Usuari</h2>
-                <p th:text="${usuari.email}">email@example.com</p>
-                <p th:text="${usuari.rol}">Rol</p>
+                <strong><p th:text="${usuari.email}">email@example.com</p></strong>
+                <p><strong>Rol:</strong> <span th:text="${usuari.rol}">ROL</span></p>
+                <p><strong>Població:</strong> <span th:text="${usuari.poblacio}">Població</span></p>
+                <p><strong>Telèfon:</strong> <span th:text="${usuari.telefon}">Telèfon</span></p>
+                <p><strong>Data de naixement:</strong> <span th:text="${usuari.dataNaixement}">YYYY-MM-DD</span></p>
+
                 <div class="profile-points">
-                    <span th:text="${usuari.saldo}">0</span>
-                    <img src="/img/coin-icon.png" alt="Punts" width="20">
+                    <span th:text="${#numbers.formatDecimal(usuari.saldo, 1, 2)}">0.00</span>
+                    <img src="/img/coin-icon.png" alt="Punts" width="24">
                 </div>
+
                 <div class="profile-buttons">
-                    <button class="button">Historial Recompenses</button>
-                    <button class="button">Historial Rutes</button>
+                    <a th:href="@{/recompenses/historial/{email}(email=${usuari.email})}" class="button">Historial Recompenses</a>
+                    <a th:href="@{/rutes/historial/{email}(email=${usuari.email})}" class="button">Historial Rutes</a>
                 </div>
             </div>
         </div>

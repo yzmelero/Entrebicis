@@ -9,21 +9,21 @@
 </head>
 
 <body class="body-with-navbar">
-    <div th:replace="fragments/navbar :: navbar"></div>
-    <h1 class="title">Llista Usuaris</h1>
-    <a href="/usuaris/crear" class="button">+ Crear Usuari</a>
+    <div th:replace="fragments/navbar :: navbar('usuaris')"></div>
+    <div class="title-container">
+        <h1 class="title">Llista Usuaris</h1>
+        <a href="/usuaris/crear" class="add-user-button" title="Crear Usuari">+</a>
+    </div>
+
 
     <div class="users-container">
         <div class="user-card" th:each="usuari : ${usuaris}">
             <h2 th:text="${usuari.nom} + ' ' + ${usuari.cognoms}">Nom Usuari</h2>
             <div class="user-image">
                 <img th:if="${imatgesBase64[usuari.email] != null}"
-                     th:src="'data:image/jpeg;base64,' + ${imatgesBase64[usuari.email]}" 
-                     alt="Imatge Usuari">
-                     
-                <img th:if="${imatgesBase64[usuari.email] == null}"
-                     src="/img/iconUser.png" 
-                     alt="Imatge Usuari">
+                    th:src="'data:image/jpeg;base64,' + ${imatgesBase64[usuari.email]}" alt="Imatge Usuari">
+
+                <img th:if="${imatgesBase64[usuari.email] == null}" src="/img/iconUser.png" alt="Imatge Usuari">
             </div>
             <p th:text="${usuari.email}">email@example.com</p>
             <p th:text="${usuari.rol}">Rol</p>

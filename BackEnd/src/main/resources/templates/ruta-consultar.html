@@ -9,7 +9,7 @@
 </head>
 
 <body class="body-with-navbar">
-    <div th:replace="fragments/navbar :: navbar"></div>
+    <div th:replace="fragments/navbar :: navbar('rutes')"></div>
 
     <div class="detall-card">
         <h1 class="title">
@@ -53,6 +53,12 @@
                     <span th:text="${ruta.validada ? 'Validada' : 'No Validada'}"
                         th:classappend="${ruta.validada} ? 'text-success' : 'text-danger'"></span>
                 </p>
+
+                <div th:if="${!ruta.validada}">
+                    <form th:action="@{'/rutes/validar/' + ${ruta.id}}" method="post" style="display:inline;">
+                        <button type="submit" class="button">Validar Ruta</button>
+                    </form>
+                </div>
             </div>
         </div>
 

@@ -179,4 +179,18 @@ public class RutaLogica {
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         return R * c;
     }
+
+    public void validarRuta(Long idRuta) {
+        Ruta ruta = obtenirRuta(idRuta);
+        if (ruta.getEstat() != EstatRuta.NOVALIDADA) {
+            throw new RuntimeException("Només es poden validar rutes amb estat NO VALIDADA.");
+        }
+        ruta.setValidada(true);
+        ruta.setEstat(EstatRuta.VALIDADA);
+
+        Usuari usuari = ruta.getUsuari();
+        usuari.setSaldo(usuari.getSaldo() + ruta.getSaldoObtingut());
+        usuariRepository.save(usuari);
+        rutaRepository.save(ruta);
+    }
 }
