@@ -12,6 +12,10 @@
     <div th:replace="fragments/navbar :: navbar('rutes')"></div>
 
     <div class="detall-card">
+        <div th:if="${error}" class="error-message" style="margin-bottom: 20px;">
+            <p th:text="${error}"></p>
+        </div>
+
         <h1 class="title">
             <span th:text="'Detalls de la Ruta ' + ${ruta.id}"></span>
             <span style="font-size: 20px; font-style: italic; color: #555;"
@@ -45,7 +49,8 @@
             <div>
                 <p><strong>Saldo obtingut:</strong>
                     <img src="/img/coin-icon.png" alt="Punts" width="20" style="vertical-align: middle;">
-                    <span th:text="${#numbers.formatDecimal(ruta.saldoObtingut, 1, 2)}"></span>
+                    <span
+                        th:text="${#numbers.formatDecimal(ruta.saldoObtingut != null ? ruta.saldoObtingut : 0, 1, 2)}">0.00</span>
                 </p>
             </div>
             <div>
@@ -56,7 +61,14 @@
 
                 <div th:if="${!ruta.validada}">
                     <form th:action="@{'/rutes/validar/' + ${ruta.id}}" method="post" style="display:inline;">
-                        <button type="submit" class="button">Validar Ruta</button>
+                        <button type="submit" class="button" style="background-color: #4CAF50;">✔ Validar Ruta</button>
+                    </form>
+                </div>
+
+                <div th:if="${ruta.validada}">
+                    <form th:action="@{'/rutes/invalidar/' + ${ruta.id}}" method="post" style="display:inline;">
+                        <button type="submit" class="button" style="background-color: #f44336;">✖ Invalidar
+                            Ruta</button>
                     </form>
                 </div>
             </div>

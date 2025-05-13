@@ -42,4 +42,20 @@ public class RutaController {
         rutaLogica.validarRuta(idRuta);
         return "redirect:/rutes/consultar/" + idRuta;
     }
+
+    @PostMapping("/invalidar/{idRuta}")
+    public String invalidarRuta(@PathVariable Long idRuta, Model model) {
+        try {
+            rutaLogica.invalidarRuta(idRuta);
+            return "redirect:/rutes/consultar/" + idRuta;
+        } catch (RuntimeException ex) {
+            Ruta ruta = rutaLogica.obtenirRuta(idRuta);
+            model.addAttribute("ruta", ruta);
+            model.addAttribute("puntGPS", ruta.getPuntGPS());
+            model.addAttribute("maxVelocitat", rutaLogica.getParametres().getVelocitatMaxima());
+            model.addAttribute("error", ex.getMessage()); 
+            return "ruta-consultar";
+        }
+    }
+
 }
