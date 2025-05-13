@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cat.copernic.ymelero.entrebicis.entity.Ruta;
@@ -23,5 +24,15 @@ public class RutaController {
         List<Ruta> rutes = rutaLogica.llistarTotesLesRutes();
         model.addAttribute("rutes", rutes);
         return "ruta-llistar";
+    }
+
+    @GetMapping("/consultar/{idRuta}")
+    public String consultarRuta(@PathVariable Long idRuta, Model model) {
+        Ruta ruta = rutaLogica.obtenirRuta(idRuta);
+
+        model.addAttribute("ruta", ruta);
+        model.addAttribute("puntGPS", ruta.getPuntGPS());
+        model.addAttribute("maxVelocitat", rutaLogica.getParametres().getVelocitatMaxima());
+        return "ruta-consultar";
     }
 }

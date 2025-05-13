@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detalls Ruta</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdanhY4rg2GltIprNvFrI8ZaL96ldHpVU" defer></script>
+</head>
+
+<body class="body-with-navbar">
+    <div th:replace="fragments/navbar :: navbar"></div>
+
+    <div class="detall-card">
+        <h1 class="title">
+            <span th:text="'Detalls de la Ruta ' + ${ruta.id}"></span>
+            <span style="font-size: 20px; font-style: italic; color: #555;"
+                th:text="'(' + ${ruta.usuari.nom} + ' ' + ${ruta.usuari.cognoms} + ')'"></span>
+        </h1>
+
+        <hr style="margin-bottom: 20px;">
+
+        <p><strong>Data:</strong> <span th:text="${ruta.dataCreacio}"></span></p>
+
+        <div class="section-parell">
+            <div>
+                <p><strong>Distància recorreguda:</strong> <span
+                        th:text="${#numbers.formatDecimal(ruta.distancia, 1, 2)} + ' m'"></span></p>
+                <p><strong>Temps total:</strong> <span
+                        th:text="${#numbers.formatDecimal(ruta.tempsTotal, 1, 2)} + ' h'"></span></p>
+            </div>
+            <div>
+                <p><strong>Velocitat mitjana:</strong> <span
+                        th:text="${#numbers.formatDecimal(ruta.velocitatMitjana, 1, 2)} + ' km/h'"></span></p>
+                <p>
+                    <strong>Velocitat màxima:</strong>
+                    <span th:class="'velocitat-maxima ' + (${ruta.velocitatMaxima} > ${maxVelocitat} ? 'excedida' : '')"
+                        th:text="${#numbers.formatDecimal(ruta.velocitatMaxima, 1, 2)} + ' km/h'"></span>
+                    <span th:if="${ruta.velocitatMaxima} > ${maxVelocitat}">⚠️</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="section-parell" style="margin-top: 15px;">
+            <div>
+                <p><strong>Saldo obtingut:</strong>
+                    <img src="/img/coin-icon.png" alt="Punts" width="20" style="vertical-align: middle;">
+                    <span th:text="${#numbers.formatDecimal(ruta.saldoObtingut, 1, 2)}"></span>
+                </p>
+            </div>
+            <div>
+                <p><strong>Estat de la ruta:</strong>
+                    <span th:text="${ruta.validada ? 'Validada' : 'No Validada'}"
+                        th:classappend="${ruta.validada} ? 'text-success' : 'text-danger'"></span>
+                </p>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 30px; color: #1976d2;">Mapa del recorregut</h3>
+        <div id="mapa"></div>
+    </div>
+
+    <script th:inline="javascript">
+        let punts = /*[[${puntGPS}]]*/[];
+
+        function initMap() {
+            if (!punts || punts.length === 0) return;
+
+            const center = { lat: punts[0].latitud, lng: punts[0].longitud };
+
+            const map = new google.maps.Map(document.getElementById("mapa"), {
+                zoom: 15,
+                center: center,
+                mapTypeId: "terrain"
+            });
+
+            const pathCoords = punts.map(p => ({ lat: p.latitud, lng: p.longitud }));
+
+            const polyline = new google.maps.Polyline({
+                path: pathCoords,
+                geodesic: true,
+                strokeColor: "#1976d2",
+                strokeOpacity: 1.0,
+                strokeWeight: 4
+            });
+
+            polyline.setMap(map);
+
+            punts.forEach(p => {
+                new google.maps.Marker({
+                    position: { lat: p.latitud, lng: p.longitud },
+                    map: map,
+                    title: `Lat: ${p.latitud}, Lng: ${p.longitud}`
+                });
+            });
+
+            const bounds = new google.maps.LatLngBounds();
+            pathCoords.forEach(coord => bounds.extend(coord));
+            map.fitBounds(bounds);
+        }
+
+        window.addEventListener('load', () => {
+            if (typeof google !== 'undefined') initMap();
+        });
+    </script>
+
+</body>
+
+</html>
