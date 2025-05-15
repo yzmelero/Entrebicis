@@ -79,7 +79,7 @@ public class RecompensaLogica {
         return recompensaRepository.findByUsuari_Email(email);
     }
 
-    public Recompensa reservarRecompensa(Long recompensaId, String emailUsuari, Integer saldoUsuari) {
+    public Recompensa reservarRecompensa(Long recompensaId, String emailUsuari, Double saldoUsuari) {
         Recompensa recompensa = getRecompensa(recompensaId);
 
         if (recompensa == null) {
