@@ -135,4 +135,15 @@ public class RecompensaLogica {
         recompensaRepository.save(recompensa);
     }
 
+    public Recompensa recollirRecompensa(Long recompensaId) {
+        Recompensa recompensa = recompensaRepository.findById(recompensaId)
+                .orElseThrow(() -> new RuntimeException("Recompensa no trobada"));
+        if (recompensa.getEstat() != EstatRecompensa.ASSIGNADA) {
+            throw new RuntimeException("Només es poden recollir recompenses assignades");
+        }
+        recompensa.setEstat(EstatRecompensa.RECOLLIDA);
+        recompensa.setDataRecollida(LocalDate.now());
+        return recompensaRepository.save(recompensa);
+    }
+
 }

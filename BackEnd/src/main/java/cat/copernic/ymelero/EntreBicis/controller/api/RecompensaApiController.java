@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,8 +35,8 @@ public class RecompensaApiController {
     }
 
     @GetMapping
-    public Recompensa getRecompensa(@RequestParam Long id) {
-        return recompensaLogica.getRecompensa(id);
+    public Recompensa getRecompensa(@RequestParam Long recompensaId) {
+        return recompensaLogica.getRecompensa(recompensaId);
     }
 
     @PostMapping("/reservar")
@@ -50,4 +51,15 @@ public class RecompensaApiController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
+
+    @PutMapping("/recollir")
+    public ResponseEntity<?> recollirRecompensa(@RequestParam Long recompensaId) {
+        try {
+            Recompensa recompensa = recompensaLogica.recollirRecompensa(recompensaId);
+            return ResponseEntity.ok(recompensa);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
 }
