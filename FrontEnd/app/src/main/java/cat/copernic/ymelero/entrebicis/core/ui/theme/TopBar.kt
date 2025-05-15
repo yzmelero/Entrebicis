@@ -1,5 +1,6 @@
 package cat.copernic.ymelero.entrebicis.core.ui.theme
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -69,7 +70,15 @@ fun TopBar(navController: NavController, userViewModel: UserViewModel) {
             text = "EntreBicis",
             color = Color.Black,
             fontSize = 24.sp,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.clickable {
+                userViewModel.refrescarUsuari()
+                Toast.makeText(
+                    navController.context,
+                    "Dades actualitzades",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         )
 
         Row(

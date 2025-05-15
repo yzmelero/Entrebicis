@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,11 +41,21 @@ public class RecompensaApiController {
 
     @PostMapping("/reservar")
     public ResponseEntity<?> reservarRecompensa(
-            @RequestParam Long recompensaId,
+            @RequestParam Long id,
             @RequestParam String email,
             @RequestParam Double saldo) {
         try {
-            Recompensa recompensa = recompensaLogica.reservarRecompensa(recompensaId, email, saldo);
+            Recompensa recompensa = recompensaLogica.reservarRecompensa(id, email, saldo);
+            return ResponseEntity.ok(recompensa);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
+    @PutMapping("/recollir")
+    public ResponseEntity<?> recollirRecompensa(@RequestParam Long id) {
+        try {
+            Recompensa recompensa = recompensaLogica.recollirRecompensa(id);
             return ResponseEntity.ok(recompensa);
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

@@ -7,6 +7,7 @@ import androidx.navigation.compose.rememberNavController
 import cat.copernic.ymelero.entrebicis.recompenses.ui.screens.DetallRecompensaScreen
 import cat.copernic.ymelero.entrebicis.recompenses.ui.screens.LlistaRecompensesPropiesScreen
 import cat.copernic.ymelero.entrebicis.recompenses.ui.screens.LlistaRecompensesScreen
+import cat.copernic.ymelero.entrebicis.recompenses.ui.screens.RecollirRecompensaScreen
 import cat.copernic.ymelero.entrebicis.rutes.ui.screens.DetallsRutaScreen
 import cat.copernic.ymelero.entrebicis.rutes.ui.screens.IniciRutaScreen
 import cat.copernic.ymelero.entrebicis.rutes.ui.screens.LlistaRutesScreen
@@ -30,6 +31,7 @@ fun AppNavigation(userViewModel: UserViewModel) {
         composable("modificarUsuari") { ModificarUsuariScreen(navController, userViewModel) }
         composable("detallRecompensa") { DetallRecompensaScreen(navController, userViewModel) }
         composable("detallsRuta/{idRuta}") { DetallsRutaScreen(navController, userViewModel)}
+        composable("recollirRecompensa") { RecollirRecompensaScreen(navController, userViewModel)}
 
     }
 }

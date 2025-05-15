@@ -96,6 +96,29 @@ class RecViewModel(private val recUseCases: RecUseCases) : ViewModel() {
         _missatgeReserva.value = null
     }
 
+    private val _missatgeRecollida = MutableStateFlow<String?>(null)
+    val missatgeRecollida: StateFlow<String?> get() = _missatgeRecollida
+
+    fun recollirRecompensa(id: Long) {
+        viewModelScope.launch {
+            try {
+                val response = recUseCases.recollirRecompensa(id)
+                if (response.isSuccessful) {
+                    _recompensa.value = response.body()
+                    _missatgeRecollida.value = "ENTREGAT"
+                } else {
+                    val errorText = response.body()?.toString() ?: response.errorBody()?.string()
+                    _missatgeRecollida.value = errorText
+                }
+            } catch (e: Exception) {
+                _missatgeRecollida.value = "Excepció: ${e.message}"
+            }
+        }
+    }
+
+    fun resetMissatgeRecollida() {
+        _missatgeRecollida.value = null
+    }
 
     fun base64ToBitmap(base64: String): ImageBitmap? {
         return try {

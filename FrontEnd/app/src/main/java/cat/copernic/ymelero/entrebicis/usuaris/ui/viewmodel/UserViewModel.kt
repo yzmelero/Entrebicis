@@ -147,4 +147,22 @@ class UserViewModel(private val useCases: UseCases) : ViewModel() {
             null
         }
     }
+
+    fun refrescarUsuari() {
+        _currentUser.value?.email?.let { email ->
+            viewModelScope.launch {
+                try {
+                    val response = useCases.getUsuari(email)
+                    if (response.isSuccessful && response.body() != null) {
+                        _currentUser.value = response.body()
+                    } else {
+                        Log.e("UserViewModel", "No s'ha pogut refrescar l'usuari: ${response.errorBody()?.string()}")
+                    }
+                } catch (e: Exception) {
+                    Log.e("UserViewModel", "Error refrescant usuari: ${e.message}")
+                }
+            }
+        }
+    }
+
 }
