@@ -8,5 +8,6 @@ class RecUseCases (private val recRepository: RecRepository) {
     suspend fun getRecompensaPerId(id: Long) = recRepository.getRecompensaPerId(id)
     suspend fun reservarRecompensa(recompensaId: Long, email: String, saldo: Double) =
         recRepository.reservarRecompensa(recompensaId, email, saldo)
+    suspend fun recollirRecompensa(id: Long) = recRepository.recollirRecompensa(id)
 
 }

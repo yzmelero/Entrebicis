@@ -1,5 +1,6 @@
 package cat.copernic.ymelero.entrebicis.recompenses.ui.screens
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -65,6 +66,7 @@ fun DetallRecompensaScreen(navController: NavController, userViewModel: UserView
         }
     }
     LaunchedEffect(recompensaId) {
+        Log.d("DEBUG", "Carregant recompensa amb ID $recompensaId")
         recViewModel.carregarRecompensaPerId(recompensaId)
     }
 
@@ -213,6 +215,27 @@ fun DetallRecompensaScreen(navController: NavController, userViewModel: UserView
                         ) {
                             Text(
                                 text = "Reservar",
+                                fontSize = 18.sp,
+                                fontWeight = FontWeight.Medium,
+                                color = Color.White
+                            )
+                        }
+                    }
+                    if (r.estat.name == "ASSIGNADA") {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(10.dp))
+                                .background(Color(0xFF1976d2))
+                                .clickable {
+                                    navController.currentBackStackEntry?.savedStateHandle?.set("recompensaId", r.id)
+                                    navController.navigate("recollirRecompensa")
+                                }
+                                .padding(vertical = 12.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = "Recollir",
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.Medium,
                                 color = Color.White

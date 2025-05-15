@@ -20,4 +20,8 @@ class RecRepository {
         return RetrofitInstance.api.reservarRecompensa(recompensaId, email, saldo)
     }
 
+    suspend fun recollirRecompensa(id: Long): Response<Recompensa> {
+        return RetrofitInstance.api.recollirRecompensa(id)
+    }
+
 }

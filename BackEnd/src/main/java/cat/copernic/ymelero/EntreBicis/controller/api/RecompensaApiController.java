@@ -35,17 +35,17 @@ public class RecompensaApiController {
     }
 
     @GetMapping
-    public Recompensa getRecompensa(@RequestParam Long recompensaId) {
-        return recompensaLogica.getRecompensa(recompensaId);
+    public Recompensa getRecompensa(@RequestParam Long id) {
+        return recompensaLogica.getRecompensa(id);
     }
 
     @PostMapping("/reservar")
     public ResponseEntity<?> reservarRecompensa(
-            @RequestParam Long recompensaId,
+            @RequestParam Long id,
             @RequestParam String email,
             @RequestParam Double saldo) {
         try {
-            Recompensa recompensa = recompensaLogica.reservarRecompensa(recompensaId, email, saldo);
+            Recompensa recompensa = recompensaLogica.reservarRecompensa(id, email, saldo);
             return ResponseEntity.ok(recompensa);
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
@@ -53,13 +53,12 @@ public class RecompensaApiController {
     }
 
     @PutMapping("/recollir")
-    public ResponseEntity<?> recollirRecompensa(@RequestParam Long recompensaId) {
+    public ResponseEntity<?> recollirRecompensa(@RequestParam Long id) {
         try {
-            Recompensa recompensa = recompensaLogica.recollirRecompensa(recompensaId);
+            Recompensa recompensa = recompensaLogica.recollirRecompensa(id);
             return ResponseEntity.ok(recompensa);
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
-
 }
