@@ -17,13 +17,16 @@
             </a>
 
             <div class="profile-image">
-                <img th:if="${imatgeBase64 != null}" th:src="'data:image/jpeg;base64,' + ${imatgeBase64}" alt="Imatge Usuari">
+                <img th:if="${imatgeBase64 != null}" th:src="'data:image/jpeg;base64,' + ${imatgeBase64}"
+                    alt="Imatge Usuari">
                 <img th:if="${imatgeBase64 == null}" src="/img/iconUser.png" alt="Imatge Usuari">
             </div>
 
             <div class="profile-info">
                 <h2 th:text="${usuari.nom} + ' ' + ${usuari.cognoms}">Nom Usuari</h2>
-                <strong><p th:text="${usuari.email}">email@example.com</p></strong>
+                <strong>
+                    <p th:text="${usuari.email}">email@example.com</p>
+                </strong>
                 <p><strong>Rol:</strong> <span th:text="${usuari.rol}">ROL</span></p>
                 <p><strong>Població:</strong> <span th:text="${usuari.poblacio}">Població</span></p>
                 <p><strong>Telèfon:</strong> <span th:text="${usuari.telefon}">Telèfon</span></p>

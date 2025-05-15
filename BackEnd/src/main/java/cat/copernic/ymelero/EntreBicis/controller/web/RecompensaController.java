@@ -118,4 +118,26 @@ public class RecompensaController {
             return "redirect:/recompenses/consultar/" + id;
         }
     }
+
+    @GetMapping("/historial/{email}")
+    public String veureHistorialRecompenses(@PathVariable String email, Model model) {
+        List<Recompensa> recompenses = recompensaLogica.getRecompensesPropies(email);
+        Map<Long, String> imatgesBase64 = new HashMap<>();
+
+        for (Recompensa recompensa : recompenses) {
+            if (recompensa.getFoto() != null) {
+                String imatgeBase64 = Base64.getEncoder().encodeToString(recompensa.getFoto());
+                imatgesBase64.put(recompensa.getId(), imatgeBase64);
+            }
+        }
+
+        model.addAttribute("recompenses", recompenses);
+        model.addAttribute("imatgesBase64", imatgesBase64);
+
+        if (!recompenses.isEmpty() && recompenses.get(0).getUsuari() != null) {
+            model.addAttribute("usuariRecompenses", recompenses.get(0).getUsuari());
+        }
+        return "recompensa-llistar";
+    }
+
 }

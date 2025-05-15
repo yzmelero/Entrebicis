@@ -11,8 +11,19 @@
 <body class="body-with-navbar">
     <div th:replace="fragments/navbar :: navbar('recompenses')"></div>
     <div class="title-container">
-        <h1 class="title">Llista Recompenses</h1>
-        <a href="/recompenses/crear" class="add-user-button" title="Crear Recompensa">+</a>
+        <h1 class="title">
+            <span th:if="${usuariRecompenses != null}">
+                Llista Recompenses de
+                <span th:text="${usuariRecompenses.nom + ' ' + usuariRecompenses.cognoms}">Usuari</span>
+            </span>
+            <span th:unless="${usuariRecompenses != null}">
+                Llista Recompenses
+                <a href="/recompenses/crear" class="add-user-button" title="Crear Recompensa">+</a>
+            </span>
+
+        </h1>
+
+        
     </div>
 
     <div class="rewards-container">
@@ -32,21 +43,22 @@
                 </p>
                 <p class="rewards-dates">
                     <span><strong>Data creació:</strong> <span th:text="${recompensa.dataCreacio}">--</span></span><br>
-                
+
                     <span th:if="${recompensa.dataReserva != null}">
                         <strong>Data reserva:</strong> <span th:text="${recompensa.dataReserva}">--</span><br>
                     </span>
-                
+
                     <span th:if="${recompensa.dataAssignacio != null}">
                         <strong>Data assignació:</strong> <span th:text="${recompensa.dataAssignacio}">--</span><br>
                     </span>
-                
+
                     <span th:if="${recompensa.dataRecollida != null}">
                         <strong>Data recollida:</strong> <span th:text="${recompensa.dataRecollida}">--</span>
                     </span>
                 </p>
                 <p class="rewards-user" th:if="${recompensa.estat != 'DISPONIBLE' and recompensa.usuari != null}">
-                    <strong>Usuari:</strong> <span th:text="${recompensa.usuari.nom + ' ' + recompensa.usuari.cognoms}">usuari@example.com</span>
+                    <strong>Usuari:</strong> <span
+                        th:text="${recompensa.usuari.nom + ' ' + recompensa.usuari.cognoms}">usuari@example.com</span>
                 </p>
                 <div class="rewards-estat-punts">
                     <span class="rewards-estat" th:text="${recompensa.estat}">Estat</span>

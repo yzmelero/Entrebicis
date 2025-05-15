@@ -53,9 +53,19 @@ public class RutaController {
             model.addAttribute("ruta", ruta);
             model.addAttribute("puntGPS", ruta.getPuntGPS());
             model.addAttribute("maxVelocitat", rutaLogica.getParametres().getVelocitatMaxima());
-            model.addAttribute("error", ex.getMessage()); 
+            model.addAttribute("error", ex.getMessage());
             return "ruta-consultar";
         }
     }
 
+    @GetMapping("/historial/{email}")
+    public String veureHistorialRutes(@PathVariable String email, Model model) {
+        List<Ruta> rutes = rutaLogica.getRutesPerUsuari(email);
+        model.addAttribute("rutes", rutes);
+
+        if (!rutes.isEmpty() && rutes.get(0).getUsuari() != null) {
+            model.addAttribute("usuariRutes", rutes.get(0).getUsuari());
+        }
+        return "ruta-llistar";
+    }
 }
