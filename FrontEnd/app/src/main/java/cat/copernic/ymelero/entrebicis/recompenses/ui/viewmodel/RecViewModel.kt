@@ -84,7 +84,7 @@ class RecViewModel(private val recUseCases: RecUseCases) : ViewModel() {
                     _recompensa.value = response.body()
                     _missatgeReserva.value = "Recompensa reservada amb èxit!"
                 } else {
-                    val errorText = response.errorBody()?.string() ?: "Error reservant."
+                    val errorText = response.body()?.toString() ?: response.errorBody()?.string()
                     _missatgeReserva.value = errorText
                 }
             } catch (e: Exception) {

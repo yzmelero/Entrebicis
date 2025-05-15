@@ -42,7 +42,7 @@ public class RecompensaApiController {
     public ResponseEntity<?> reservarRecompensa(
             @RequestParam Long recompensaId,
             @RequestParam String email,
-            @RequestParam Integer saldo) {
+            @RequestParam Double saldo) {
         try {
             Recompensa recompensa = recompensaLogica.reservarRecompensa(recompensaId, email, saldo);
             return ResponseEntity.ok(recompensa);
