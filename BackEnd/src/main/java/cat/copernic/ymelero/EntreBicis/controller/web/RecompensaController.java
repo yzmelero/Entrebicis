@@ -107,4 +107,15 @@ public class RecompensaController {
             return "redirect:/recompenses";
         }
     }
+
+    @PostMapping("/assignar/{id}")
+    public String assignarRecompensa(@PathVariable Long id, Model model) {
+        try {
+            recompensaLogica.assignarRecompensa(id);
+            return "redirect:/recompenses/consultar/" + id;
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "redirect:/recompenses/consultar/" + id;
+        }
+    }
 }

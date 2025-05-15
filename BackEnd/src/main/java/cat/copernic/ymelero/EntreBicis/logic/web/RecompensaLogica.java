@@ -95,19 +95,14 @@ public class RecompensaLogica {
         }
 
         List<Recompensa> recompensesUsuari = recompensaRepository.findByUsuari_Email(emailUsuari);
-        boolean recompensaReservada = false;
 
         for (Recompensa r : recompensesUsuari) {
-            if (r.getEstat() == EstatRecompensa.RESERVADA || r.getEstat() == EstatRecompensa.ASSIGNADA) {
-                recompensaReservada = true;
-                break;
+            if (r.getEstat() == EstatRecompensa.RESERVADA) {
+                throw new RuntimeException("Ja tens una recompensa reservada pendent de validar.");
+            } else if (r.getEstat() == EstatRecompensa.ASSIGNADA) {
+                throw new RuntimeException("Ja tens una recompensa assignada pendent de recollir.");
             }
         }
-
-        if (recompensaReservada) {
-            throw new RuntimeException("Ja tens una recompensa reservada o assignada.");
-        }
-
         Usuari usuari = usuariRepository.findByEmail(emailUsuari)
                 .orElseThrow(() -> new RuntimeException("No s'ha trobat l'usuari."));
 
@@ -116,6 +111,28 @@ public class RecompensaLogica {
         recompensa.setUsuari(usuari);
 
         return recompensaRepository.save(recompensa);
+    }
+
+    public void assignarRecompensa(Long recompensaId) {
+        Recompensa recompensa = recompensaRepository.findById(recompensaId)
+                .orElseThrow(() -> new IllegalArgumentException("Recompensa no trobada"));
+
+        if (recompensa.getEstat() != EstatRecompensa.RESERVADA)
+            throw new IllegalStateException("Només es poden assignar recompenses reservades");
+
+        Usuari usuari = recompensa.getUsuari();
+        if (usuari == null)
+            throw new IllegalStateException("La recompensa no té cap usuari reservat");
+
+        if (usuari.getSaldo() < recompensa.getPunts())
+            throw new IllegalStateException("El saldo de l'usuari és insuficient");
+
+        usuari.setSaldo(usuari.getSaldo() - recompensa.getPunts());
+        recompensa.setEstat(EstatRecompensa.ASSIGNADA);
+        recompensa.setDataAssignacio(LocalDate.now());
+
+        usuariRepository.save(usuari);
+        recompensaRepository.save(recompensa);
     }
 
 }

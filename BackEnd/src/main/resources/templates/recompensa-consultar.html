@@ -45,6 +45,13 @@
                             <span class="assigned-user"
                                 th:text="${recompensa.usuari.nom + ' ' + recompensa.usuari.cognoms}">Usuari</span>
                         </div>
+                        <form th:action="@{/recompenses/assignar/{id}(id=${recompensa.id})}" method="post">
+                            <button type="submit" class="button button-green"
+                                th:if="${recompensa.estat.toString() == 'RESERVADA' and recompensa.usuari != null}">
+                                Assignar Recompensa
+                            </button>
+                        </form>
+
                     </div>
 
                     <div class="reward-status-container">

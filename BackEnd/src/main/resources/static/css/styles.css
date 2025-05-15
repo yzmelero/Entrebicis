@@ -670,6 +670,15 @@ h1 {
     color: white;
 }
 
+.button-green {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.button-green:hover {
+    background-color: #388E3C;
+}
+
 /* Botó eliminar */
 .reward-card {
     position: relative;
