@@ -17,7 +17,7 @@ public class LoginController {
      *
      * @param error Paràmetre que indica si hi ha hagut un error en el login.
      * @param model Model per passar dades a la vista.
-     * @return Nom de la vista de login.
+     * @return Vista de login.
      */
     @GetMapping("/login")
     public String IniciLogin(@RequestParam(value = "error", required = false) String error, Model model) {

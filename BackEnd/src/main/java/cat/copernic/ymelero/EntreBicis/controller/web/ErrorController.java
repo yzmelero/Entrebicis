@@ -13,7 +13,7 @@ public class ErrorController {
     /**
      * Mètode que redirigeix a una pàgina d'error genèrica.
      *
-     * @return Nom de la vista d'error.
+     * @return Vista d'error.
      */
     @GetMapping("/error")
     public String paginaError() {

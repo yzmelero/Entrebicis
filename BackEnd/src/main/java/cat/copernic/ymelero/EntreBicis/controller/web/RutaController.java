@@ -33,9 +33,13 @@ public class RutaController {
      */
     @GetMapping
     public String llistarRutes(Model model) {
-        log.info("Accedint al llistat de totes les rutes");
-        List<Ruta> rutes = rutaLogica.llistarTotesLesRutes();
-        model.addAttribute("rutes", rutes);
+        try {
+            log.info("Accedint al llistat de totes les rutes");
+            List<Ruta> rutes = rutaLogica.llistarTotesLesRutes();
+            model.addAttribute("rutes", rutes);
+        } catch (RuntimeException ex) {
+            model.addAttribute("error", ex.getMessage());
+        }
         return "ruta-llistar";
     }
 
@@ -48,13 +52,18 @@ public class RutaController {
      */
     @GetMapping("/consultar/{idRuta}")
     public String consultarRuta(@PathVariable Long idRuta, Model model) {
-        log.info("Consultant la ruta amb ID: {}", idRuta);
-        Ruta ruta = rutaLogica.obtenirRuta(idRuta);
-
-        model.addAttribute("ruta", ruta);
-        model.addAttribute("puntGPS", ruta.getPuntGPS());
-        model.addAttribute("maxVelocitat", rutaLogica.getParametres().getVelocitatMaxima());
-        return "ruta-consultar";
+        try {
+            log.info("Consultant la ruta amb ID: {}", idRuta);
+            Ruta ruta = rutaLogica.obtenirRuta(idRuta);
+            model.addAttribute("ruta", ruta);
+            model.addAttribute("puntGPS", ruta.getPuntGPS());
+            model.addAttribute("maxVelocitat", rutaLogica.getParametres().getVelocitatMaxima());
+            return "ruta-consultar";
+        } catch (RuntimeException ex) {
+            log.error("Error en consultar la ruta amb ID {}: {}", idRuta, ex.getMessage(), ex);
+            model.addAttribute("error", ex.getMessage());
+            return "redirect:/rutes";
+        }
     }
 
     /**
@@ -103,14 +112,17 @@ public class RutaController {
      */
     @GetMapping("/historial/{email}")
     public String veureHistorialRutes(@PathVariable String email, Model model) {
-        log.info("Consultant historial de rutes per a l'usuari: {}", email);
-        List<Ruta> rutes = rutaLogica.llistarRutesPerUsuari(email);
-        model.addAttribute("rutes", rutes);
+        try {
+            log.info("Consultant historial de rutes per a l'usuari: {}", email);
+            List<Ruta> rutes = rutaLogica.llistarRutesPerUsuari(email);
+            model.addAttribute("rutes", rutes);
 
-        Usuari usuari = rutaLogica.getUsuariPerEmail(email);
-        model.addAttribute("usuariRutes", usuari);
-
+            Usuari usuari = rutaLogica.getUsuariPerEmail(email);
+            model.addAttribute("usuariRutes", usuari);
+        } catch (RuntimeException ex) {
+            log.warn("Historial buit per a l'usuari: {}", email);
+            model.addAttribute("error", "Aquest usuari encara no ha fet cap ruta.");
+        }
         return "ruta-llistar";
     }
-
 }
