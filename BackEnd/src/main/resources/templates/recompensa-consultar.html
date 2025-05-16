@@ -10,66 +10,84 @@
 
 <body class="body-with-navbar">
     <div th:replace="fragments/navbar :: navbar('recompenses')"></div>
-    <h1 class="title">Visualitzar Recompenses</h1>
 
-    <div class="reward-container">
-        <div class="reward-card">
-            <div class="delete-button-topright">
-                <button th:if="${recompensa.estat.toString() == 'DISPONIBLE'}" class="delete-button"
-                    th:onclick="'if(confirm(\'¿Estàs segur de que vols esborrar aquesta recompensa?\')) window.location.href=\'/recompenses/esborrar/' + ${recompensa.id} + '\';'"
-                    title="Eliminar recompensa">
-                    🗑
-                </button>
+    <div class="reward-card">
+        <div class="delete-button-topright">
+            <button th:if="${recompensa.estat.toString() == 'DISPONIBLE'}" class="delete-button"
+                th:onclick="'if(confirm(\'¿Estàs segur de que vols esborrar aquesta recompensa?\')) window.location.href=\'/recompenses/esborrar/' + ${recompensa.id} + '\';'"
+                title="Eliminar recompensa">
+                🗑
+            </button>
 
-                <button th:if="${recompensa.estat.toString() != 'DISPONIBLE'}" class="delete-button disabled-button"
-                    disabled title="Només es poden eliminar recompenses disponibles">
-                    🗑
-                </button>
+            <button th:if="${recompensa.estat.toString() != 'DISPONIBLE'}" class="delete-button disabled-button"
+                disabled title="Només es poden eliminar recompenses disponibles">
+                🗑
+            </button>
+        </div>
+
+        <h1 class="title">
+            <span th:text="${recompensa.descripcio}"></span>
+            <span style="font-size: 20px; font-style: italic; color: #555;"
+                th:text="'(' + ${recompensa.nomComerc} + ')'"></span>
+        </h1>
+
+        <hr style="margin-bottom: 20px;">
+
+        <div class="info-imatge-container">
+            <div class="reward-image">
+                <img th:if="${imatgeBase64 != null}" th:src="'data:image/jpeg;base64,' + ${imatgeBase64}"
+                    alt="Imatge Recompensa">
+                <img th:if="${imatgeBase64 == null}" src="/img/default-reward.png" alt="Imatge Recompensa">
             </div>
-            <div class="reward-title-container">
-                <h2 class="reward-title" th:text="${recompensa.descripcio}">Nom Recompensa</h2>
-            </div>
-            <div class="reward-content">
-                <div class="reward-image">
-                    <img th:if="${imatgeBase64 != null}" th:src="'data:image/jpeg;base64,' + ${imatgeBase64}"
-                        alt="Imatge Recompensa">
-                    <img th:if="${imatgeBase64 == null}" src="/img/default-reward.png" alt="Imatge Recompensa">
+
+            <div class="reward-informacio">
+                <div class="section-parell">
+                    <div>
+                        <p><strong>Adreça del comerç:</strong> <span th:text="${recompensa.adrecaComerc}"></span></p>
+                        <p><strong>Data de creació:</strong> <span th:text="${recompensa.dataCreacio}">--</span></p>
+                        <p th:if="${recompensa.dataReserva != null}"><strong>Data de reserva:</strong>
+                            <span th:text="${recompensa.dataReserva}">--</span>
+                        </p>
+                    </div>
+                    <div>
+                        <p th:if="${recompensa.dataAssignacio != null}"><strong>Data d'assignació:</strong>
+                            <span th:text="${recompensa.dataAssignacio}">--</span>
+                        </p>
+                        <p th:if="${recompensa.dataRecollida != null}"><strong>Data de recollida:</strong>
+                            <span th:text="${recompensa.dataRecollida}">--</span>
+                        </p>
+                    </div>
                 </div>
-                <div class="reward-details">
-                    <div class="reward-info">
-                        <h3 th:text="${recompensa.nomComerc}">Nom Comerç</h3>
-                        <p th:text="${recompensa.adrecaComerc}">Adreça Comerç</p>
 
-                        <div th:if="${recompensa.estat != 'DISPONIBLE' and recompensa.usuari != null}">
-                            <label class="assigned-user-label">Usuari Assignat:</label>
-                            <span class="assigned-user"
-                                th:text="${recompensa.usuari.nom + ' ' + recompensa.usuari.cognoms}">Usuari</span>
-                        </div>
-                        <form th:action="@{/recompenses/assignar/{id}(id=${recompensa.id})}" method="post">
-                            <button type="submit" class="button button-green"
-                                th:if="${recompensa.estat.toString() == 'RESERVADA' and recompensa.usuari != null}">
-                                Assignar Recompensa
-                            </button>
-                        </form>
-
+                <div class="section-parell">
+                    <div>
+                        <p><strong>Estat:</strong>
+                            <span th:text="${recompensa.estat}"
+                                th:class="${recompensa.estat.toString() == 'DISPONIBLE' ? 'text-success' : 'text-danger'}"></span>
+                        </p>
                     </div>
-
-                    <div class="reward-status-container">
-                        <span class="status" th:text="${recompensa.estat}" th:class="${recompensa.estat.toString() == 'DISPONIBLE' ? 'status status-disponible' : 
-                                   (recompensa.estat.toString() == 'RESERVADA' ? 'status status-reservada' : 
-                                   (recompensa.estat.toString() == 'ASSIGNADA' ? 'status status-assignada' : 
-                                   'status status-recollida'))}">
-                        </span>
-                        <span class="reward-points">
+                    <div>
+                        <p><strong>Punts:</strong>
                             <span th:text="${recompensa.punts}">0</span>
-                            <img src="/img/coin-icon.png" alt="Punts">
-                        </span>
+                            <img src="/img/coin-icon.png" alt="Punts" width="20" style="vertical-align: middle;">
+                        </p>
                     </div>
+                </div>
+
+                <div th:if="${recompensa.estat != 'DISPONIBLE' and recompensa.usuari != null}">
+                    <p><strong>Usuari assignat:</strong>
+                        <span th:text="${recompensa.usuari.nom + ' ' + recompensa.usuari.cognoms}">Usuari</span>
+                    </p>
+                </div>
+
+                <div th:if="${recompensa.estat.toString() == 'RESERVADA' and recompensa.usuari != null}">
+                    <form th:action="@{/recompenses/assignar/{id}(id=${recompensa.id})}" method="post">
+                        <button type="submit" class="button button-green">✔ Assignar Recompensa</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-
 </body>
 
 </html>

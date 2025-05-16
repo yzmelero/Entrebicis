@@ -553,17 +553,16 @@ h1 {
 }
 
 .reward-card {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    background: #f0fffa;
-    padding: 30px;
+position: relative; /* Afegeix aquesta línia! */
+    background-color: #f0fffa;
     border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 50%;
-    height: auto;
-    gap: 30px;
+    padding: 30px;
+    width: 80%;
+    margin: 50px auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: left;
 }
+
 
 .reward-title-container {
     width: 100%;
@@ -584,11 +583,29 @@ h1 {
     padding: 15px;
 }
 
+.info-imatge-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.reward-image {
+    flex: 0 0 220px;
+    text-align: center;
+}
+
 .reward-image img {
-    width: 350px;
-    height: 350px;
-    border-radius: 10px;
+    width: 320px;
+    height: 320px;
+    border-radius: 12px;
     object-fit: cover;
+}
+
+.reward-informacio {
+    flex: 1;
+    text-align: left;
 }
 
 .reward-info {
@@ -598,26 +615,31 @@ h1 {
 }
 
 .reward-info h3 {
-    font-size: 40px;
-    font-weight: bold;
-    margin-bottom: 5px;
+    font-size: 24px; 
+    font-weight: 600;
+    margin-bottom: 10px;
 }
 
 .reward-info p {
-    font-size: 30px;
-    margin-top: 15px;
+    font-size: 16px;
+    margin: 6px 0;
+    color: #444;
 }
 
-.assigned-user-label {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
+.assigned-user-label,
 .assigned-user {
-    font-size: 22px;
-    display: block;
-    margin-bottom: 15px;
+    font-size: 16px; 
+}
+
+.reward-dates p {
+    font-size: 16px;
+    margin: 5px 0;
+    color: #444;
+}
+
+.reward-points img {
+    width: 20px;
+    height: 20px;
 }
 
 .reward-status-container {
@@ -631,7 +653,7 @@ h1 {
 .reward-points {
     display: flex;
     align-items: center;
-    font-size: 30px;
+    font-size: 18px;
     font-weight: bold;
     gap: 5px;
 }
