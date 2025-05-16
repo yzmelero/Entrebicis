@@ -30,7 +30,6 @@
                 No hi ha rutes disponibles.
             </span>
         </p>
-
         <div th:each="ruta, iter : ${rutes}" class="ruta-card">
             <h2 class="ruta-title" th:text="'Ruta ' + ${ruta.id}">Ruta</h2>
             <p class="ruta-subtitle" th:text="'(' + ${ruta.usuari.nom} + ' ' + ${ruta.usuari.cognoms} + ')'">Usuari</p>
