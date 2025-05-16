@@ -29,6 +29,14 @@ public class LoginApiController {
     @Autowired
     private UsuariRepository usuariRepository;
 
+    /**
+     * Mètode per verificar les credencials d'un usuari.
+     *
+     * @param loginRequest Conté el correu electrònic i la contrasenya de l'usuari.
+     * @return Un objecte LoginResponse amb les dades de l'usuari si les credencials
+     *         són vàlides,
+     *         o un missatge d'error si no ho són.
+     */
     @PostMapping("/verify")
     public ResponseEntity<?> verifyUser(@RequestBody LoginRequest loginRequest) {
 

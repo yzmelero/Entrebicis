@@ -22,6 +22,12 @@ public class ParametresController {
     @Autowired
     private ParametresLogica parametresLogica;
 
+    /**
+     * Mètode que mostra la vista per modificar els paràmetres del sistema.
+     *
+     * @param model Model de la vista.
+     * @return Nom de la vista per modificar els paràmetres.
+     */
     @GetMapping
     public String mostrarParametres(Model model) {
         log.info("Consultant paràmetres del sistema");
@@ -34,6 +40,13 @@ public class ParametresController {
         return "parametres-modificar";
     }
 
+    /**
+     * Mètode que guarda els paràmetres del sistema.
+     *
+     * @param parametres Paràmetres del sistema a guardar.
+     * @param model      Model de la vista.
+     * @return Redirecció a la vista dels paràmetres.
+     */
     @PostMapping
     public String guardarParametres(@ModelAttribute ParametresSistema parametres, Model model) {
         try {

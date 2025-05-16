@@ -18,6 +18,13 @@ public class LogoutController {
 
     private static final Logger log = LoggerFactory.getLogger(LogoutController.class);
 
+    /**
+     * Mètode que gestiona la sortida de l'usuari del sistema.
+     *
+     * @param request  La petició HTTP.
+     * @param response La resposta HTTP.
+     * @return Redirigeix a la pàgina de login amb un paràmetre d'success.
+     */
     @GetMapping
     public String logout(HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

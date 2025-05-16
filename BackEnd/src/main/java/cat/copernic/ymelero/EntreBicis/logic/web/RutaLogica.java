@@ -17,6 +17,9 @@ import cat.copernic.ymelero.entrebicis.repository.PuntsRepository;
 import cat.copernic.ymelero.entrebicis.repository.RutaRepository;
 import cat.copernic.ymelero.entrebicis.repository.UsuariRepository;
 
+/**
+ * Classe de lògica de negoci per gestionar les rutes.
+ */
 @Service
 public class RutaLogica {
 
@@ -32,6 +35,12 @@ public class RutaLogica {
     @Autowired
     private ParametresLogica parametresLogica;
 
+    /**
+     * Obté una ruta per ID.
+     *
+     * @param idRuta L'ID de la ruta a obtenir.
+     * @return La ruta corresponent a l'ID.
+     */
     public Ruta obtenirRuta(Long idRuta) {
         if (idRuta == null || idRuta <= 0) {
             throw new RuntimeException("L'identificador de la ruta és invàlid.");
@@ -40,6 +49,11 @@ public class RutaLogica {
                 .orElseThrow(() -> new RuntimeException("Ruta no trobada amb id: " + idRuta));
     }
 
+    /**
+     * Obté totes les rutes disponibles.
+     *
+     * @return Llista de rutes.
+     */
     public List<Ruta> llistarTotesLesRutes() {
         List<Ruta> rutes = rutaRepository.findAllByOrderByDataCreacioDesc();
         if (rutes.isEmpty()) {
@@ -48,10 +62,21 @@ public class RutaLogica {
         return rutes;
     }
 
+    /**
+     * Obté els paràmetres del sistema.
+     *
+     * @return Els paràmetres del sistema.
+     */
     public ParametresSistema getParametres() {
         return parametresLogica.getParametres();
     }
 
+    /**
+     * Obté les rutes d'un usuari per email.
+     *
+     * @param email L'email de l'usuari.
+     * @return Llista de rutes de l'usuari.
+     */
     public List<Ruta> llistarRutesPerUsuari(String email) {
         if (email == null || email.isEmpty()) {
             throw new RuntimeException("El correu electrònic de l'usuari és obligatori.");
@@ -61,6 +86,12 @@ public class RutaLogica {
         return rutaRepository.findByUsuariEmailOrderByDataCreacioDesc(email);
     }
 
+    /**
+     * Inicia una ruta.
+     *
+     * @param ruta La ruta a iniciar.
+     * @return La ruta iniciada.
+     */
     public Ruta iniciarRuta(Ruta ruta) {
         if (ruta.getDistancia() != null && ruta.getDistancia() < 0) {
             throw new RuntimeException("La distància no pot ser negativa.");
@@ -88,6 +119,13 @@ public class RutaLogica {
         return rutaRepository.save(ruta);
     }
 
+    /**
+     * Afegeix un punt GPS a una ruta.
+     *
+     * @param idRuta L'ID de la ruta.
+     * @param punt   El punt GPS a afegir.
+     * @return El punt GPS afegit.
+     */
     public PuntGPS afegirPuntGPS(Long idRuta, PuntGPS punt) {
         if (punt.getLatitud() == null || punt.getLongitud() == null) {
             throw new RuntimeException("Les coordenades del punt GPS són obligatòries.");
@@ -100,6 +138,12 @@ public class RutaLogica {
         return puntsRepository.save(punt);
     }
 
+    /**
+     * Finalitza una ruta.
+     *
+     * @param idRuta L'ID de la ruta a finalitzar.
+     * @return La ruta finalitzada.
+     */
     public Ruta finalitzarRuta(Long idRuta) {
         Ruta ruta = rutaRepository.findById(idRuta)
                 .orElseThrow(() -> new RuntimeException("Ruta no trobada"));
@@ -168,7 +212,20 @@ public class RutaLogica {
         return rutaRepository.save(ruta);
     }
 
-    // Calcular la distància amb el mètode Haversine per que sigui més precisa
+    /**
+     * Calcula la distància entre dos punts geogràfics utilitzant la fórmula de
+     * Haversine.
+     * 
+     * Aquesta fórmula té en compte la curvatura de la Terra per retornar una
+     * distància
+     * més precisa en metres entre dos punts de latitud i longitud.
+     *
+     * @param lat1 Latitud del primer punt (en graus decimals).
+     * @param lon1 Longitud del primer punt (en graus decimals).
+     * @param lat2 Latitud del segon punt (en graus decimals).
+     * @param lon2 Longitud del segon punt (en graus decimals).
+     * @return La distància entre els dos punts en metres.
+     */
     private double calcularDistanciaHaversine(double lat1, double lon1, double lat2, double lon2) {
         final int R = 6371000; // Radi de la Terra en metres
         double dLat = Math.toRadians(lat2 - lat1);
@@ -180,6 +237,11 @@ public class RutaLogica {
         return R * c;
     }
 
+    /**
+     * Valida una ruta.
+     *
+     * @param idRuta L'ID de la ruta a validar.
+     */
     public void validarRuta(Long idRuta) {
         Ruta ruta = obtenirRuta(idRuta);
         if (ruta.getEstat() != EstatRuta.NOVALIDADA) {
@@ -194,6 +256,11 @@ public class RutaLogica {
         rutaRepository.save(ruta);
     }
 
+    /**
+     * Invalidar una ruta.
+     *
+     * @param idRuta L'ID de la ruta a invalidar.
+     */
     public void invalidarRuta(Long idRuta) {
         Ruta ruta = obtenirRuta(idRuta);
 
@@ -214,6 +281,12 @@ public class RutaLogica {
         rutaRepository.save(ruta);
     }
 
+    /**
+     * Obté un usuari per email.
+     *
+     * @param email L'email de l'usuari.
+     * @return L'usuari corresponent a l'email.
+     */
     public Usuari getUsuariPerEmail(String email) {
         return usuariRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Usuari no trobat"));

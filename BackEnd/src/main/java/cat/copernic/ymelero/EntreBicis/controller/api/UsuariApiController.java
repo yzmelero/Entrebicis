@@ -25,6 +25,12 @@ public class UsuariApiController {
     @Autowired
     private UsuariLogica usuariLogica;
 
+    /**
+     * Mètode per obtenir un usuari per email.
+     *
+     * @param email Correu electrònic de l'usuari a consultar.
+     * @return Usuari amb el correu electrònic especificat.
+     */
     @GetMapping("/visualitzar/{email}")
     public ResponseEntity<?> getUsuari(@PathVariable String email) {
         Usuari usuari = usuariLogica.getUsuari(email);
@@ -37,6 +43,12 @@ public class UsuariApiController {
         }
     }
 
+    /**
+     * Mètode per modificar un usuari.
+     *
+     * @param usuariModificat Usuari amb les dades modificades.
+     * @return Usuari actualitzat.
+     */
     @PutMapping("/modificar")
     public ResponseEntity<?> modificarUsuari(@RequestBody Usuari usuariModificat) {
         try {

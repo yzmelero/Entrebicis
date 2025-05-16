@@ -28,24 +28,49 @@ public class RecompensaApiController {
     @Autowired
     private RecompensaLogica recompensaLogica;
 
+    /**
+     * Mètode per obtenir totes les recompenses disponibles.
+     *
+     * @return Llista de recompenses disponibles.
+     */
     @GetMapping("/disponibles")
     public List<Recompensa> getRecompensesDisponibles() {
         log.info("Consultant recompenses disponibles");
         return recompensaLogica.getRecompensesDisponibles();
     }
 
+    /**
+     * Mètode per obtenir les recompenses d'un usuari.
+     *
+     * @param email Correu electrònic de l'usuari.
+     * @return Llista de recompenses de l'usuari.
+     */
     @GetMapping("/propies")
     public List<Recompensa> getRecompensesPropies(@RequestParam String email) {
         log.info("Consultant recompenses de l'usuari: {}", email);
         return recompensaLogica.getRecompensesPropies(email);
     }
 
+    /**
+     * Mètode per obtenir una recompensa específica.
+     *
+     * @param id ID de la recompensa.
+     * @return Recompensa específica.
+     */
     @GetMapping
     public Recompensa getRecompensa(@RequestParam Long id) {
         log.info("Consultant recompensa amb ID: {}", id);
         return recompensaLogica.getRecompensa(id);
     }
 
+    /**
+     * Mètode per reservar una recompensa.
+     *
+     * @param id    ID de la recompensa.
+     * @param email Correu electrònic de l'usuari.
+     * @param saldo Saldo disponible de l'usuari.
+     * @return Recompensa reservada.
+     */
     @PostMapping("/reservar")
     public ResponseEntity<?> reservarRecompensa(
             @RequestParam Long id,
@@ -61,6 +86,12 @@ public class RecompensaApiController {
         }
     }
 
+    /**
+     * Mètode per recollir una recompensa.
+     * 
+     * @param id ID de la recompensa a recollir.
+     * @return Recompensa recollida.
+     */
     @PutMapping("/recollir")
     public ResponseEntity<?> recollirRecompensa(@RequestParam Long id) {
         try {

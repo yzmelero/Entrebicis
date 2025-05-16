@@ -27,6 +27,12 @@ public class RutaApiController {
     @Autowired
     private RutaLogica rutaLogica;
 
+    /**
+     * Mètode per obtenir una ruta específica.
+     * 
+     * @param idRuta ID de la ruta a consultar.
+     * @return Ruta específica.
+     */
     @GetMapping("/{idRuta}")
     public ResponseEntity<?> obtenirRuta(@PathVariable Long idRuta) {
         try {
@@ -39,6 +45,12 @@ public class RutaApiController {
         }
     }
 
+    /**
+     * Mètode per obtenir totes les rutes d'un usuari.
+     * 
+     * @param email Correu electrònic de l'usuari.
+     * @return Llista de rutes de l'usuari.
+     */
     @GetMapping("/usuari/{email}")
     public ResponseEntity<?> llistarRutesPerUsuari(@PathVariable String email) {
         try {
@@ -51,6 +63,12 @@ public class RutaApiController {
         }
     }
 
+    /**
+     * Mètode per iniciar una ruta.
+     * 
+     * @param ruta Ruta a iniciar.
+     * @return Ruta iniciada.
+     */
     @PostMapping("/iniciar")
     public ResponseEntity<?> iniciarRuta(@RequestBody Ruta ruta) {
         try {
@@ -63,6 +81,13 @@ public class RutaApiController {
         }
     }
 
+    /**
+     * Mètode per afegir un punt GPS a una ruta.
+     * 
+     * @param idRuta ID de la ruta a la qual s'afegirà el punt GPS.
+     * @param punt   Punt GPS a afegir.
+     * @return Punt GPS afegit.
+     */
     @PostMapping("/{idRuta}/puntgps")
     public ResponseEntity<?> afegirPuntGPS(@PathVariable Long idRuta, @RequestBody PuntGPS punt) {
         try {
@@ -74,6 +99,12 @@ public class RutaApiController {
         }
     }
 
+    /**
+     * Mètode per finalitzar una ruta.
+     * 
+     * @param idRuta ID de la ruta a finalitzar.
+     * @return Ruta finalitzada.
+     */
     @PutMapping("/{idRuta}/finalitzar")
     public ResponseEntity<?> finalitzarRuta(@PathVariable Long idRuta) {
         try {

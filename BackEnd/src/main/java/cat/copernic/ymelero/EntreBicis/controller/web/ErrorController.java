@@ -10,6 +10,11 @@ public class ErrorController {
 
     private static final Logger log = LoggerFactory.getLogger(ErrorController.class);
 
+    /**
+     * Mètode que redirigeix a una pàgina d'error genèrica.
+     *
+     * @return Nom de la vista d'error.
+     */
     @GetMapping("/error")
     public String paginaError() {
         log.warn("S'ha redirigit a la pàgina d'error genèrica");

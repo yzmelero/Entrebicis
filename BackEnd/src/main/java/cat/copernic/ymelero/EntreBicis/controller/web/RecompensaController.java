@@ -33,6 +33,12 @@ public class RecompensaController {
     @Autowired
     private RecompensaLogica recompensaLogica;
 
+    /**
+     * Mètode per mostrar el llistat de recompenses disponibles.
+     *
+     * @param model Model per passar dades a la vista.
+     * @return Nom de la vista a mostrar.
+     */
     @GetMapping
     public String llistarRecompenses(Model model) {
         List<Recompensa> recompenses = recompensaLogica.getAllRecompenses();
@@ -49,6 +55,12 @@ public class RecompensaController {
         return "recompensa-llistar";
     }
 
+    /**
+     * Mètode per mostrar el formulari de creació d'una nova recompensa.
+     *
+     * @param model Model per passar dades a la vista.
+     * @return Nom de la vista a mostrar.
+     */
     @GetMapping("/crear")
     public String crearRecompensa(Model model) {
         log.info("Creant nova recompensa");
@@ -56,8 +68,15 @@ public class RecompensaController {
         return "recompensa-alta";
     }
 
+    /**
+     * Mètode per guardar una nova recompensa.
+     *
+     * @param recompensa L'objecte recompensa a guardar.
+     * @param fotoFile   Fitxer d'imatge de la recompensa.
+     * @param model      Model per passar dades a la vista.
+     * @return Redirecció a la vista de llistat de recompenses.
+     */
     @PostMapping("/crear")
-
     public String guardarNovaRecompensa(@ModelAttribute Recompensa recompensa,
             @RequestParam(value = "fotoFile", required = false) MultipartFile fotoFile,
             Model model) {
@@ -80,6 +99,13 @@ public class RecompensaController {
         }
     }
 
+    /**
+     * Mètode per mostrar una recompensa existent.
+     *
+     * @param id    ID de la recompensa.
+     * @param model Model per passar dades a la vista.
+     * @return Nom de la vista a mostrar.
+     */
     @GetMapping("/consultar/{id}")
     public String mostrarRecompensa(@PathVariable Long id, Model model) {
         Recompensa recompensa = recompensaLogica.getRecompensa(id);
@@ -106,6 +132,13 @@ public class RecompensaController {
         }
     }
 
+    /**
+     * Mètode per esborrar una recompensa existent.
+     * 
+     * @param id    ID de la recompensa a esborrar.
+     * @param model Model per passar dades a la vista.
+     * @return Redirecció a la vista de llistat de recompenses.
+     */
     @GetMapping("/esborrar/{id}")
     public String esborrarRecompensa(@PathVariable Long id, Model model) {
         try {
@@ -119,6 +152,13 @@ public class RecompensaController {
         }
     }
 
+    /**
+     * Mètode per assignar una recompensa a un usuari.
+     * 
+     * @param id    ID de la recompensa a assignar.
+     * @param model Model per passar dades a la vista.
+     * @return Redirecció a la vista de consulta de la recompensa.
+     */
     @PostMapping("/assignar/{id}")
     public String assignarRecompensa(@PathVariable Long id, Model model) {
         try {
@@ -131,6 +171,13 @@ public class RecompensaController {
         }
     }
 
+    /**
+     * Mètode per mostrar l'historial de recompenses d'un usuari.
+     * 
+     * @param email L'email de l'usuari.
+     * @param model Model per passar dades a la vista.
+     * @return Nom de la vista a mostrar.
+     */
     @GetMapping("/historial/{email}")
     public String veureHistorialRecompenses(@PathVariable String email, Model model) {
         List<Recompensa> recompenses = recompensaLogica.getRecompensesPropies(email);

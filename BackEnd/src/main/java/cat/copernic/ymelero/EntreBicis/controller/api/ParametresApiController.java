@@ -20,6 +20,11 @@ public class ParametresApiController {
     @Autowired
     private ParametresLogica parametresLogica;
 
+    /**
+     * Mètode que retorna els paràmetres del sistema.
+     *
+     * @return Paràmetres del sistema.
+     */
     @GetMapping
     public ResponseEntity<ParametresSistema> obtenirParametres() {
         ParametresSistema parametres = parametresLogica.getParametres();

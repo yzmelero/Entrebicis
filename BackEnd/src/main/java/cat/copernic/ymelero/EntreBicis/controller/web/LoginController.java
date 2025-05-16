@@ -12,6 +12,13 @@ public class LoginController {
 
     private static final Logger log = LoggerFactory.getLogger(LoginController.class);
 
+    /**
+     * Mètode que redirigeix a la pàgina de login.
+     *
+     * @param error Paràmetre que indica si hi ha hagut un error en el login.
+     * @param model Model per passar dades a la vista.
+     * @return Nom de la vista de login.
+     */
     @GetMapping("/login")
     public String IniciLogin(@RequestParam(value = "error", required = false) String error, Model model) {
         if ("noAdmin".equals(error)) { // TO-DO Implementar Autentificador personalitzat mes endavant per que funcioni

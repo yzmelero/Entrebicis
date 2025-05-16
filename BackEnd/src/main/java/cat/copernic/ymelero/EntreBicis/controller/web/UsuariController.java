@@ -36,6 +36,12 @@ public class UsuariController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    /**
+     * Mètode per mostrar el llistat d'usuaris.
+     *
+     * @param model Model per passar dades a la vista.
+     * @return Nom de la vista a mostrar.
+     */
     @GetMapping
     public String mostrarUsuaris(Model model) {
         List<Usuari> usuaris = usuariLogica.getAllUsuaris();
@@ -53,6 +59,12 @@ public class UsuariController {
         return "usuaris";
     }
 
+    /**
+     * Mètode per mostrar el formulari de creació d'un nou usuari.
+     *
+     * @param model Model per passar dades a la vista.
+     * @return Nom de la vista a mostrar.
+     */
     @GetMapping("/crear")
     public String crearUsuari(Model model) {
         log.info("Creant nou usuari");
@@ -60,6 +72,15 @@ public class UsuariController {
         return "usuari-alta";
     }
 
+    /**
+     * Mètode per guardar un nou usuari.
+     *
+     * @param usuari               Usuari a guardar.
+     * @param fotoFile             Fitxer de la foto de l'usuari.
+     * @param confirmarContrasenya Contrasenya per confirmar.
+     * @param model                Model per passar dades a la vista.
+     * @return Redirecció a la vista dels usuaris o error en cas de fallida.
+     */
     @PostMapping("/crear")
     public String guardarNouUsuari(@ModelAttribute Usuari usuari,
             @RequestParam(value = "fotoFile", required = false) MultipartFile fotoFile,
@@ -93,6 +114,13 @@ public class UsuariController {
         }
     }
 
+    /**
+     * Mètode per mostrar un usuari concret.
+     *
+     * @param email L'email de l'usuari a mostrar.
+     * @param model Model per passar dades a la vista.
+     * @return Nom de la vista a mostrar.
+     */
     @GetMapping("/consulta/{email}")
     public String mostrarUsuari(@PathVariable String email, Model model) {
 
@@ -114,6 +142,13 @@ public class UsuariController {
         return "usuari-consultar";
     }
 
+    /**
+     * Mètode per modificar un usuari.
+     * 
+     * @param email L'email de l'usuari a modificar.
+     * @param model Model per passar dades a la vista.
+     * @return Nom de la vista a mostrar.
+     */
     @GetMapping("/modificar/{email}")
     public String modificarUsuari(@PathVariable String email, Model model) {
         Usuari usuari = usuariLogica.getUsuari(email);
@@ -133,6 +168,16 @@ public class UsuariController {
         return "usuari-modificar";
     }
 
+    /**
+     * Mètode per guardar la modificació d'un usuari.
+     *
+     * @param usuari               Usuari a modificar.
+     * @param fotoFile             Fitxer de la foto de l'usuari.
+     * @param confirmarContrasenya Contrasenya per confirmar.
+     * @param model                Model per passar dades a la vista.
+     * @return Redirecció a la vista de consulta de l'usuari o error en cas de
+     *         fallida.
+     */
     @PostMapping("/modificar")
     public String guardarModificacioUsuari(@ModelAttribute Usuari usuari,
             @RequestParam(value = "fotoFile", required = false) MultipartFile fotoFile,

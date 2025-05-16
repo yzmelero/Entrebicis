@@ -25,6 +25,12 @@ public class RutaController {
     @Autowired
     private RutaLogica rutaLogica;
 
+    /**
+     * Mètode per mostrar el llistat de rutes.
+     *
+     * @param model Model per passar dades a la vista.
+     * @return Nom de la vista a mostrar.
+     */
     @GetMapping
     public String llistarRutes(Model model) {
         log.info("Accedint al llistat de totes les rutes");
@@ -33,6 +39,13 @@ public class RutaController {
         return "ruta-llistar";
     }
 
+    /**
+     * Mètode per mostrar una ruta específica.
+     * 
+     * @param idRuta ID de la ruta a consultar.
+     * @param model  Model per passar dades a la vista.
+     * @return Nom de la vista a mostrar.
+     */
     @GetMapping("/consultar/{idRuta}")
     public String consultarRuta(@PathVariable Long idRuta, Model model) {
         log.info("Consultant la ruta amb ID: {}", idRuta);
@@ -44,6 +57,12 @@ public class RutaController {
         return "ruta-consultar";
     }
 
+    /**
+     * Mètode per validar una ruta.
+     * 
+     * @param idRuta ID de la ruta a validar.
+     * @return Redirecció a la vista de consulta de la ruta.
+     */
     @PostMapping("/validar/{idRuta}")
     public String validarRuta(@PathVariable Long idRuta) {
         log.info("Validant la ruta amb ID: {}", idRuta);
@@ -51,6 +70,13 @@ public class RutaController {
         return "redirect:/rutes/consultar/" + idRuta;
     }
 
+    /**
+     * Mètode per invalidar una ruta.
+     * 
+     * @param idRuta ID de la ruta a invalidar.
+     * @param model  Model per passar dades a la vista.
+     * @return Redirecció a la vista de consulta de la ruta o error.
+     */
     @PostMapping("/invalidar/{idRuta}")
     public String invalidarRuta(@PathVariable Long idRuta, Model model) {
         try {
@@ -68,6 +94,13 @@ public class RutaController {
         }
     }
 
+    /**
+     * Mètode per mostrar l'historial de rutes d'un usuari.
+     * 
+     * @param email L'email de l'usuari.
+     * @param model Model per passar dades a la vista.
+     * @return Nom de la vista a mostrar.
+     */
     @GetMapping("/historial/{email}")
     public String veureHistorialRutes(@PathVariable String email, Model model) {
         log.info("Consultant historial de rutes per a l'usuari: {}", email);
