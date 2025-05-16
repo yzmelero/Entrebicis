@@ -146,4 +146,9 @@ public class RecompensaLogica {
         return recompensaRepository.save(recompensa);
     }
 
+    public Usuari getUsuariPerEmail(String email) {
+        return usuariRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Usuari no trobat"));
+    }
+
 }

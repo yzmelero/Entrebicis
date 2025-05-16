@@ -11,4 +11,6 @@ public interface RutaRepository extends JpaRepository<Ruta, Long> {
 
     List<Ruta> findAllByOrderByDataCreacioDesc();
 
+    List<Ruta> findByUsuari_Email(String email);
+
 }
