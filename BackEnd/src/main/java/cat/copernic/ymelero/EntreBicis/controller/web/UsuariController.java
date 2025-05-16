@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,6 +28,8 @@ import cat.copernic.ymelero.entrebicis.logic.web.UsuariLogica;
 @RequestMapping("/usuaris")
 public class UsuariController {
 
+    private static final Logger log = LoggerFactory.getLogger(UsuariController.class);
+
     @Autowired
     private UsuariLogica usuariLogica;
 
@@ -43,6 +47,7 @@ public class UsuariController {
                 imatgesBase64.put(usuari.getEmail(), imatgeBase64);
             }
         }
+        log.info("Accedint al llistat de tots els usuaris");
         model.addAttribute("usuaris", usuaris);
         model.addAttribute("imatgesBase64", imatgesBase64);
         return "usuaris";
@@ -50,6 +55,7 @@ public class UsuariController {
 
     @GetMapping("/crear")
     public String crearUsuari(Model model) {
+        log.info("Creant nou usuari");
         model.addAttribute("usuari", new Usuari());
         return "usuari-alta";
     }
@@ -60,6 +66,7 @@ public class UsuariController {
             @RequestParam(value = "confirmarContrasenya", required = false) String confirmarContrasenya,
             Model model) {
         try {
+            log.info("Desant nou usuari: {}", usuari.getEmail());
             if (!usuari.getContrasenya().equals(confirmarContrasenya)) {
                 throw new RuntimeException("Les contrasenyes no coincideixen.");
             } else {
@@ -79,6 +86,7 @@ public class UsuariController {
             usuariLogica.crearUsuari(usuari);
             return "redirect:/usuaris";
         } catch (Exception e) {
+            log.error("Error en desar l'usuari", e);
             model.addAttribute("error", e.getMessage());
             model.addAttribute("usuari", usuari);
             return "usuari-alta";
@@ -90,6 +98,7 @@ public class UsuariController {
 
         Usuari usuari = usuariLogica.getUsuari(email);
         if (usuari == null) {
+            log.warn("No s'ha trobat l'usuari amb correu: {}", email);
             model.addAttribute("error", "No s'ha trobat usuari amb correu: " + email);
             return "redirect:/usuaris";
         }
@@ -99,6 +108,7 @@ public class UsuariController {
         } else {
             model.addAttribute("imatgeBase64", null);
         }
+        log.info("Consultant l'usuari: {}", email);
         model.addAttribute("usuari", usuari);
 
         return "usuari-consultar";
@@ -108,6 +118,7 @@ public class UsuariController {
     public String modificarUsuari(@PathVariable String email, Model model) {
         Usuari usuari = usuariLogica.getUsuari(email);
         if (usuari == null) {
+            log.warn("No s'ha trobat l'usuari: {}", email);
             model.addAttribute("error", "No s'ha trobat usuari amb correu: " + email);
             return "redirect:/usuaris";
         }
@@ -128,6 +139,7 @@ public class UsuariController {
             @RequestParam(value = "confirmarContrasenya", required = false) String confirmarContrasenya,
             Model model) {
         try {
+            log.info("Desant modificació de l'usuari: {}", usuari.getEmail());
             Usuari usuariAntic = usuariLogica.getUsuari(usuari.getEmail());
             if (usuariAntic == null) {
                 throw new RuntimeException("L'usuari no existeix.");
@@ -136,7 +148,6 @@ public class UsuariController {
             if (fotoFile == null || fotoFile.isEmpty()) {
                 usuari.setFoto(usuariAntic.getFoto());
             } else {
-
                 usuari.setFoto(fotoFile.getBytes());
             }
 
@@ -149,6 +160,7 @@ public class UsuariController {
             usuariLogica.modificarUsuari(usuari);
             return "redirect:/usuaris/consulta/" + usuari.getEmail();
         } catch (Exception e) {
+            log.error("Error en desar la modificació de l'usuari", e);
             model.addAttribute("error", e.getMessage());
             model.addAttribute("usuari", usuari);
 

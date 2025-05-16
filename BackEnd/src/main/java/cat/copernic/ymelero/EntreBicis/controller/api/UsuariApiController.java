@@ -1,5 +1,7 @@
 package cat.copernic.ymelero.entrebicis.controller.api;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,6 +20,8 @@ import cat.copernic.ymelero.entrebicis.logic.web.UsuariLogica;
 @CrossOrigin(origins = "*")
 public class UsuariApiController {
 
+    private static final Logger log = LoggerFactory.getLogger(UsuariApiController.class);
+
     @Autowired
     private UsuariLogica usuariLogica;
 
@@ -25,8 +29,10 @@ public class UsuariApiController {
     public ResponseEntity<?> getUsuari(@PathVariable String email) {
         Usuari usuari = usuariLogica.getUsuari(email);
         if (usuari != null) {
+            log.info("Consultant l'usuari amb email: {}", email);
             return ResponseEntity.ok(usuari);
         } else {
+            log.warn("No s'ha trobat l'usuari amb email: {}", email);
             return ResponseEntity.notFound().build();
         }
     }
@@ -34,9 +40,11 @@ public class UsuariApiController {
     @PutMapping("/modificar")
     public ResponseEntity<?> modificarUsuari(@RequestBody Usuari usuariModificat) {
         try {
+            log.info("Modificant l'usuari: {}", usuariModificat);
             Usuari usuariActualitzat = usuariLogica.modificarUsuari(usuariModificat);
             return ResponseEntity.ok(usuariActualitzat);
         } catch (RuntimeException e) {
+            log.error("Error en modificar l'usuari: {}", e.getMessage());
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,8 @@ import cat.copernic.ymelero.entrebicis.logic.web.RecompensaLogica;
 @Controller
 @RequestMapping("/recompenses")
 public class RecompensaController {
+
+    private static final Logger log = LoggerFactory.getLogger(RecompensaController.class);
 
     @Autowired
     private RecompensaLogica recompensaLogica;
@@ -47,6 +51,7 @@ public class RecompensaController {
 
     @GetMapping("/crear")
     public String crearRecompensa(Model model) {
+        log.info("Creant nova recompensa");
         model.addAttribute("recompensa", new Recompensa());
         return "recompensa-alta";
     }
@@ -57,6 +62,7 @@ public class RecompensaController {
             @RequestParam(value = "fotoFile", required = false) MultipartFile fotoFile,
             Model model) {
         try {
+            log.info("Desant nova recompensa: {}", recompensa);
             if (fotoFile != null && !fotoFile.isEmpty()) {
                 recompensa.setFoto(fotoFile.getBytes());
             } else {
@@ -67,6 +73,7 @@ public class RecompensaController {
             recompensaLogica.crearRecompensa(recompensa);
             return "redirect:/recompenses";
         } catch (Exception e) {
+            log.error("Error en desar la recompensa", e);
             model.addAttribute("error", e.getMessage());
             model.addAttribute("recompensa", recompensa);
             return "recompensa-alta";
@@ -76,6 +83,7 @@ public class RecompensaController {
     @GetMapping("/consultar/{id}")
     public String mostrarRecompensa(@PathVariable Long id, Model model) {
         Recompensa recompensa = recompensaLogica.getRecompensa(id);
+        log.info("Consultant recompensa amb ID: {}", id);
         try {
 
             if (recompensa == null) {
@@ -101,9 +109,11 @@ public class RecompensaController {
     @GetMapping("/esborrar/{id}")
     public String esborrarRecompensa(@PathVariable Long id, Model model) {
         try {
+            log.info("Esborrant recompensa amb ID: {}", id);
             recompensaLogica.eliminarRecompensa(id);
             return "redirect:/recompenses";
         } catch (Exception e) {
+            log.error("Error en esborrar recompensa ID {}: {}", id, e.getMessage(), e);
             model.addAttribute("error", e.getMessage());
             return "redirect:/recompenses";
         }
@@ -112,6 +122,7 @@ public class RecompensaController {
     @PostMapping("/assignar/{id}")
     public String assignarRecompensa(@PathVariable Long id, Model model) {
         try {
+            log.info("Assignant recompensa amb ID: {}", id);
             recompensaLogica.assignarRecompensa(id);
             return "redirect:/recompenses/consultar/" + id;
         } catch (Exception e) {
@@ -124,6 +135,7 @@ public class RecompensaController {
     public String veureHistorialRecompenses(@PathVariable String email, Model model) {
         List<Recompensa> recompenses = recompensaLogica.getRecompensesPropies(email);
         Map<Long, String> imatgesBase64 = new HashMap<>();
+        log.info("Consultant historial de recompenses per a: {}", email);
 
         for (Recompensa recompensa : recompenses) {
             if (recompensa.getFoto() != null) {
