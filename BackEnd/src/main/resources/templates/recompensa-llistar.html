@@ -23,10 +23,20 @@
 
         </h1>
 
-        
+
     </div>
 
     <div class="rewards-container">
+        <p th:if="${#lists.isEmpty(recompenses)}"
+            style="text-align: center; font-weight: bold; font-size: 1.2em; padding: 20px;">
+            <span th:if="${usuariRecompenses != null}">
+                No hi ha cap recompensa registrada per aquest usuari.
+            </span>
+            <span th:unless="${usuariRecompenses != null}">
+                No hi ha recompenses disponibles.
+            </span>
+        </p>
+
         <a th:each="recompensa : ${recompenses}" th:href="@{/recompenses/consultar/{id}(id=${recompensa.id})}"
             class="rewards-card">
 

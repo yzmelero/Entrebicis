@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import cat.copernic.ymelero.entrebicis.entity.Recompensa;
+import cat.copernic.ymelero.entrebicis.entity.Usuari;
 import cat.copernic.ymelero.entrebicis.logic.web.RecompensaLogica;
 
 @Controller
@@ -134,9 +135,9 @@ public class RecompensaController {
         model.addAttribute("recompenses", recompenses);
         model.addAttribute("imatgesBase64", imatgesBase64);
 
-        if (!recompenses.isEmpty() && recompenses.get(0).getUsuari() != null) {
-            model.addAttribute("usuariRecompenses", recompenses.get(0).getUsuari());
-        }
+        Usuari usuari = recompensaLogica.getUsuariPerEmail(email);
+        model.addAttribute("usuariRecompenses", usuari);
+
         return "recompensa-llistar";
     }
 
