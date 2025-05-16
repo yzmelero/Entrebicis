@@ -214,8 +214,9 @@ public class RutaLogica {
         rutaRepository.save(ruta);
     }
 
-    public List<Ruta> getRutesPerUsuari(String email) {
-        return rutaRepository.findByUsuari_Email(email);
+    public Usuari getUsuariPerEmail(String email) {
+        return usuariRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Usuari no trobat"));
     }
 
 }

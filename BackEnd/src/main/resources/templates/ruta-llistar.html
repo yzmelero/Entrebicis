@@ -9,8 +9,8 @@
 </head>
 
 <body class="body-with-navbar">
-    <div th:replace="fragments/navbar :: navbar('rutes')"></div>
-     <h1 class="title">
+    <div th:replace="~{fragments/navbar :: navbar('rutes')}"></div>
+    <h1 class="title">
         <span th:if="${usuariRutes != null}">
             Llista de Rutes de
             <span th:text="${usuariRutes.nom + ' ' + usuariRutes.cognoms}">Usuari</span>
@@ -20,8 +20,17 @@
         </span>
     </h1>
 
-
     <div class="rutes-container">
+       <p th:if="${#lists.isEmpty(rutes)}"
+           style="text-align: center; font-weight: bold; font-size: 1.2em; padding: 20px;">
+            <span th:if="${usuariRutes != null}">
+                No hi ha cap ruta registrada per aquest usuari.
+            </span>
+            <span th:unless="${usuariRutes != null}">
+                No hi ha rutes disponibles.
+            </span>
+        </p>
+
         <div th:each="ruta, iter : ${rutes}" class="ruta-card">
             <h2 class="ruta-title" th:text="'Ruta ' + ${ruta.id}">Ruta</h2>
             <p class="ruta-subtitle" th:text="'(' + ${ruta.usuari.nom} + ' ' + ${ruta.usuari.cognoms} + ')'">Usuari</p>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cat.copernic.ymelero.entrebicis.entity.Ruta;
+import cat.copernic.ymelero.entrebicis.entity.Usuari;
 import cat.copernic.ymelero.entrebicis.logic.web.RutaLogica;
 
 @Controller
@@ -60,12 +61,13 @@ public class RutaController {
 
     @GetMapping("/historial/{email}")
     public String veureHistorialRutes(@PathVariable String email, Model model) {
-        List<Ruta> rutes = rutaLogica.getRutesPerUsuari(email);
+        List<Ruta> rutes = rutaLogica.llistarRutesPerUsuari(email);
         model.addAttribute("rutes", rutes);
 
-        if (!rutes.isEmpty() && rutes.get(0).getUsuari() != null) {
-            model.addAttribute("usuariRutes", rutes.get(0).getUsuari());
-        }
+        Usuari usuari = rutaLogica.getUsuariPerEmail(email);
+        model.addAttribute("usuariRutes", usuari);
+
         return "ruta-llistar";
     }
+
 }
