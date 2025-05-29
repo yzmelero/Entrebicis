@@ -4,7 +4,9 @@ import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -59,6 +61,7 @@ fun RecollirRecompensaScreen(navController: NavController, userViewModel: UserVi
             Column(
                 modifier = Modifier
                     .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
                     .background(Color(0xFFD3FCFF))
                     .windowInsetsPadding(WindowInsets.systemBars),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -76,12 +79,11 @@ fun RecollirRecompensaScreen(navController: NavController, userViewModel: UserVi
                     modifier = Modifier
                         .padding(16.dp)
                         .clip(RoundedCornerShape(20.dp))
-                        .background(Color(0xFF9DFFE8))
+                        .background(Color.White)
                         .padding(28.dp)
                         .fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-
                     Text(
                         text = r.descripcio,
                         fontSize = 24.sp,
@@ -152,8 +154,8 @@ fun RecollirRecompensaScreen(navController: NavController, userViewModel: UserVi
                         )
                     }
                 }
+                Spacer(modifier = Modifier.height(100.dp))
             }
-
             BottomSection(navController, userViewModel, 1)
         }
     }
