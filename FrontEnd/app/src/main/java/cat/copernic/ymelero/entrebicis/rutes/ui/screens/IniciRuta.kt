@@ -46,6 +46,7 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
     val context = LocalContext.current
     val rutaViewModel = remember { RutaViewModel(RutaUseCases(RutaRepository())) }
     val rutaFinalitzada by rutaViewModel.rutaFinalitzada.collectAsState()
+    val errorRuta by rutaViewModel.errorRuta.collectAsState()
     val usuari by userViewModel.currentUser.collectAsState()
     val parametres by userViewModel.parametresSistema.collectAsState()
     val ruta by rutaViewModel.rutaActual.collectAsState()
@@ -140,7 +141,6 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
                     Button(
                         onClick = {
                             rutaViewModel.finalitzarRuta()
-                            Toast.makeText(context, "Ruta finalitzada!", Toast.LENGTH_SHORT).show()
                         },
                         modifier = Modifier
                             .height(60.dp)
@@ -213,6 +213,12 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
     LaunchedEffect(rutaFinalitzada) {
         rutaFinalitzada?.let { ruta ->
             navController.navigate("detallsRuta/${ruta.id}")
+            rutaViewModel.resetRutaFinalitzada()
+        }
+    }
+    LaunchedEffect(errorRuta) {
+        errorRuta?.let { msg ->
+            Toast.makeText(context, "Error: $msg", Toast.LENGTH_LONG).show()
             rutaViewModel.resetRutaFinalitzada()
         }
     }

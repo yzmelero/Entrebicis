@@ -182,8 +182,10 @@ public class RutaLogica {
 
             if (segons > 0 && distancia >= 1) {
                 double velocitat = (distancia / segons) * 3.6; // m/s a km/h
-                if (velocitat > velocitatMax)
-                    velocitatMax = velocitat;
+                if (velocitat > 0.5 && velocitat <= 120) {
+                    if (velocitat > velocitatMax)
+                        velocitatMax = velocitat;
+                }
             }
         }
 
