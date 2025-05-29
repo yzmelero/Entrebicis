@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Usuari</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body class="body-with-navbar">
+    <div th:replace="fragments/navbar :: navbar('usuaris')"></div>
+
+    <div class="alta-container">
+        <h1>Modificar Usuari</h1>
+
+        <div th:if="${error}" class="error-message">
+            <p th:text="${error}"></p>
+        </div>
+
+        <form action="#" th:action="@{/usuaris/modificar}" th:object="${usuari}" method="post" class="user-form" enctype="multipart/form-data">
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="nom">Nom:</label>
+                    <input type="text" id="nom" th:field="*{nom}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cognoms">Cognoms:</label>
+                    <input type="text" id="cognoms" th:field="*{cognoms}">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Correu Electrònic:</label>
+                    <input type="email" id="email" th:field="*{email}" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="dataNaixement">Data Naixement:</label>
+                    <input type="date" id="dataNaixement" th:field="*{dataNaixement}">
+                </div>
+
+                <div class="form-group">
+                    <label for="poblacio">Població:</label>
+                    <input type="text" id="poblacio" th:field="*{poblacio}">
+                </div>
+                <div class="form-group">
+                    <label for="telefon">Telèfon:</label>
+                    <input type="text" id="telefon" th:field="*{telefon}">
+                </div>
+
+                <div class="form-group">
+                    <label for="contrasenya">Contrasenya:</label>
+                    <input type="password" id="contrasenya" name="contrasenya" placeholder="Si no voleu canviar la contrasenya, deixeu aquest camp buit">
+                </div>
+
+                <div class="form-group">
+                    <label for="observacions">Observacions:</label>
+                    <input id="observacions" th:field="*{observacions}"></input>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmarContrasenya">Confirmar Contrasenya:</label>
+                    <input type="password" id="confirmarContrasenya" name="confirmarContrasenya">
+                </div>
+
+                <div class="form-group">
+                    <label>Foto Actual:</label>
+                    <div>
+                        <img th:if="${imatgeBase64}" th:src="'data:image/png;base64,' + ${imatgeBase64}" alt="Foto Usuari" class="user-photo">
+                        <img th:if="!${imatgeBase64}" src="/img/iconUser.png" alt="Imatge Usuari" class="user-photo">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="rol">Rol:</label>
+                    <select id="rol" th:field="*{rol}">
+                        <option value="CICLISTA">Ciclista</option>
+                        <option value="ADMIN">Administrador</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Nova Foto de Perfil:</label>
+                    <input type="file" id="fotoFile" name="fotoFile" accept="image/*">
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button class="button" type="submit">Guardar Canvis</button>
+                <a th:href="@{/usuaris/consulta/{email}(email=${usuari.email})}" class="button cancel-button">Cancel·lar</a>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

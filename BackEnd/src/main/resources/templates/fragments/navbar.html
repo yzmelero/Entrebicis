@@ -1,0 +1,15 @@
+<div th:fragment="navbar (page)">
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/img/LogoEntreBicis.png" alt="Logo">
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="/rutes" th:classappend="${page == 'rutes'} ? 'active'">Rutes</a></li>
+            <li><a href="/recompenses" th:classappend="${page == 'recompenses'} ? 'active'">Recompenses</a></li>
+            <li><a href="/usuaris" th:classappend="${page == 'usuaris'} ? 'active'">Usuaris</a></li>
+            <li><a href="/parametres" th:classappend="${page == 'parametres'} ? 'active'">Paràmetres del Sistema</a></li>
+            <li><a th:href="@{/logout}">Tancar Sessió</a></li>
+        </ul>
+    </nav>
+</div>

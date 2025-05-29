@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - Problema del sistema</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <div class="error-container">
+        <h1 class="error-title">Hi ha hagut un error</h1>
+        <p class="error-message"
+            th:text="${errorMessage != null ? errorMessage : 'Error de connexió amb la base de dades o error inesperat.'}">
+            Error de connexió amb la base de dades o error inesperat.
+        </p>
+        <a href="/usuaris" class="button">Tornar a l'inici</a>
+    </div>
+</body>
+
+</html>

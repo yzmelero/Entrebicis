@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-EntreBicisApplication<EntreBicis>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "cat.copernic.ymelero.entrebicis.EntreBicisApplication",
+            "projectName": "EntreBicis",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

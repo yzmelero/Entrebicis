@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalls Recompensa</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body class="body-with-navbar">
+    <div th:replace="fragments/navbar :: navbar('recompenses')"></div>
+
+    <div class="reward-card">
+        <div class="delete-button-topright">
+            <button th:if="${recompensa.estat.toString() == 'DISPONIBLE'}" class="delete-button"
+                th:onclick="'if(confirm(\'¿Estàs segur de que vols esborrar aquesta recompensa?\')) window.location.href=\'/recompenses/esborrar/' + ${recompensa.id} + '\';'"
+                title="Eliminar recompensa">
+                🗑
+            </button>
+
+            <button th:if="${recompensa.estat.toString() != 'DISPONIBLE'}" class="delete-button disabled-button"
+                disabled title="Només es poden eliminar recompenses disponibles">
+                🗑
+            </button>
+        </div>
+
+        <h1 class="title">
+            <span th:text="${recompensa.descripcio}"></span>
+            <span style="font-size: 20px; font-style: italic; color: #555;"
+                th:text="'(' + ${recompensa.nomComerc} + ')'"></span>
+        </h1>
+
+        <hr style="margin-bottom: 20px;">
+
+        <div class="info-imatge-container">
+            <div class="reward-image">
+                <img th:if="${imatgeBase64 != null}" th:src="'data:image/jpeg;base64,' + ${imatgeBase64}"
+                    alt="Imatge Recompensa">
+                <img th:if="${imatgeBase64 == null}" src="/img/default-reward.png" alt="Imatge Recompensa">
+            </div>
+
+            <div class="reward-informacio">
+                <div class="section-parell">
+                    <div>
+                        <p><strong>Adreça del comerç:</strong> <span th:text="${recompensa.adrecaComerc}"></span></p>
+                        <p><strong>Data de creació:</strong> <span th:text="${recompensa.dataCreacio}">--</span></p>
+                        <p th:if="${recompensa.dataReserva != null}"><strong>Data de reserva:</strong>
+                            <span th:text="${recompensa.dataReserva}">--</span>
+                        </p>
+                    </div>
+                    <div>
+                        <p th:if="${recompensa.dataAssignacio != null}"><strong>Data d'assignació:</strong>
+                            <span th:text="${recompensa.dataAssignacio}">--</span>
+                        </p>
+                        <p th:if="${recompensa.dataRecollida != null}"><strong>Data de recollida:</strong>
+                            <span th:text="${recompensa.dataRecollida}">--</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="section-parell">
+                    <div>
+                        <p><strong>Estat:</strong>
+                            <span th:text="${recompensa.estat}"
+                                th:class="${recompensa.estat.toString() == 'DISPONIBLE' ? 'text-success' : 'text-danger'}"></span>
+                        </p>
+                    </div>
+                    <div>
+                        <p><strong>Punts:</strong>
+                            <span th:text="${recompensa.punts}">0</span>
+                            <img src="/img/coin-icon.png" alt="Punts" width="20" style="vertical-align: middle;">
+                        </p>
+                    </div>
+                </div>
+
+                <div th:if="${recompensa.estat != 'DISPONIBLE' and recompensa.usuari != null}">
+                    <p><strong>Usuari assignat:</strong>
+                        <span th:text="${recompensa.usuari.nom + ' ' + recompensa.usuari.cognoms}">Usuari</span>
+                    </p>
+                </div>
+
+                <div th:if="${recompensa.estat.toString() == 'RESERVADA' and recompensa.usuari != null}">
+                    <form th:action="@{/recompenses/assignar/{id}(id=${recompensa.id})}" method="post">
+                        <button type="submit" class="button button-green">✔ Assignar Recompensa</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

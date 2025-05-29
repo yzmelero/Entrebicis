@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Llista Usuaris</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body class="body-with-navbar">
+    <div th:replace="fragments/navbar :: navbar('usuaris')"></div>
+    <div class="title-container">
+        <h1 class="title">Llista Usuaris</h1>
+        <a href="/usuaris/crear" class="add-user-button" title="Crear Usuari">+</a>
+    </div>
+
+
+    <div class="users-container">
+        <div class="user-card" th:each="usuari : ${usuaris}">
+            <h2 th:text="${usuari.nom} + ' ' + ${usuari.cognoms}">Nom Usuari</h2>
+            <div class="user-image">
+                <img th:if="${imatgesBase64[usuari.email] != null}"
+                    th:src="'data:image/jpeg;base64,' + ${imatgesBase64[usuari.email]}" alt="Imatge Usuari">
+
+                <img th:if="${imatgesBase64[usuari.email] == null}" src="/img/iconUser.png" alt="Imatge Usuari">
+            </div>
+            <p th:text="${usuari.email}">email@example.com</p>
+            <p th:text="${usuari.rol}">Rol</p>
+            <a th:href="@{/usuaris/consulta/{email}(email=${usuari.email})}" class="button">
+                Veure Detalls
+            </a>
+
+        </div>
+    </div>
+</body>
+
+</html>

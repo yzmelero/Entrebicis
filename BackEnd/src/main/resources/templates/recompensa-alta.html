@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Recompensa</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body class="body-with-navbar">
+    <div th:replace="fragments/navbar :: navbar('recompenses')"></div>
+
+    <div class="alta-container">
+        <h1>Crear Recompensa</h1>
+
+        <div th:if="${error}" class="error-message">
+            <p th:text="${error}"></p>
+        </div>
+
+        <form action="#" th:action="@{/recompenses/crear}" th:object="${recompensa}" method="post" class="recompensa-form" enctype="multipart/form-data">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="descripcio">Descripció (*):</label>
+                    <input type="text" id="descripcio" th:field="*{descripcio}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="punts">Punts (*):</label>
+                    <input type="number" id="punts" th:field="*{punts}" step="0.1">
+                </div>
+                
+                <div class="form-group">
+                    <label for="nomComerc">Nom del Comerç (*):</label>
+                    <input type="text" id="nomComerc" th:field="*{nomComerc}">
+                </div>
+
+                
+                <div class="form-group">
+                    <label for="adrecaComerc">Adreça del Comerç (*):</label>
+                    <input type="text" id="adrecaComerc" th:field="*{adrecaComerc}">
+                </div>
+
+                <div class="form-group">
+                    <label for="observacions">Observacions:</label>
+                    <input type="text" id="observacions" th:field="*{observacions}">
+                </div>
+                
+                <div class="form-group">
+                    <label>Foto Recompensa:</label>
+                    <input type="file" id="fotoFile" name="fotoFile" accept="image/*">
+                </div>
+
+                <div class="form-group">
+                    <label for="estat">Estat:</label>
+                    <select id="estat" th:field="*{estat}">
+                        <option value="DISPONIBLE">DISPONIBLE</option>
+                        <option value="RESERVADA">RESERVADA</option>
+                        <option value="ASSIGNADA">ASSIGNADA</option>
+                        <option value="RECOLLIDA">RECOLLIDA</option>
+                    </select>
+                </div>
+                
+            </div>
+            
+            <div class="form-actions">
+                <button class="button" type="submit">Confirmar</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

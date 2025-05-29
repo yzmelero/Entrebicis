@@ -1,0 +1,43 @@
+2025-03-27T12:49:45.537+01:00  INFO 14716 --- [EntreBicis] [main] c.c.y.e.EntreBicisApplicationTests       : Starting EntreBicisApplicationTests using Java 22.0.2 with PID 14716 (started by Yaiza in C:\Users\Yaiza\Documents\EntreBicis\BackEnd)
+2025-03-27T12:49:45.539+01:00  INFO 14716 --- [EntreBicis] [main] c.c.y.e.EntreBicisApplicationTests       : No active profile set, falling back to 1 default profile: "default"
+2025-03-27T12:49:46.965+01:00  INFO 14716 --- [EntreBicis] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-27T12:49:47.026+01:00  INFO 14716 --- [EntreBicis] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-27T12:49:47.058+01:00  INFO 14716 --- [EntreBicis] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-27T12:49:47.445+01:00  INFO 14716 --- [EntreBicis] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-27T12:49:47.794+01:00  INFO 14716 --- [EntreBicis] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@35b3c1f6
+2025-03-27T12:49:47.796+01:00  INFO 14716 --- [EntreBicis] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-27T12:49:47.845+01:00  WARN 14716 --- [EntreBicis] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-27T12:49:47.847+01:00  WARN 14716 --- [EntreBicis] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-03-27T12:49:47.864+01:00  INFO 14716 --- [EntreBicis] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-27T12:49:48.757+01:00  INFO 14716 --- [EntreBicis] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-27T12:49:49.222+01:00  WARN 14716 --- [EntreBicis] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-27T12:49:49.269+01:00  INFO 14716 --- [EntreBicis] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name validadorUsuari
+2025-03-27T12:49:49.671+01:00 DEBUG 14716 --- [EntreBicis] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CsrfFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-03-27T12:49:50.081+01:00  INFO 14716 --- [EntreBicis] [main] c.c.y.e.EntreBicisApplicationTests       : Started EntreBicisApplicationTests in 4.927 seconds (process running for 5.87)
+2025-03-27T12:49:50.225+01:00 DEBUG 14716 --- [EntreBicis] [main] org.hibernate.SQL                        : 
+    select
+        u1_0.email,
+        u1_0.cognoms,
+        u1_0.contrasenya,
+        u1_0.data_alta,
+        u1_0.data_naixement,
+        u1_0.foto,
+        u1_0.nom,
+        u1_0.observacions,
+        u1_0.poblacio,
+        u1_0.rol,
+        u1_0.saldo,
+        u1_0.telefon 
+    from
+        usuari u1_0 
+    where
+        u1_0.email=?
+2025-03-27T12:49:50.717+01:00  INFO 14716 --- [EntreBicis] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-27T12:49:50.757+01:00  INFO 14716 --- [EntreBicis] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

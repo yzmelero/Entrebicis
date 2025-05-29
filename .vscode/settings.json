@@ -1,0 +1,5 @@
+{
+    "java.completion.collapseCompletionItems": true,
+    "java.saveActions.organizeImports": true,
+    "java.configuration.updateBuildConfiguration": "interactive"
+}

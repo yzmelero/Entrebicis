@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Modificar Paràmetres del Sistema</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body class="body-with-navbar">
+    <div th:replace="fragments/navbar :: navbar('parametres')"></div>
+
+    <h1 class="title">Modificar Paràmetres del Sistema</h1>
+
+    <div class="parametres-container">
+        <div class="parametres-card">
+            <form th:action="@{/parametres}" th:object="${parametres}" method="post" class="form">
+                <div class="form-group">
+                    <label for="velocitatMaxima">Velocitat Màxima Vàlida (km/h):</label>
+                    <input type="number" min="0" id="velocitatMaxima" th:field="*{velocitatMaxima}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tempsMaximAturada">Temps Màxim d'Aturada (minuts):</label>
+                    <input type="number" min="0" id="tempsMaximAturada" th:field="*{tempsMaximAturada}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="conversioQuilometreSaldo">Conversió km → punts:</label>
+                    <input type="number" step="0.1" min="0" id="conversioQuilometreSaldo"
+                        th:field="*{conversioQuilometreSaldo}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tempsMaximRecollidaRecompensa">Temps màxim per recollir recompensa (hores):</label>
+                    <input type="number" min="0" id="tempsMaximRecollidaRecompensa"
+                        th:field="*{tempsMaximRecollidaRecompensa}" required>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="button">Guardar</button>
+                </div>
+
+                <div th:if="${error}" class="error-message">
+                    <p th:text="${error}"></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

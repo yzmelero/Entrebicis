@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Llista Recompenses</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body class="body-with-navbar">
+    <div th:replace="fragments/navbar :: navbar('recompenses')"></div>
+    <div class="title-container">
+        <h1 class="title">
+            <span th:if="${usuariRecompenses != null}">
+                Llista Recompenses de
+                <span th:text="${usuariRecompenses.nom + ' ' + usuariRecompenses.cognoms}">Usuari</span>
+            </span>
+            <span th:unless="${usuariRecompenses != null}">
+                Llista Recompenses
+                <a href="/recompenses/crear" class="add-user-button" title="Crear Recompensa">+</a>
+            </span>
+        </h1>
+    </div>
+
+    <div class="rewards-container">
+        <p th:if="${#lists.isEmpty(recompenses)}"
+            style="text-align: center; font-weight: bold; font-size: 1.2em; padding: 20px;">
+            <span th:if="${usuariRecompenses != null}">
+                No hi ha cap recompensa registrada per aquest usuari.
+            </span>
+            <span th:unless="${usuariRecompenses != null}">
+                No hi ha recompenses disponibles.
+            </span>
+        </p>
+        <a th:each="recompensa : ${recompenses}" th:href="@{/recompenses/consultar/{id}(id=${recompensa.id})}"
+            class="rewards-card">
+
+            <div class="rewards-image">
+                <img th:if="${imatgesBase64[recompensa.id] != null}"
+                    th:src="'data:image/jpeg;base64,' + ${imatgesBase64[recompensa.id]}" alt="Imatge Recompensa">
+            </div>
+
+            <div class="rewards-content">
+                <h2 th:text="${recompensa.descripcio}" class="rewards-title">Nom Recompensa</h2>
+                <p class="rewards-place">
+                    <span th:text="${recompensa.nomComerc}">Nom Comerç</span><br>
+                    <span th:text="${recompensa.adrecaComerc}">Adreça Comerç</span>
+                </p>
+                <p class="rewards-user" th:if="${recompensa.estat != 'DISPONIBLE' and recompensa.usuari != null}">
+                    <strong>Usuari:</strong> <span
+                        th:text="${recompensa.usuari.nom + ' ' + recompensa.usuari.cognoms}">usuari@example.com</span>
+                </p>
+                <div class="rewards-estat-punts">
+                    <span class="rewards-estat" th:text="${recompensa.estat}">Estat</span>
+                    <span class="rewards-punts">
+                        <span th:text="${recompensa.punts}">0</span>
+                        <img src="/img/coin-icon.png" alt="Punts">
+                    </span>
+                </div>
+            </div>
+        </a>
+    </div>
+</body>
+
+</html>
