@@ -10,7 +10,9 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Stop
@@ -88,16 +90,17 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
             Column(
                 modifier = Modifier
                     .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
                     .padding(top = 16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Box(
                     modifier = Modifier
                         .fillMaxWidth(0.95f)
-                        .height(600.dp)
+                        .height(500.dp)
                         .clip(RoundedCornerShape(12.dp))
                 ) {
-                    if (ubicacioAutoritzada) {
+                if (ubicacioAutoritzada) {
                         GoogleMap(
                             modifier = Modifier.fillMaxSize()
                                 .background(Color(0xFF9DFFE8))

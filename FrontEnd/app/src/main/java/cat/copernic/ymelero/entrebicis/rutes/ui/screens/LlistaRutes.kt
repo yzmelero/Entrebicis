@@ -144,6 +144,7 @@ fun LlistaRutesScreen(navController: NavController, userViewModel: UserViewModel
                     }
                 }
             }
+            Spacer(modifier = Modifier.height(20.dp))
         }
         BottomSection(navController, userViewModel, 0)
     }

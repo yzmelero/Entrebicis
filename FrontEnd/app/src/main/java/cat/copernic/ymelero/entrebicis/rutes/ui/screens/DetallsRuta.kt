@@ -15,7 +15,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -95,7 +97,13 @@ fun DetallsRutaScreen(navController: NavController, userViewModel: UserViewModel
             Spacer(modifier = Modifier.height(10.dp))
 
             ruta?.let {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Column(
+                    modifier = Modifier
+                        .verticalScroll(rememberScrollState()),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Spacer(modifier = Modifier.height(20.dp))
+
                     Text(
                         text = "Visualitzar Ruta",
                         fontWeight = FontWeight.Bold,
@@ -209,6 +217,7 @@ fun DetallsRutaScreen(navController: NavController, userViewModel: UserViewModel
                             )
                         }
                     }
+                    Spacer(modifier = Modifier.height(100.dp))
                 }
             }
         }

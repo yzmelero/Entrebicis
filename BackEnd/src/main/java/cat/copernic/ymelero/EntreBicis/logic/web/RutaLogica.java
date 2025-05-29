@@ -134,7 +134,10 @@ public class RutaLogica {
                 .orElseThrow(() -> new RuntimeException("Ruta no trobada"));
 
         punt.setRuta(ruta);
-        punt.setMarcaTemps(LocalDateTime.now());
+        if (punt.getMarcaTemps() == null) {
+            punt.setMarcaTemps(LocalDateTime.now());
+        }
+
         return puntsRepository.save(punt);
     }
 
@@ -177,7 +180,7 @@ public class RutaLogica {
             Duration duracio = Duration.between(anterior.getMarcaTemps(), actual.getMarcaTemps());
             long segons = duracio.getSeconds();
 
-            if (segons > 0) {
+            if (segons > 0 && distancia >= 1) {
                 double velocitat = (distancia / segons) * 3.6; // m/s a km/h
                 if (velocitat > velocitatMax)
                     velocitatMax = velocitat;
@@ -193,6 +196,11 @@ public class RutaLogica {
         double saldoObtingut = km * parametres.getConversioQuilometreSaldo();
         if (horesTotals <= 0 || distanciaTotal <= 0) {
             throw new RuntimeException("No es pot finalitzar la ruta perquè les dades són invàlides.");
+        }
+        if (distanciaTotal < 2.0) {
+            puntsRepository.deleteAll(punts);
+            rutaRepository.delete(ruta);
+            throw new RuntimeException("Ruta descartada: no s'ha recorregut cap distància significativa.");
         }
         if (saldoObtingut < 0) {
             throw new RuntimeException("El saldo obtingut no pot ser negatiu.");

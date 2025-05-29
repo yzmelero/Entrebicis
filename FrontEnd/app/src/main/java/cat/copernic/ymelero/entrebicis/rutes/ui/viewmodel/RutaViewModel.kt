@@ -13,6 +13,10 @@ import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 
 class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
 
@@ -80,11 +84,15 @@ class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
         puntsRuta.add(LatLng(lat, lng))
         viewModelScope.launch {
             try {
+                val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+                formatter.timeZone = TimeZone.getTimeZone("UTC")
+                val now = formatter.format(Date())
+
                 val punt = PuntGPS(
                     id = null,
                     latitud = lat,
                     longitud = lng,
-                    marcaTemps = ""
+                    marcaTemps = now
                 )
                 rutaUseCases.afegirPuntGPS(ruta.id!!, punt)
                 Log.i("RutaViewModel", "Punt GPS afegit")

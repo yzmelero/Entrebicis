@@ -18,7 +18,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -90,6 +92,7 @@ fun DetallRecompensaScreen(navController: NavController, userViewModel: UserView
                         .padding(16.dp)
                         .clip(RoundedCornerShape(20.dp))
                         .background(Color(0xFF9DFFE8))
+                        .verticalScroll(rememberScrollState())
                         .padding(28.dp)
                         .fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally
