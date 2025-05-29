@@ -45,7 +45,7 @@ L'objectiu del projecte és fomentar l'ús de la bicicleta, impulsar el comerç 
 * *RN06*: Les capçaleres de mètodes i classes rellevants (sobretot mètodes de negoci) han d’estar degudament comentades en format JavaDoc per al backend i KDoc per al codi Kotlin de l'app mobile.
 * *RN07*:Qualsevol excepció que es produeix durant l’execució ha de ser degudament informada a l’usuari amb informació concreta i comprensible per l’usuari, en el llenguatge de l’aplicació.. 
 * *RN09*: S’ha d'utilitzar el git/gitlab per implementar el projecte de forma óptima i adient. S’han de fer servir les següents branques: main/master, developer i branques per features, encara que el projecte el faci un únic integrant.
-* *RN10*: Les branques fusionades s’eliminen després del merge.
+* *RN10*: Tots els merges de funcionalitats s’han de fer per merge-request a developer. Les branques fusionades s’eliminen després del merge-request. Pels equips d’ún únic integrant no s’han de fer merge-request però si eliminar les branques fusionades després del merge.
 * *RN12*: La comunicació entre el frontend Mobile i el backend s’ha de portar a terme mitjançant els principis REST, assegurant una arquitectura desacoblada i escalable.
 * *RN14*: Tota la interfície d'usuari (UI) dels front-ends i tots els missatges d’avís, error i altres informacions mostrades a l’usuari han d’estar en català.
 
@@ -113,14 +113,15 @@ L'objectiu del projecte és fomentar l'ús de la bicicleta, impulsar el comerç 
 
 * *RF01: Validar ruta (admin)*: El sistema ha de permetre canviar l’estat d’una ruta a “validada”. Una ruta validada significa que el saldo es va afegir al compte de l’usuari que la va generar. Per poder ser validada, una ruta ha de trobar-se prèviament en estat “no validada”.
 
-* *RF02: Invalidar ruta (admin)*: El sistema ha de permetre a l'administrador invalidar una ruta. Quan una ruta es valida, l'usuari que la va generar rep un saldo associat. Si la ruta és invalidada, aquest saldo serà retirat del compte de l'usuari. Una ruta només pot ser invalidada si es troba en estat “vàlida”. A més, no es permetrà invalidar una ruta que hagi estat parcialment o totalment utilitzada per l'usuari per acumular saldo.
+* *RF02: Invalidar ruta (admin)*: El sistema ha de permetre a l'administrador invalidar una ruta. Quan una ruta es valida, l'usuari que la va generar rep un saldo associat. Si la ruta és invalidada, aquest saldo serà retirat del compte de l'usuari. Una ruta només pot ser invalidada si es troba en estat “vàlida”. A més, no es permetrà invalidar una ruta si el saldo associat a la ruta és major que el saldo disponible que té el ciclista.
 
 * *RF03: Iniciar ruta (ciclista)*: El sistema només ha de permetre començar a enregistrar els punts GPS d'una ruta si no hi ha cap altra ruta en curs. S’haurà de consultar el paràmetre de sistema “Temps màxim d'aturada”.
 
 * *RF04: Visualitzar detalls ampliats d’una ruta*: El sistema ha de permetre a l'usuari ciclista consultar la informació detallada de les rutes que ha realitzat. Aquesta informació ha de ser mostrada de manera clara i precisa, incloent:
 ** *Distància recorreguda*: Mostrada amb precisió de metres, des del punt inicial fins al punt final de la ruta.
 ** *Temps total de la ruta*: El temps complet des que la ruta va començar fins que es va finalitzar.
-** *Velocitat màxima*: La velocitat més alta registrada durant la ruta.
+** *Data de la ruta*: La data en què es va realitzar la ruta.
+** *Velocitat màxima*:  La velocitat més alta registrada durant la ruta, destacant visualment si s’ha superat la velocitat màxima vàlida especificada en els paràmetres del sistema.
 ** *Velocitat mitjana*: Calculada com la distància recorreguda dividida pel temps total.
 ** *Mapa interactiu**: Visualització de tots els punts recorreguts sobre un mapa, connectats per línies. El mapa ha de permetre funcionalitats de zoom i desplaçament lateral per una millor visualització. En fer clic sobre qualsevol punt del recorregut, es mostrarà la seva informació de latitud i longitud.
 ** Aquesta funcionalitat serà accessible només per a l'usuari ciclista per les seves pròpies rutes. L’administrador, en canvi, tindrà accés per visualitzar qualsevol ruta independentment de l'usuari que l'hagi realitzat.
@@ -132,6 +133,7 @@ L'objectiu del projecte és fomentar l'ús de la bicicleta, impulsar el comerç 
 ** Un cop finalitzada, l'usuari visualitzarà els detalls de la ruta, seguint la funcionalitat descrita en RF Visualitzar detalls d’una ruta o Visualitzar detalls ampliats d’una ruta, depenent de si es tracta d'un equip d'un o dos integrants.
 
 * *RF06: Llistar rutes*: El sistema ha de permetre visualitzar una llista de rutes amb la següent informació per cada ruta:
+** *Data de la ruta*: Data en què es va realitzar la ruta.
 ** *Distància recorreguda*: Indicat amb precisió de metres des del punt inicial fins al punt final de la ruta.
 ** *Temps total de la ruta*: Temps complet consumit per realitzar la ruta.
 ** *Velocitat mitjana*: Calculada com la distància recorreguda dividida pel temps total.
@@ -139,7 +141,7 @@ L'objectiu del projecte és fomentar l'ús de la bicicleta, impulsar el comerç 
 ** *Saldo atorgat*: L'import de saldo que s'atorga a l'usuari per una ruta vàlida.
 ** *Saldo disponible*: El saldo no utilitzat de la ruta que es pot fer servir en futures recompenses.
 ** *Estat de la ruta*: Indicació de si la ruta està “no validada” o “validada”.
-** Els usuaris només podran veure les seves pròpies rutes, mentre que l'administrador tindrà accés complet per veure totes les rutes, independentment de qui les hagi generat.
+** Els usuaris només podran veure les seves pròpies rutes, mentre que l'administrador tindrà accés complet per veure totes les rutes des de la web, independentment de qui les hagi generat. S’interpreta que l’Admin perd els privilegis un cop fa login al frontend Android.
 
 * *RF09: Crear recompensa (admin)*: 
 El sistema ha de permetre crear una nova recompensa i assignar-la a un punt de bescanvi.
@@ -174,6 +176,7 @@ El sistema ha de permetre llistar les recompenses mostrant les següents dades p
 ** Punt de bescanvi
 ** Punts associats a la recompensa
 ** Estat de la recompensa (disponible, reservada, assignada, recollida)
+** Data en la qual es va crear l’estat
 ** Nom de l’usuari (només en el cas que estigui reservada, assignada o recollida)
 
 ** *Condicions d'accés:*
@@ -184,13 +187,17 @@ El sistema ha de permetre llistar les recompenses mostrant les següents dades p
 * *RF21: Mostrar detall de la recompensa*: 
 El sistema ha de permetre consultar les característiques d’una recompensa seleccionada dins el llistat de recompenses (segons RF18), mostrant els següents detalls:
 ** Nom de la recompensa
+** Data creació de la recompensa
+** Data Reserva (si s’escau)
+** Data Assignació (si s’escau)
+** Data Recollida (si s’escau)
 ** Nom complet de l’usuari (només en el cas que sigui una recompensa reservada, assignada o recollida per un ciclista)
 ** Nom del punt de bescanvi 
 ** Adreça del punt de bescanvi
 ** Estat de la recompensa (disponible, reservada, assignada o recollida)
 
 * *RF22: Crear usuari (admin)*:
-El sistema ha de permetre crear un ciclista amb totes les dades del qüestionari de registre i altres dades que s’hagin obtingut mitjançant l’entrevista inicial. 
+El sistema ha de permetre crear un ciclista amb les dades del qüestionari  de registre (nom, cognoms, Email, població, mòbil) i altres dades que s’hagin obtingut mitjançant l’entrevista inicial.  
 
 * *RF23: Modificar usuari*: 
 El sistema ha de permetre modificar les dades d'un usuari ciclista amb les següents condicions:
@@ -224,12 +231,12 @@ El sistema ha de permetre que qualsevol usuari, tant administrador com ciclista 
 ** *Login*: El ciclista ha de poder fer login a l'app mòbil utilitzant el seu correu electrònic i contrasenya.
 ** *Logout*: El ciclista ha de poder sortir de la seva sessió de l'app mòbil en qualsevol moment.
 . *Usuari Administrador*:
-** *Login*: L'administrador ha de poder fer login tant a l'app mòbil com al frontend web utilitzant el seu correu electrònic i contrasenya.
+** *Login*: L'administrador ha de poder fer login tant a l'app mòbil com al frontend web utilitzant el seu correu electrònic i contrasenya. Si l’app es tanca i no s’ha fet logout, al obrir l’app NO s’ha de fer login.
 ** *Logout*: L'administrador també ha de poder sortir de la seva sessió tant a l'app mòbil com al frontend web en qualsevol moment.
 
 * *RF36: Modificar paràmetres del sistema (admin)*:
 El sistema ha de permetre modificar el valors dels paràmetres de sistema:
-** Velocitat màxima vàlida: determina la velocitat màxima permesa per registrar una ruta correctament. Per defecte, 60 km/h.
+** Velocitat màxima vàlida: determina la velocitat màxima permesa validar una ruta correctament. Per defecte, 60 km/h.
 ** Temps màxim d'aturada: temps màxim que un usuari pot estar aturat abans que la ruta es finalitzi automàticament. Per defecte, 5 minuts.
 ** Conversió entre saldo i quilòmetres: defineix la relació entre la distància recorreguda i els punts acumulats. Per defecte, 1 km = 1 punt.
 ** Temps màxim per recollir la recompensa: període màxim per recollir una recompensa assignada al punt de bescanvi. Per defecte, 72 hores.
@@ -345,3 +352,6 @@ https://trello.com/b/0GED7RNR/entrebicis[Trello EntreBicis Yaiza]
 image::Trello.png[Trello EntreBicis Yaiza]
 image::Trello2.png[Trello EntreBicis Yaiza]
 image::Trello3.png[Trello EntreBicis Yaiza]
+
+=== 1.11. Video Projecte
+https://drive.google.com/drive/folders/1y7aXfux7v6HPVZzBD7cEuXPmXYJxoJlo?usp=sharing[Vídeo projecte EntreBicis]

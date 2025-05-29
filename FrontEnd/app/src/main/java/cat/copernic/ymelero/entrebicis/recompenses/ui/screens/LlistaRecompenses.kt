@@ -40,6 +40,7 @@ import cat.copernic.ymelero.entrebicis.core.model.EstatRecompensa
 import cat.copernic.ymelero.entrebicis.core.model.Recompensa
 import cat.copernic.ymelero.entrebicis.core.ui.BottomSection
 import cat.copernic.ymelero.entrebicis.core.ui.header
+import cat.copernic.ymelero.entrebicis.core.ui.theme.BlauTextTitol
 import cat.copernic.ymelero.entrebicis.recompenses.data.RecRepository
 import cat.copernic.ymelero.entrebicis.recompenses.domain.RecUseCases
 import cat.copernic.ymelero.entrebicis.recompenses.ui.viewmodel.RecViewModel
@@ -75,7 +76,7 @@ fun LlistaRecompensesScreen(navController: NavController, userViewModel: UserVie
                     text = "Llista recompenses",
                     fontSize = 32.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.Black,
+                    color = BlauTextTitol,
                     modifier = Modifier.padding(bottom = 12.dp)
                 )
                 Column(
@@ -120,7 +121,7 @@ fun RecompensaCard(recompensa: Recompensa, recViewModel: RecViewModel, onClick: 
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(20.dp))
-            .background(Color(0xFF9DFFE8))
+            .background(Color.White)
             .clickable { onClick() }
     ) {
         if (imageBitmap != null) {
@@ -158,41 +159,26 @@ fun RecompensaCard(recompensa: Recompensa, recViewModel: RecViewModel, onClick: 
                 color = Color.Black
             )
 
-            Spacer(modifier = Modifier.height(6.dp))
+            Spacer(modifier = Modifier.height(10.dp))
 
             Text(
                 text = recompensa.nomComerc,
-                fontSize = 18.sp,
-                color = Color.DarkGray
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Medium,
+                color = Color(0xFF1A1A1A)
             )
 
-            Text(
-                text = "Data creació: ${recompensa.dataCreacio ?: "N/A"}",
-                fontSize = 14.sp,
-                color = Color.DarkGray
-            )
-
-            if (recompensa.dataReserva != null) {
+            Row {
                 Text(
-                    text = "Data reserva: ${recompensa.dataReserva}",
-                    fontSize = 14.sp,
-                    color = Color.DarkGray
+                    text = "Data creació: ",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF333333)
                 )
-            }
-
-            if (recompensa.dataAssignacio != null) {
                 Text(
-                    text = "Data assignació: ${recompensa.dataAssignacio}",
-                    fontSize = 14.sp,
-                    color = Color.DarkGray
-                )
-            }
-
-            if (recompensa.dataRecollida != null) {
-                Text(
-                    text = "Data recollida: ${recompensa.dataRecollida}",
-                    fontSize = 14.sp,
-                    color = Color.DarkGray
+                    text = recompensa.dataCreacio ?: "N/A",
+                    fontSize = 16.sp,
+                    color = Color(0xFF333333)
                 )
             }
 
@@ -202,8 +188,9 @@ fun RecompensaCard(recompensa: Recompensa, recViewModel: RecViewModel, onClick: 
                 recompensa.usuari?.let { usuari ->
                     Text(
                         text = "Usuari: ${usuari.nom} ${usuari.cognoms}",
-                        fontSize = 16.sp,
-                        color = Color(0xFF444444)
+                        fontSize = 17.sp,
+                        fontWeight = FontWeight.Medium,
+                        color = Color(0xFF222222)
                     )
                 }
             }

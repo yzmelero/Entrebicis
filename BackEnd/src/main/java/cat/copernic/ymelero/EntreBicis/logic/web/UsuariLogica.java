@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 import cat.copernic.ymelero.entrebicis.entity.Usuari;
 import cat.copernic.ymelero.entrebicis.repository.UsuariRepository;
 
+/**
+ * Classe de lògica de negoci per gestionar els usuaris.
+ */
 @Service
 public class UsuariLogica {
 
@@ -20,10 +23,22 @@ public class UsuariLogica {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    /**
+     * Obté tots els usuaris.
+     *
+     * @return Llista d'usuaris.
+     */
     public List<Usuari> getAllUsuaris() {
         return usuariRepository.findAll();
     }
 
+    /**
+     * Crea un nou usuari.
+     *
+     * @param usuari L'usuari a crear.
+     * @return L'usuari creat.
+     * @throws RuntimeException Si hi ha un error en la creació de l'usuari.
+     */
     public Usuari crearUsuari(Usuari usuari) throws RuntimeException {
         if (usuariRepository.findByEmail(usuari.getEmail()).isPresent()) {
             throw new RuntimeException("Ja existeix un usuari amb el correu: " + usuari.getEmail());
@@ -111,10 +126,23 @@ public class UsuariLogica {
         return usuariRepository.save(usuari);
     }
 
+    /**
+     * Elimina un usuari.
+     *
+     * @param email L'email de l'usuari a eliminar.
+     * @throws RuntimeException Si no s'ha trobat l'usuari o si no es pot eliminar.
+     */
     public Usuari getUsuari(String email) {
         return usuariRepository.findByEmail(email).orElse(null);
     }
 
+    /**
+     * Modifica un usuari existent.
+     *
+     * @param usuariModificat L'usuari a modificar.
+     * @return L'usuari modificat.
+     * @throws RuntimeException Si hi ha un error en la modificació de l'usuari.
+     */
     public Usuari modificarUsuari(Usuari usuariModificat) throws RuntimeException {
         Optional<Usuari> usuariExistent = usuariRepository.findByEmail(usuariModificat.getEmail());
         if (usuariExistent.isPresent()) {

@@ -2,6 +2,8 @@ package cat.copernic.ymelero.entrebicis.controller.api;
 
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,12 +24,23 @@ import cat.copernic.ymelero.entrebicis.repository.UsuariRepository;
 @CrossOrigin(origins = "*")
 public class LoginApiController {
 
+    private static final Logger log = LoggerFactory.getLogger(LoginApiController.class);
+
     @Autowired
     private UsuariRepository usuariRepository;
 
+    /**
+     * Mètode per verificar les credencials d'un usuari.
+     *
+     * @param loginRequest Conté el correu electrònic i la contrasenya de l'usuari.
+     * @return Un objecte LoginResponse amb les dades de l'usuari si les credencials
+     *         són vàlides,
+     *         o un missatge d'error si no ho són.
+     */
     @PostMapping("/verify")
     public ResponseEntity<?> verifyUser(@RequestBody LoginRequest loginRequest) {
 
+        log.info("Verificant usuari amb correu: {}", loginRequest.getEmail());
         if (loginRequest.getEmail() == null || loginRequest.getEmail().isEmpty()) {
             return ResponseEntity.badRequest().body("El correu electrònic és obligatori.");
         }
@@ -40,6 +53,7 @@ public class LoginApiController {
         Optional<Usuari> optionalUsuari = usuariRepository.findByEmail(loginRequest.getEmail());
 
         if (!optionalUsuari.isPresent()) {
+            log.warn("Usuari no trobat: {}", loginRequest.getEmail());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuari no trobat");
         }
 
@@ -47,6 +61,7 @@ public class LoginApiController {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
         if (!encoder.matches(loginRequest.getContrasenya(), usuari.getContrasenya())) {
+            log.warn("Contrasenya incorrecta per l'usuari: {}", loginRequest.getEmail());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Contrasenya incorrecta");
         }
 

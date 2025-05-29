@@ -15,7 +15,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -35,6 +37,7 @@ import androidx.navigation.NavController
 import cat.copernic.ymelero.entrebicis.R
 import cat.copernic.ymelero.entrebicis.core.ui.BottomSection
 import cat.copernic.ymelero.entrebicis.core.ui.header
+import cat.copernic.ymelero.entrebicis.core.ui.theme.BlauTextTitol
 import cat.copernic.ymelero.entrebicis.rutes.data.RutaRepository
 import cat.copernic.ymelero.entrebicis.rutes.domain.RutaUseCases
 import cat.copernic.ymelero.entrebicis.rutes.ui.viewmodel.RutaViewModel
@@ -95,11 +98,17 @@ fun DetallsRutaScreen(navController: NavController, userViewModel: UserViewModel
             Spacer(modifier = Modifier.height(10.dp))
 
             ruta?.let {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Column(
+                    modifier = Modifier
+                        .verticalScroll(rememberScrollState()),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Spacer(modifier = Modifier.height(20.dp))
+
                     Text(
                         text = "Visualitzar Ruta",
                         fontWeight = FontWeight.Bold,
-                        color = Color.Black,
+                        color = BlauTextTitol,
                         fontSize = 24.sp
                     )
 
@@ -109,7 +118,7 @@ fun DetallsRutaScreen(navController: NavController, userViewModel: UserViewModel
                         modifier = Modifier
                             .fillMaxWidth(0.9f)
                             .clip(RoundedCornerShape(16.dp))
-                            .background(Color(0xFF9DFFE8))
+                            .background(Color.White)
                             .padding(16.dp)
                     ) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -209,6 +218,7 @@ fun DetallsRutaScreen(navController: NavController, userViewModel: UserViewModel
                             )
                         }
                     }
+                    Spacer(modifier = Modifier.height(100.dp))
                 }
             }
         }

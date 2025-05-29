@@ -27,8 +27,12 @@ class UserViewModel(private val useCases: UseCases) : ViewModel() {
     private val _currentUser = MutableStateFlow<Usuari?>(null)
     val currentUser: StateFlow<Usuari?> get() = _currentUser
 
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> get() = _isLoading
+
     fun loginUser(email: String, contrasenya: String) {
         viewModelScope.launch {
+            _isLoading.value = true
             try {
                 val loginResponse = useCases.loginUser(email, contrasenya)
                 if (loginResponse.isSuccessful) {
@@ -51,6 +55,8 @@ class UserViewModel(private val useCases: UseCases) : ViewModel() {
             } catch (e: Exception) {
                 _loginSuccess.value = false
                 _loginError.value = "${e.message}"
+            } finally {
+                _isLoading.value = false
             }
         }
     }

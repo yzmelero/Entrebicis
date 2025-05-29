@@ -23,6 +23,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import cat.copernic.ymelero.entrebicis.R
+import cat.copernic.ymelero.entrebicis.core.ui.theme.BlauClarEntreBicis
+import cat.copernic.ymelero.entrebicis.core.ui.theme.BlauTextTitol
 import cat.copernic.ymelero.entrebicis.usuaris.data.UserRepository
 import cat.copernic.ymelero.entrebicis.usuaris.domain.UseCases
 import cat.copernic.ymelero.entrebicis.usuaris.ui.viewmodel.UserViewModel
@@ -34,6 +36,7 @@ fun LoginScreen(navController: NavController, userViewModel: UserViewModel) {
 
     val loginSuccess by userViewModel.loginSuccess.collectAsState()
     val loginError by userViewModel.loginError.collectAsState()
+    val isLoading by userViewModel.isLoading.collectAsState()
 
     LaunchedEffect(loginSuccess) {
         if (loginSuccess == true) {
@@ -44,7 +47,7 @@ fun LoginScreen(navController: NavController, userViewModel: UserViewModel) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFB3F0F8)),
+            .background(BlauClarEntreBicis),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
@@ -52,7 +55,7 @@ fun LoginScreen(navController: NavController, userViewModel: UserViewModel) {
         Text(
             text = "EntreBicis",
             fontSize = 46.sp,
-            color = Color.Black,
+            color = BlauTextTitol,
             fontWeight = FontWeight.Bold
         )
         Image(
@@ -75,10 +78,16 @@ fun LoginScreen(navController: NavController, userViewModel: UserViewModel) {
                 Text(
                     text = "Inici Sessió",
                     fontSize = 24.sp,
-                    color = Color.Black,
+                    color = BlauTextTitol,
                     modifier = Modifier.padding(bottom = 12.dp)
                 )
-
+                if (isLoading) {
+                    CircularProgressIndicator(
+                        modifier = Modifier
+                            .padding(top = 16.dp)
+                            .align(Alignment.CenterHorizontally)
+                    )
+                }
                 OutlinedTextField(
                     value = email,
                     onValueChange = { email = it },

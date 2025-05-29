@@ -13,6 +13,10 @@ import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 
 class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
 
@@ -49,6 +53,8 @@ class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
 
     private val _rutaFinalitzada = MutableStateFlow<Ruta?>(null)
     val rutaFinalitzada: StateFlow<Ruta?> get() = _rutaFinalitzada
+    private val _errorRuta = MutableStateFlow<String?>(null)
+    val errorRuta: StateFlow<String?> get() = _errorRuta
 
     fun finalitzarRuta() {
         val ruta = _rutaActual.value ?: return
@@ -61,9 +67,12 @@ class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
                     puntsRuta.clear()
                     Log.i("RutaViewModel", "Ruta finalitzada correctament")
                 } else {
+                    val errorMsg = response.errorBody()?.string() ?: "Error desconegut"
+                    _errorRuta.value = errorMsg
                     Log.e("RutaViewModel", "Error finalitzant: ${response.errorBody()?.string()}")
                 }
             } catch (e: Exception) {
+                _errorRuta.value = e.message ?: "Error inesperat"
                 Log.e("RutaViewModel", "Excepció finalitzant ruta: ${e.message}")
             }
         }
@@ -71,6 +80,7 @@ class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
 
     fun resetRutaFinalitzada() {
         _rutaFinalitzada.value = null
+        _errorRuta.value = null
     }
 
     val puntsRuta = mutableStateListOf<LatLng>()
@@ -80,11 +90,15 @@ class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
         puntsRuta.add(LatLng(lat, lng))
         viewModelScope.launch {
             try {
+                val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+                formatter.timeZone = TimeZone.getTimeZone("UTC")
+                val now = formatter.format(Date())
+
                 val punt = PuntGPS(
                     id = null,
                     latitud = lat,
                     longitud = lng,
-                    marcaTemps = ""
+                    marcaTemps = now
                 )
                 rutaUseCases.afegirPuntGPS(ruta.id!!, punt)
                 Log.i("RutaViewModel", "Punt GPS afegit")
@@ -94,11 +108,15 @@ class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
         }
     }
 
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> get() = _isLoading
+
     private val _rutaCarregada = MutableStateFlow<Ruta?>(null)
     val rutaCarregada: StateFlow<Ruta?> get() = _rutaCarregada
 
     fun carregarRutaPerId(idRuta: Long) {
         viewModelScope.launch {
+            _isLoading.value = true
             try {
                 val response = rutaUseCases.obtenirRuta(idRuta)
                 if (response.isSuccessful) {
@@ -109,6 +127,8 @@ class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
                 }
             } catch (e: Exception) {
                 Log.e("RutaViewModel", "Excepció carregant ruta: ${e.message}")
+            } finally {
+                _isLoading.value = false
             }
         }
     }
@@ -117,6 +137,7 @@ class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
 
     fun carregarRutesUsuari(email: String) {
         viewModelScope.launch {
+            _isLoading.value = true
             try {
                 val resposta = rutaUseCases.getRutesPerUsuari(email)
                 if (resposta.isSuccessful) {
@@ -124,7 +145,9 @@ class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
                 }
             } catch (e: Exception) {
                 Log.e("RutaViewModel", "Error carregant rutes: ${e.message}")
-            }
+            } finally {
+            _isLoading.value = false
+        }
         }
     }
 }

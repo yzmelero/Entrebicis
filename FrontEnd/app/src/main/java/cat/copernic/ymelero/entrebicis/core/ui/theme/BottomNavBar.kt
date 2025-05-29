@@ -16,7 +16,7 @@ import cat.copernic.ymelero.entrebicis.usuaris.ui.viewmodel.UserViewModel
 
 @Composable
 fun BottomNavBar(navController: NavController, userViewModel: UserViewModel, selectedItem: Int = 0) {
-    NavigationBar(containerColor = Color(0xFF90CAF9)) {
+    NavigationBar(containerColor = BlauEntreBicis) {
     val currentUser by userViewModel.currentUser.collectAsState()
 
     val icons = listOf(

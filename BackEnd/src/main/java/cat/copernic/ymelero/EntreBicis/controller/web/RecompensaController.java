@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
@@ -26,9 +28,17 @@ import cat.copernic.ymelero.entrebicis.logic.web.RecompensaLogica;
 @RequestMapping("/recompenses")
 public class RecompensaController {
 
+    private static final Logger log = LoggerFactory.getLogger(RecompensaController.class);
+
     @Autowired
     private RecompensaLogica recompensaLogica;
 
+    /**
+     * Mètode per mostrar el llistat de recompenses disponibles.
+     *
+     * @param model Model per passar dades a la vista.
+     * @return Nom de la vista a mostrar.
+     */
     @GetMapping
     public String llistarRecompenses(Model model) {
         List<Recompensa> recompenses = recompensaLogica.getAllRecompenses();
@@ -45,18 +55,33 @@ public class RecompensaController {
         return "recompensa-llistar";
     }
 
+    /**
+     * Mètode per mostrar el formulari de creació d'una nova recompensa.
+     *
+     * @param model Model per passar dades a la vista.
+     * @return Nom de la vista a mostrar.
+     */
     @GetMapping("/crear")
     public String crearRecompensa(Model model) {
+        log.info("Creant nova recompensa");
         model.addAttribute("recompensa", new Recompensa());
         return "recompensa-alta";
     }
 
+    /**
+     * Mètode per guardar una nova recompensa.
+     *
+     * @param recompensa L'objecte recompensa a guardar.
+     * @param fotoFile   Fitxer d'imatge de la recompensa.
+     * @param model      Model per passar dades a la vista.
+     * @return Redirecció a la vista de llistat de recompenses.
+     */
     @PostMapping("/crear")
-
     public String guardarNovaRecompensa(@ModelAttribute Recompensa recompensa,
             @RequestParam(value = "fotoFile", required = false) MultipartFile fotoFile,
             Model model) {
         try {
+            log.info("Desant nova recompensa: {}", recompensa);
             if (fotoFile != null && !fotoFile.isEmpty()) {
                 recompensa.setFoto(fotoFile.getBytes());
             } else {
@@ -67,15 +92,24 @@ public class RecompensaController {
             recompensaLogica.crearRecompensa(recompensa);
             return "redirect:/recompenses";
         } catch (Exception e) {
+            log.error("Error en desar la recompensa", e);
             model.addAttribute("error", e.getMessage());
             model.addAttribute("recompensa", recompensa);
             return "recompensa-alta";
         }
     }
 
+    /**
+     * Mètode per mostrar una recompensa existent.
+     *
+     * @param id    ID de la recompensa.
+     * @param model Model per passar dades a la vista.
+     * @return Nom de la vista a mostrar.
+     */
     @GetMapping("/consultar/{id}")
     public String mostrarRecompensa(@PathVariable Long id, Model model) {
         Recompensa recompensa = recompensaLogica.getRecompensa(id);
+        log.info("Consultant recompensa amb ID: {}", id);
         try {
 
             if (recompensa == null) {
@@ -98,20 +132,37 @@ public class RecompensaController {
         }
     }
 
+    /**
+     * Mètode per esborrar una recompensa existent.
+     * 
+     * @param id    ID de la recompensa a esborrar.
+     * @param model Model per passar dades a la vista.
+     * @return Redirecció a la vista de llistat de recompenses.
+     */
     @GetMapping("/esborrar/{id}")
     public String esborrarRecompensa(@PathVariable Long id, Model model) {
         try {
+            log.info("Esborrant recompensa amb ID: {}", id);
             recompensaLogica.eliminarRecompensa(id);
             return "redirect:/recompenses";
         } catch (Exception e) {
+            log.error("Error en esborrar recompensa ID {}: {}", id, e.getMessage(), e);
             model.addAttribute("error", e.getMessage());
             return "redirect:/recompenses";
         }
     }
 
+    /**
+     * Mètode per assignar una recompensa a un usuari.
+     * 
+     * @param id    ID de la recompensa a assignar.
+     * @param model Model per passar dades a la vista.
+     * @return Redirecció a la vista de consulta de la recompensa.
+     */
     @PostMapping("/assignar/{id}")
     public String assignarRecompensa(@PathVariable Long id, Model model) {
         try {
+            log.info("Assignant recompensa amb ID: {}", id);
             recompensaLogica.assignarRecompensa(id);
             return "redirect:/recompenses/consultar/" + id;
         } catch (Exception e) {
@@ -120,10 +171,18 @@ public class RecompensaController {
         }
     }
 
+    /**
+     * Mètode per mostrar l'historial de recompenses d'un usuari.
+     * 
+     * @param email L'email de l'usuari.
+     * @param model Model per passar dades a la vista.
+     * @return Nom de la vista a mostrar.
+     */
     @GetMapping("/historial/{email}")
     public String veureHistorialRecompenses(@PathVariable String email, Model model) {
         List<Recompensa> recompenses = recompensaLogica.getRecompensesPropies(email);
         Map<Long, String> imatgesBase64 = new HashMap<>();
+        log.info("Consultant historial de recompenses per a: {}", email);
 
         for (Recompensa recompensa : recompenses) {
             if (recompensa.getFoto() != null) {

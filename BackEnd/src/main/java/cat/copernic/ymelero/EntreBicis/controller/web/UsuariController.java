@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,12 +28,20 @@ import cat.copernic.ymelero.entrebicis.logic.web.UsuariLogica;
 @RequestMapping("/usuaris")
 public class UsuariController {
 
+    private static final Logger log = LoggerFactory.getLogger(UsuariController.class);
+
     @Autowired
     private UsuariLogica usuariLogica;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    /**
+     * Mètode per mostrar el llistat d'usuaris.
+     *
+     * @param model Model per passar dades a la vista.
+     * @return Nom de la vista a mostrar.
+     */
     @GetMapping
     public String mostrarUsuaris(Model model) {
         List<Usuari> usuaris = usuariLogica.getAllUsuaris();
@@ -43,23 +53,41 @@ public class UsuariController {
                 imatgesBase64.put(usuari.getEmail(), imatgeBase64);
             }
         }
+        log.info("Accedint al llistat de tots els usuaris");
         model.addAttribute("usuaris", usuaris);
         model.addAttribute("imatgesBase64", imatgesBase64);
         return "usuaris";
     }
 
+    /**
+     * Mètode per mostrar el formulari de creació d'un nou usuari.
+     *
+     * @param model Model per passar dades a la vista.
+     * @return Nom de la vista a mostrar.
+     */
     @GetMapping("/crear")
     public String crearUsuari(Model model) {
+        log.info("Creant nou usuari");
         model.addAttribute("usuari", new Usuari());
         return "usuari-alta";
     }
 
+    /**
+     * Mètode per guardar un nou usuari.
+     *
+     * @param usuari               Usuari a guardar.
+     * @param fotoFile             Fitxer de la foto de l'usuari.
+     * @param confirmarContrasenya Contrasenya per confirmar.
+     * @param model                Model per passar dades a la vista.
+     * @return Redirecció a la vista dels usuaris o error en cas de fallida.
+     */
     @PostMapping("/crear")
     public String guardarNouUsuari(@ModelAttribute Usuari usuari,
             @RequestParam(value = "fotoFile", required = false) MultipartFile fotoFile,
             @RequestParam(value = "confirmarContrasenya", required = false) String confirmarContrasenya,
             Model model) {
         try {
+            log.info("Desant nou usuari: {}", usuari.getEmail());
             if (!usuari.getContrasenya().equals(confirmarContrasenya)) {
                 throw new RuntimeException("Les contrasenyes no coincideixen.");
             } else {
@@ -79,17 +107,26 @@ public class UsuariController {
             usuariLogica.crearUsuari(usuari);
             return "redirect:/usuaris";
         } catch (Exception e) {
+            log.error("Error en desar l'usuari", e);
             model.addAttribute("error", e.getMessage());
             model.addAttribute("usuari", usuari);
             return "usuari-alta";
         }
     }
 
+    /**
+     * Mètode per mostrar un usuari concret.
+     *
+     * @param email L'email de l'usuari a mostrar.
+     * @param model Model per passar dades a la vista.
+     * @return Nom de la vista a mostrar.
+     */
     @GetMapping("/consulta/{email}")
     public String mostrarUsuari(@PathVariable String email, Model model) {
 
         Usuari usuari = usuariLogica.getUsuari(email);
         if (usuari == null) {
+            log.warn("No s'ha trobat l'usuari amb correu: {}", email);
             model.addAttribute("error", "No s'ha trobat usuari amb correu: " + email);
             return "redirect:/usuaris";
         }
@@ -99,15 +136,24 @@ public class UsuariController {
         } else {
             model.addAttribute("imatgeBase64", null);
         }
+        log.info("Consultant l'usuari: {}", email);
         model.addAttribute("usuari", usuari);
 
         return "usuari-consultar";
     }
 
+    /**
+     * Mètode per modificar un usuari.
+     * 
+     * @param email L'email de l'usuari a modificar.
+     * @param model Model per passar dades a la vista.
+     * @return Nom de la vista a mostrar.
+     */
     @GetMapping("/modificar/{email}")
     public String modificarUsuari(@PathVariable String email, Model model) {
         Usuari usuari = usuariLogica.getUsuari(email);
         if (usuari == null) {
+            log.warn("No s'ha trobat l'usuari: {}", email);
             model.addAttribute("error", "No s'ha trobat usuari amb correu: " + email);
             return "redirect:/usuaris";
         }
@@ -122,12 +168,23 @@ public class UsuariController {
         return "usuari-modificar";
     }
 
+    /**
+     * Mètode per guardar la modificació d'un usuari.
+     *
+     * @param usuari               Usuari a modificar.
+     * @param fotoFile             Fitxer de la foto de l'usuari.
+     * @param confirmarContrasenya Contrasenya per confirmar.
+     * @param model                Model per passar dades a la vista.
+     * @return Redirecció a la vista de consulta de l'usuari o error en cas de
+     *         fallida.
+     */
     @PostMapping("/modificar")
     public String guardarModificacioUsuari(@ModelAttribute Usuari usuari,
             @RequestParam(value = "fotoFile", required = false) MultipartFile fotoFile,
             @RequestParam(value = "confirmarContrasenya", required = false) String confirmarContrasenya,
             Model model) {
         try {
+            log.info("Desant modificació de l'usuari: {}", usuari.getEmail());
             Usuari usuariAntic = usuariLogica.getUsuari(usuari.getEmail());
             if (usuariAntic == null) {
                 throw new RuntimeException("L'usuari no existeix.");
@@ -136,7 +193,6 @@ public class UsuariController {
             if (fotoFile == null || fotoFile.isEmpty()) {
                 usuari.setFoto(usuariAntic.getFoto());
             } else {
-
                 usuari.setFoto(fotoFile.getBytes());
             }
 
@@ -149,6 +205,7 @@ public class UsuariController {
             usuariLogica.modificarUsuari(usuari);
             return "redirect:/usuaris/consulta/" + usuari.getEmail();
         } catch (Exception e) {
+            log.error("Error en desar la modificació de l'usuari", e);
             model.addAttribute("error", e.getMessage());
             model.addAttribute("usuari", usuari);
 

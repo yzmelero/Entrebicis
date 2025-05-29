@@ -10,7 +10,9 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Stop
@@ -21,7 +23,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
@@ -44,6 +45,7 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
     val context = LocalContext.current
     val rutaViewModel = remember { RutaViewModel(RutaUseCases(RutaRepository())) }
     val rutaFinalitzada by rutaViewModel.rutaFinalitzada.collectAsState()
+    val errorRuta by rutaViewModel.errorRuta.collectAsState()
     val usuari by userViewModel.currentUser.collectAsState()
     val parametres by userViewModel.parametresSistema.collectAsState()
     val ruta by rutaViewModel.rutaActual.collectAsState()
@@ -88,19 +90,20 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
             Column(
                 modifier = Modifier
                     .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
                     .padding(top = 16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Box(
                     modifier = Modifier
                         .fillMaxWidth(0.95f)
-                        .height(600.dp)
+                        .height(500.dp)
                         .clip(RoundedCornerShape(12.dp))
                 ) {
-                    if (ubicacioAutoritzada) {
+                if (ubicacioAutoritzada) {
                         GoogleMap(
                             modifier = Modifier.fillMaxSize()
-                                .background(Color(0xFF9DFFE8))
+                                .background(Color.White)
                                 .padding(10.dp),
                             cameraPositionState = estatCamera,
                             properties = MapProperties(isMyLocationEnabled = true),
@@ -137,7 +140,6 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
                     Button(
                         onClick = {
                             rutaViewModel.finalitzarRuta()
-                            Toast.makeText(context, "Ruta finalitzada!", Toast.LENGTH_SHORT).show()
                         },
                         modifier = Modifier
                             .height(60.dp)
@@ -210,6 +212,12 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
     LaunchedEffect(rutaFinalitzada) {
         rutaFinalitzada?.let { ruta ->
             navController.navigate("detallsRuta/${ruta.id}")
+            rutaViewModel.resetRutaFinalitzada()
+        }
+    }
+    LaunchedEffect(errorRuta) {
+        errorRuta?.let { msg ->
+            Toast.makeText(context, "Error: $msg", Toast.LENGTH_LONG).show()
             rutaViewModel.resetRutaFinalitzada()
         }
     }

@@ -12,6 +12,9 @@ import cat.copernic.ymelero.entrebicis.entity.Usuari;
 import cat.copernic.ymelero.entrebicis.repository.RecompensaRepository;
 import cat.copernic.ymelero.entrebicis.repository.UsuariRepository;
 
+/**
+ * Classe de lògica de negoci per gestionar les recompenses.
+ */
 @Service
 public class RecompensaLogica {
 
@@ -21,10 +24,22 @@ public class RecompensaLogica {
     @Autowired
     private UsuariRepository usuariRepository;
 
+    /**
+     * Obté totes les recompenses.
+     *
+     * @return Llista de recompenses.
+     */
     public List<Recompensa> getAllRecompenses() {
         return recompensaRepository.findAll();
     }
 
+    /**
+     * Crea una nova recompensa.
+     *
+     * @param recompensa La recompensa a crear.
+     * @return La recompensa creada.
+     * @throws RuntimeException Si hi ha un error en la creació de la recompensa.
+     */
     public Recompensa crearRecompensa(Recompensa recompensa) throws RuntimeException {
         if (recompensa.getDescripcio() == null || recompensa.getDescripcio().isEmpty()) {
             throw new RuntimeException("La descripció de la recompensa és obligatòria.");
@@ -54,10 +69,22 @@ public class RecompensaLogica {
         return recompensaRepository.save(recompensa);
     }
 
+    /**
+     * Actualitza una recompensa existent.
+     *
+     * @param recompensa La recompensa a actualitzar.
+     * @return La recompensa actualitzada.
+     */
     public Recompensa getRecompensa(Long id) {
         return recompensaRepository.findById(id).orElse(null);
     }
 
+    /**
+     * Actualitza una recompensa existent.
+     *
+     * @param recompensa La recompensa a actualitzar.
+     * @return La recompensa actualitzada.
+     */
     public void eliminarRecompensa(Long id) {
         Recompensa recompensa = getRecompensa(id);
         if (recompensa != null) {
@@ -71,14 +98,33 @@ public class RecompensaLogica {
         }
     }
 
+    /**
+     * Obté les recompenses disponibles.
+     *
+     * @return Llista de recompenses disponibles.
+     */
     public List<Recompensa> getRecompensesDisponibles() {
         return recompensaRepository.findByEstat(EstatRecompensa.DISPONIBLE);
     }
 
+    /**
+     * Obté les recompenses d'un usuari.
+     *
+     * @param email L'email de l'usuari.
+     * @return Llista de recompenses de l'usuari.
+     */
     public List<Recompensa> getRecompensesPropies(String email) {
         return recompensaRepository.findByUsuari_Email(email);
     }
 
+    /**
+     * Reserva una recompensa per a un usuari.
+     *
+     * @param recompensaId L'ID de la recompensa.
+     * @param emailUsuari  L'email de l'usuari.
+     * @param saldoUsuari  El saldo de l'usuari.
+     * @return La recompensa reservada.
+     */
     public Recompensa reservarRecompensa(Long recompensaId, String emailUsuari, Double saldoUsuari) {
         Recompensa recompensa = getRecompensa(recompensaId);
 
@@ -113,6 +159,11 @@ public class RecompensaLogica {
         return recompensaRepository.save(recompensa);
     }
 
+    /**
+     * Assigna una recompensa a un usuari.
+     *
+     * @param recompensaId L'ID de la recompensa.
+     */
     public void assignarRecompensa(Long recompensaId) {
         Recompensa recompensa = recompensaRepository.findById(recompensaId)
                 .orElseThrow(() -> new IllegalArgumentException("Recompensa no trobada"));
@@ -135,6 +186,12 @@ public class RecompensaLogica {
         recompensaRepository.save(recompensa);
     }
 
+    /**
+     * Recull una recompensa assignada.
+     *
+     * @param recompensaId L'ID de la recompensa.
+     * @return La recompensa recollida.
+     */
     public Recompensa recollirRecompensa(Long recompensaId) {
         Recompensa recompensa = recompensaRepository.findById(recompensaId)
                 .orElseThrow(() -> new RuntimeException("Recompensa no trobada"));
@@ -146,6 +203,12 @@ public class RecompensaLogica {
         return recompensaRepository.save(recompensa);
     }
 
+    /**
+     * Obté un usuari per email.
+     *
+     * @param email L'email de l'usuari.
+     * @return L'usuari corresponent a l'email.
+     */
     public Usuari getUsuariPerEmail(String email) {
         return usuariRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Usuari no trobat"));

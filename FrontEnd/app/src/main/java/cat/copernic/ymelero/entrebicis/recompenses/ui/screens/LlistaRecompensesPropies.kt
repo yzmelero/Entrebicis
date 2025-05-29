@@ -28,6 +28,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import cat.copernic.ymelero.entrebicis.core.ui.BottomSection
 import cat.copernic.ymelero.entrebicis.core.ui.header
+import cat.copernic.ymelero.entrebicis.core.ui.theme.BlauTextTitol
 import cat.copernic.ymelero.entrebicis.recompenses.data.RecRepository
 import cat.copernic.ymelero.entrebicis.recompenses.domain.RecUseCases
 import cat.copernic.ymelero.entrebicis.recompenses.ui.viewmodel.RecViewModel
@@ -65,10 +66,10 @@ fun LlistaRecompensesPropiesScreen(navController: NavController, userViewModel: 
             ) {
                 Spacer(modifier = Modifier.height(20.dp))
                 Text(
-                    text = "Les meves recompenses",
+                    text = "Recompenses Propies",
                     fontSize = 32.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.Black,
+                    color = BlauTextTitol,
                     modifier = Modifier.padding(bottom = 12.dp)
                 )
                 Column(

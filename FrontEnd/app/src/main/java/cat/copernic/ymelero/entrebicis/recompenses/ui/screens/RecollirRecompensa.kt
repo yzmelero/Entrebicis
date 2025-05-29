@@ -4,7 +4,9 @@ import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -21,6 +23,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import cat.copernic.ymelero.entrebicis.core.ui.BottomSection
 import cat.copernic.ymelero.entrebicis.core.ui.header
+import cat.copernic.ymelero.entrebicis.core.ui.theme.BlauTextTitol
 import cat.copernic.ymelero.entrebicis.recompenses.data.RecRepository
 import cat.copernic.ymelero.entrebicis.recompenses.domain.RecUseCases
 import cat.copernic.ymelero.entrebicis.recompenses.ui.viewmodel.RecViewModel
@@ -58,6 +61,7 @@ fun RecollirRecompensaScreen(navController: NavController, userViewModel: UserVi
             Column(
                 modifier = Modifier
                     .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
                     .background(Color(0xFFD3FCFF))
                     .windowInsetsPadding(WindowInsets.systemBars),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -69,18 +73,17 @@ fun RecollirRecompensaScreen(navController: NavController, userViewModel: UserVi
                     text = "Recollir Recompensa",
                     fontSize = 30.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.Black
+                    color = BlauTextTitol
                 )
                 Column(
                     modifier = Modifier
                         .padding(16.dp)
                         .clip(RoundedCornerShape(20.dp))
-                        .background(Color(0xFF9DFFE8))
+                        .background(Color.White)
                         .padding(28.dp)
                         .fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-
                     Text(
                         text = r.descripcio,
                         fontSize = 24.sp,
@@ -151,8 +154,8 @@ fun RecollirRecompensaScreen(navController: NavController, userViewModel: UserVi
                         )
                     }
                 }
+                Spacer(modifier = Modifier.height(100.dp))
             }
-
             BottomSection(navController, userViewModel, 1)
         }
     }
