@@ -352,3 +352,6 @@ https://trello.com/b/0GED7RNR/entrebicis[Trello EntreBicis Yaiza]
 image::Trello.png[Trello EntreBicis Yaiza]
 image::Trello2.png[Trello EntreBicis Yaiza]
 image::Trello3.png[Trello EntreBicis Yaiza]
+
+=== 1.11. Video Projecte
+https://drive.google.com/drive/folders/1y7aXfux7v6HPVZzBD7cEuXPmXYJxoJlo?usp=sharing[Vídeo projecte EntreBicis]
