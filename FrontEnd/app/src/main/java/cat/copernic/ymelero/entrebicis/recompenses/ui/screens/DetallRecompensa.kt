@@ -103,8 +103,20 @@ fun DetallRecompensaScreen(navController: NavController, userViewModel: UserView
                         .fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+                    Text(
+                        text = r.nomComerc,
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        color = Color(0xFF222222)
+                    )
+                    Spacer(modifier = Modifier.height(2.dp))
+                    Text(
+                        text = r.adrecaComerc,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Normal,
+                        color = Color(0xFF555555)
+                    )
                     Spacer(modifier = Modifier.height(4.dp))
-
                     if (imageBitmap != null) {
                         Box(
                             modifier = Modifier
@@ -141,21 +153,6 @@ fun DetallRecompensaScreen(navController: NavController, userViewModel: UserView
                             )
                         }
                     }
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Text(
-                        text = r.nomComerc,
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        color = Color(0xFF222222)
-                    )
-                    Spacer(modifier = Modifier.height(2.dp))
-                    Text(
-                        text = r.adrecaComerc,
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Normal,
-                        color = Color(0xFF555555)
-                    )
-
                     Spacer(modifier = Modifier.height(12.dp))
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -195,10 +192,10 @@ fun DetallRecompensaScreen(navController: NavController, userViewModel: UserView
                             .fillMaxWidth()
                             .padding(bottom = 4.dp)
                     )
-                    DetallText("Data de creació:", r.dataCreacio.toString())
-                    r.dataReserva?.let { DetallText("Data de reserva:", it) }
-                    r.dataAssignacio?.let { DetallText("Data d'assignació:", it) }
-                    r.dataRecollida?.let { DetallText("Data de recollida:", it) }
+                    DetallText("Data de creació: ", r.dataCreacio.toString())
+                    r.dataReserva?.let { DetallText("Data de reserva: ", it) }
+                    r.dataAssignacio?.let { DetallText("Data d'assignació: ", it) }
+                    r.dataRecollida?.let { DetallText("Data de recollida: ", it) }
 
                     Spacer(modifier = Modifier.height(20.dp))
                     if (r.estat.name == "DISPONIBLE") {
