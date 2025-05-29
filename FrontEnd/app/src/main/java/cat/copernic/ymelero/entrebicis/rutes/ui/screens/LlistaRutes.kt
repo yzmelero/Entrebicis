@@ -20,6 +20,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -38,6 +39,7 @@ import androidx.navigation.NavController
 import cat.copernic.ymelero.entrebicis.R
 import cat.copernic.ymelero.entrebicis.core.ui.BottomSection
 import cat.copernic.ymelero.entrebicis.core.ui.header
+import cat.copernic.ymelero.entrebicis.core.ui.theme.BlauTextTitol
 import cat.copernic.ymelero.entrebicis.rutes.data.RutaRepository
 import cat.copernic.ymelero.entrebicis.rutes.domain.RutaUseCases
 import cat.copernic.ymelero.entrebicis.rutes.ui.viewmodel.RutaViewModel
@@ -48,6 +50,7 @@ fun LlistaRutesScreen(navController: NavController, userViewModel: UserViewModel
     val rutaViewModel = remember { RutaViewModel(RutaUseCases(RutaRepository())) }
     val llistaRutes by rutaViewModel.llistaRutes.collectAsState()
     val usuari by userViewModel.currentUser.collectAsState()
+    val isLoading by rutaViewModel.isLoading.collectAsState()
 
     LaunchedEffect(Unit) {
         usuari?.email?.let {
@@ -58,93 +61,115 @@ fun LlistaRutesScreen(navController: NavController, userViewModel: UserViewModel
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color(0xFFD3FCFF))
-                .windowInsetsPadding(WindowInsets.systemBars),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            header(navController, userViewModel)
-            Spacer(modifier = Modifier.height(20.dp))
 
-            Text(
-                text = "Llista rutes",
-                fontSize = 28.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            LazyColumn(
+            Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(horizontal = 16.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
-                contentPadding = PaddingValues(bottom = 80.dp)
+                    .background(Color(0xFFD3FCFF))
+                    .windowInsetsPadding(WindowInsets.systemBars),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                itemsIndexed(llistaRutes) { index, ruta ->
-                    Box(
+                header(navController, userViewModel)
+                Spacer(modifier = Modifier.height(20.dp))
+
+                Text(
+                    text = "Llista rutes",
+                    fontSize = 28.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = BlauTextTitol
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+                if (isLoading) {
+                    CircularProgressIndicator(
+                        modifier = Modifier.align(Alignment.CenterHorizontally)
+                    )
+                }
+                else {
+                    LazyColumn(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .clip(RoundedCornerShape(16.dp))
-                            .background(Color(0xFF9DFFE8))
-                            .padding(16.dp)
+                            .fillMaxSize()
+                            .padding(horizontal = 16.dp),
+                        verticalArrangement = Arrangement.spacedBy(12.dp),
+                        contentPadding = PaddingValues(bottom = 80.dp)
                     ) {
-                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Text("Ruta ${index + 1}", fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                            Text(
-                                text = "Data: ${ruta.dataCreacio}",
-                                fontSize = 16.sp,
-                                color = Color.Black,
-                                modifier = Modifier.padding(top = 4.dp)
-                            )
-
-                            Spacer(modifier = Modifier.height(8.dp))
-
-                            InfoRow("Distància", "${"%.2f".format(ruta.distancia)} m", "Temps", "${"%.2f".format(ruta.tempsTotal)} h")
-                            Spacer(modifier = Modifier.height(8.dp))
-                            InfoRow("Velocitat Mitja", "${"%.2f".format(ruta.velocitatMitjana)} km/h", "Velocitat Màx.", "${"%.2f".format(ruta.velocitatMaxima)} km/h")
-
-                            Spacer(modifier = Modifier.height(16.dp))
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.SpaceEvenly
+                        itemsIndexed(llistaRutes) { index, ruta ->
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clip(RoundedCornerShape(16.dp))
+                                    .background(Color.White)
+                                    .padding(16.dp)
                             ) {
-                                Row(verticalAlignment = Alignment.CenterVertically) {
-                                    Image(
-                                        painter = painterResource(id = R.drawable.coin_icon),
-                                        contentDescription = "Icona monedes",
-                                        modifier = Modifier.size(18.dp)
+                                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                    Text(
+                                        "Ruta ${index + 1}",
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 20.sp
                                     )
                                     Text(
-                                        text = " ${"%.2f".format(ruta.saldoObtingut)}",
-                                        fontWeight = FontWeight.Bold,
-                                        color = Color(0xFF1976D2),
-                                        fontSize = 18.sp
+                                        text = "Data: ${ruta.dataCreacio}",
+                                        fontSize = 16.sp,
+                                        color = Color.Black,
+                                        modifier = Modifier.padding(top = 4.dp)
                                     )
+
+                                    Spacer(modifier = Modifier.height(8.dp))
+
+                                    InfoRow(
+                                        "Distància",
+                                        "${"%.2f".format(ruta.distancia)} m",
+                                        "Temps",
+                                        "${"%.2f".format(ruta.tempsTotal)} h"
+                                    )
+                                    Spacer(modifier = Modifier.height(8.dp))
+                                    InfoRow(
+                                        "Velocitat Mitja",
+                                        "${"%.2f".format(ruta.velocitatMitjana)} km/h",
+                                        "Velocitat Màx.",
+                                        "${"%.2f".format(ruta.velocitatMaxima)} km/h"
+                                    )
+
+                                    Spacer(modifier = Modifier.height(16.dp))
+                                    Row(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        horizontalArrangement = Arrangement.SpaceEvenly
+                                    ) {
+                                        Row(verticalAlignment = Alignment.CenterVertically) {
+                                            Image(
+                                                painter = painterResource(id = R.drawable.coin_icon),
+                                                contentDescription = "Icona monedes",
+                                                modifier = Modifier.size(18.dp)
+                                            )
+                                            Text(
+                                                text = " ${"%.2f".format(ruta.saldoObtingut)}",
+                                                fontWeight = FontWeight.Bold,
+                                                color = Color(0xFF1976D2),
+                                                fontSize = 18.sp
+                                            )
+                                        }
+                                        Text(
+                                            text = if (ruta.validada) "Validada" else "No Validada",
+                                            color = if (ruta.validada) Color(0xFF4CAF50) else Color.Red,
+                                            fontWeight = FontWeight.Bold,
+                                            fontSize = 16.sp
+                                        )
+                                    }
+
+                                    Spacer(modifier = Modifier.height(10.dp))
+
+                                    Button(onClick = {
+                                        navController.navigate("detallsRuta/${ruta.id}")
+                                    }) {
+                                        Text("Veure Detalls")
+                                    }
                                 }
-                                Text(
-                                    text = if (ruta.validada) "Validada" else "No Validada",
-                                    color = if (ruta.validada) Color(0xFF4CAF50) else Color.Red,
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 16.sp
-                                )
-                            }
-
-                            Spacer(modifier = Modifier.height(10.dp))
-
-                            Button(onClick = {
-                                navController.navigate("detallsRuta/${ruta.id}")
-                            }) {
-                                Text("Veure Detalls")
                             }
                         }
                     }
                 }
-            }
-            Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(20.dp))
+
         }
         BottomSection(navController, userViewModel, 0)
     }

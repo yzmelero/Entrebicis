@@ -41,6 +41,7 @@ import androidx.navigation.NavController
 import cat.copernic.ymelero.entrebicis.R
 import cat.copernic.ymelero.entrebicis.core.ui.BottomSection
 import cat.copernic.ymelero.entrebicis.core.ui.header
+import cat.copernic.ymelero.entrebicis.core.ui.theme.BlauTextTitol
 import cat.copernic.ymelero.entrebicis.recompenses.data.RecRepository
 import cat.copernic.ymelero.entrebicis.recompenses.domain.RecUseCases
 import cat.copernic.ymelero.entrebicis.recompenses.ui.viewmodel.RecViewModel
@@ -86,38 +87,23 @@ fun DetallRecompensaScreen(navController: NavController, userViewModel: UserView
                 header(navController, userViewModel)
 
                 Spacer(modifier = Modifier.height(20.dp))
-
+                Text(
+                    text = r.descripcio,
+                    fontSize = 26.sp,
+                    fontWeight = FontWeight.ExtraBold,
+                    color = BlauTextTitol
+                )
                 Column(
                     modifier = Modifier
                         .padding(16.dp)
                         .clip(RoundedCornerShape(20.dp))
-                        .background(Color(0xFF9DFFE8))
+                        .background(Color.White)
                         .verticalScroll(rememberScrollState())
                         .padding(28.dp)
                         .fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(
-                        text = r.descripcio,
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.Black
-                    )
-
                     Spacer(modifier = Modifier.height(4.dp))
-
-                    Text(
-                        text = r.nomComerc,
-                        fontSize = 20.sp,
-                        color = Color.DarkGray
-                    )
-                    Text(
-                        text = r.adrecaComerc,
-                        fontSize = 18.sp,
-                        color = Color.Gray
-                    )
-
-                    Spacer(modifier = Modifier.height(12.dp))
 
                     if (imageBitmap != null) {
                         Box(
@@ -155,9 +141,22 @@ fun DetallRecompensaScreen(navController: NavController, userViewModel: UserView
                             )
                         }
                     }
-
                     Spacer(modifier = Modifier.height(16.dp))
+                    Text(
+                        text = r.nomComerc,
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        color = Color(0xFF222222)
+                    )
+                    Spacer(modifier = Modifier.height(2.dp))
+                    Text(
+                        text = r.adrecaComerc,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Normal,
+                        color = Color(0xFF555555)
+                    )
 
+                    Spacer(modifier = Modifier.height(12.dp))
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
@@ -189,17 +188,17 @@ fun DetallRecompensaScreen(navController: NavController, userViewModel: UserView
 
                     Text(
                         text = "Dates",
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Medium,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.SemiBold,
                         color = Color(0xFF444444),
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(bottom = 4.dp)
                     )
-                    DetallText("Data de creació", r.dataCreacio.toString())
-                    r.dataReserva?.let { DetallText("Data de reserva", it) }
-                    r.dataAssignacio?.let { DetallText("Data d'assignació", it) }
-                    r.dataRecollida?.let { DetallText("Data de recollida", it) }
+                    DetallText("Data de creació:", r.dataCreacio.toString())
+                    r.dataReserva?.let { DetallText("Data de reserva:", it) }
+                    r.dataAssignacio?.let { DetallText("Data d'assignació:", it) }
+                    r.dataRecollida?.let { DetallText("Data de recollida:", it) }
 
                     Spacer(modifier = Modifier.height(20.dp))
                     if (r.estat.name == "DISPONIBLE") {
@@ -256,17 +255,18 @@ fun DetallRecompensaScreen(navController: NavController, userViewModel: UserView
 @Composable
 fun DetallText(titol: String, valor: String) {
     Column(modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp)) {
-        Text(
-            text = titol,
-            fontSize = 15.sp,
-            fontWeight = FontWeight.Medium,
-            color = Color(0xFF777777)
-        )
-        Text(
-            text = valor,
-            fontSize = 14.sp,
-            fontWeight = FontWeight.Normal,
-            color = Color(0xFF222222)
-        )
+        Row {
+            Text(
+                text = titol,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color(0xFF333333)
+            )
+            Text(
+                text = valor,
+                fontSize = 16.sp,
+                color = Color(0xFF333333)
+            )
+        }
     }
 }

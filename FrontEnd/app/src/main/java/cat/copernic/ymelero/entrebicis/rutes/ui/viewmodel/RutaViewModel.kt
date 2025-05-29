@@ -108,11 +108,15 @@ class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
         }
     }
 
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> get() = _isLoading
+
     private val _rutaCarregada = MutableStateFlow<Ruta?>(null)
     val rutaCarregada: StateFlow<Ruta?> get() = _rutaCarregada
 
     fun carregarRutaPerId(idRuta: Long) {
         viewModelScope.launch {
+            _isLoading.value = true
             try {
                 val response = rutaUseCases.obtenirRuta(idRuta)
                 if (response.isSuccessful) {
@@ -123,6 +127,8 @@ class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
                 }
             } catch (e: Exception) {
                 Log.e("RutaViewModel", "Excepció carregant ruta: ${e.message}")
+            } finally {
+                _isLoading.value = false
             }
         }
     }
@@ -131,6 +137,7 @@ class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
 
     fun carregarRutesUsuari(email: String) {
         viewModelScope.launch {
+            _isLoading.value = true
             try {
                 val resposta = rutaUseCases.getRutesPerUsuari(email)
                 if (resposta.isSuccessful) {
@@ -138,7 +145,9 @@ class RutaViewModel(private val rutaUseCases: RutaUseCases) : ViewModel() {
                 }
             } catch (e: Exception) {
                 Log.e("RutaViewModel", "Error carregant rutes: ${e.message}")
-            }
+            } finally {
+            _isLoading.value = false
+        }
         }
     }
 }

@@ -29,6 +29,8 @@ import androidx.navigation.NavController
 import cat.copernic.ymelero.entrebicis.R
 import cat.copernic.ymelero.entrebicis.core.ui.BottomSection
 import cat.copernic.ymelero.entrebicis.core.ui.header
+import cat.copernic.ymelero.entrebicis.core.ui.theme.BlauClarEntreBicis
+import cat.copernic.ymelero.entrebicis.core.ui.theme.BlauTextTitol
 import cat.copernic.ymelero.entrebicis.usuaris.ui.viewmodel.UserViewModel
 
 @Composable
@@ -40,7 +42,7 @@ fun UsuariScreen(navController: NavController, userViewModel: UserViewModel) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0xFFD3FCFF))
+                .background(BlauClarEntreBicis)
                 .windowInsetsPadding(WindowInsets.systemBars),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -56,7 +58,7 @@ fun UsuariScreen(navController: NavController, userViewModel: UserViewModel) {
                     text = "Perfil Usuari",
                     fontSize = 32.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.Black
+                    color = BlauTextTitol
                 )
 
                 Box(
@@ -67,7 +69,7 @@ fun UsuariScreen(navController: NavController, userViewModel: UserViewModel) {
                 ) {
                     Column(
                         modifier = Modifier
-                            .background(Color(0xFF9DFFE8), shape = RoundedCornerShape(20.dp))
+                            .background(Color.White, shape = RoundedCornerShape(20.dp))
                             .padding(28.dp)
                             .fillMaxWidth(),
                         horizontalAlignment = Alignment.CenterHorizontally

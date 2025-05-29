@@ -37,6 +37,7 @@ import androidx.navigation.NavController
 import cat.copernic.ymelero.entrebicis.R
 import cat.copernic.ymelero.entrebicis.core.ui.BottomSection
 import cat.copernic.ymelero.entrebicis.core.ui.header
+import cat.copernic.ymelero.entrebicis.core.ui.theme.BlauTextTitol
 import cat.copernic.ymelero.entrebicis.rutes.data.RutaRepository
 import cat.copernic.ymelero.entrebicis.rutes.domain.RutaUseCases
 import cat.copernic.ymelero.entrebicis.rutes.ui.viewmodel.RutaViewModel
@@ -107,7 +108,7 @@ fun DetallsRutaScreen(navController: NavController, userViewModel: UserViewModel
                     Text(
                         text = "Visualitzar Ruta",
                         fontWeight = FontWeight.Bold,
-                        color = Color.Black,
+                        color = BlauTextTitol,
                         fontSize = 24.sp
                     )
 
@@ -117,7 +118,7 @@ fun DetallsRutaScreen(navController: NavController, userViewModel: UserViewModel
                         modifier = Modifier
                             .fillMaxWidth(0.9f)
                             .clip(RoundedCornerShape(16.dp))
-                            .background(Color(0xFF9DFFE8))
+                            .background(Color.White)
                             .padding(16.dp)
                     ) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {

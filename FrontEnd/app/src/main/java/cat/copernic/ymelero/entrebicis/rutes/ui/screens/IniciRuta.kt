@@ -23,7 +23,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
@@ -104,7 +103,7 @@ fun IniciRutaScreen(navController: NavController, userViewModel: UserViewModel) 
                 if (ubicacioAutoritzada) {
                         GoogleMap(
                             modifier = Modifier.fillMaxSize()
-                                .background(Color(0xFF9DFFE8))
+                                .background(Color.White)
                                 .padding(10.dp),
                             cameraPositionState = estatCamera,
                             properties = MapProperties(isMyLocationEnabled = true),

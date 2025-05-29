@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -35,7 +36,7 @@ fun TopBar(navController: NavController, userViewModel: UserViewModel) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color(0xFF90CAF9))
+            .background(BlauEntreBicis)
             .padding(12.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
@@ -68,7 +69,7 @@ fun TopBar(navController: NavController, userViewModel: UserViewModel) {
 
         Text(
             text = "EntreBicis",
-            color = Color.Black,
+            color = Color.White,
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.clickable {
